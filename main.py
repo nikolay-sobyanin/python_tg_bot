@@ -1,16 +1,27 @@
-# This is a sample Python script.
+# -*- coding: utf-8 -*-
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import telebot
+from telebot import types
+import settings
+
+try:
+    from local_config import TOKEN
+except ImportError:
+    exit('Do copy paste local_config.py.default (local_config.py) and set TOKEN')
+
+bot = telebot.TeleBot(TOKEN)
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+@bot.message_handler(commands=list(settings.COMMAND))
+def command_message(message):
+    command = message.text[1:]
+    bot.send_message(message.chat.id, settings.COMMAND[command]['answer'])
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+@bot.message_handler(func=lambda message: True, content_types=['audio', 'photo', 'voice', 'video', 'document',
+                                                               'text', 'location', 'contact', 'sticker'])
+def error_message(message):
+    bot.send_message(message.chat.id, settings.DEFAULT_MESSAGE)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+bot.infinity_polling()
