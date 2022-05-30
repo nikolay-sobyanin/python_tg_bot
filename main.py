@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import telebot
 from config import BOT_TOKEN
 from botrequests.lowprice import CmdLowprice
@@ -5,16 +7,24 @@ from botrequests.lowprice import CmdLowprice
 bot = telebot.TeleBot(BOT_TOKEN)
 list_commands = ['start', 'help', 'lowprice', 'highprice', 'bestdeal', 'history', 'reset']
 
-users = {}  # user
+# key: user_id, value: cmd_object
+users = {}
+
+
+def check_user(user_id: int, cls):
+    if user_id in users:
+        return isinstance(users[user_id], cls)
+    else:
+        return False
 
 
 @bot.message_handler(commands=['reset'])
-def reset_state(message):
+def cmd_reset(message):
     bot.send_message(message.chat.id, 'Сброс состояния')
 
 
 @bot.message_handler(commands=list_commands, func=lambda x: False)
-def block_enter_commands(message):
+def cmd_block(message):
     bot.send_message(message.chat.id, 'Проверка состояния')
 
 
@@ -35,11 +45,22 @@ def cmd_help(message):
 
 
 @bot.message_handler(commands=['lowprice'])
-def lowprice_start(message):
+def cmd_lowprice_start(message):
     user_id = message.chat.id
     users[user_id] = CmdLowprice()
     msg = users[user_id].start()
     bot.send_message(user_id, msg)
+
+
+@bot.message_handler(func=lambda message: check_user(message.chat.id, CmdLowprice))
+def cmd_lowprice_run(message):
+    user_id = message.chat.id
+    msg = users[user_id].run()
+    if msg:
+        bot.send_message(user_id, msg)
+    else:
+        users.pop(user_id)
+        bot.send_message(user_id, 'Команда окончена')
 
 
 if __name__ == '__main__':
