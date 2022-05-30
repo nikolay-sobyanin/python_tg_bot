@@ -1,5 +1,3 @@
-from pprint import pprint
-
 import telebot
 from config import BOT_TOKEN
 from botrequests.lowprice import CmdLowprice
@@ -7,7 +5,11 @@ from botrequests.lowprice import CmdLowprice
 bot = telebot.TeleBot(BOT_TOKEN)
 list_commands = ['start', 'help', 'lowprice', 'highprice', 'bestdeal', 'history', 'reset']
 
-# key: user_id, value: cmd_object
+"""
+dict of users
+key: user_id
+value: cmd_object
+"""
 users = {}
 
 
