@@ -23,6 +23,10 @@ class CmdLowprice:
             'count_photos': None,
         }
 
+    def start(self):
+        self.step = self.SCENARIO['start_step']
+        return self.SCENARIO[self.step]['msg']
+
 
 
 

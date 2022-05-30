@@ -5,7 +5,7 @@ from botrequests.lowprice import CmdLowprice
 bot = telebot.TeleBot(BOT_TOKEN)
 list_commands = ['start', 'help', 'lowprice', 'highprice', 'bestdeal', 'history', 'reset']
 
-states_users = {}  # user
+users = {}  # user
 
 
 @bot.message_handler(commands=['reset'])
@@ -36,7 +36,10 @@ def cmd_help(message):
 
 @bot.message_handler(commands=['lowprice'])
 def lowprice_start(message):
-    pass
+    user_id = message.chat.id
+    users[user_id] = CmdLowprice()
+    msg = users[user_id].start()
+    bot.send_message(user_id, msg)
 
 
 if __name__ == '__main__':
