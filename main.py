@@ -8,14 +8,6 @@ list_commands = ['start', 'help', 'lowprice', 'highprice', 'bestdeal', 'history'
 states_users = {}  # user
 
 
-def add_user(user_id: int, command: str, step: str):
-    states_users[user_id] = {
-        'command': command,
-        'step': step,
-        'data': {}
-    }
-
-
 @bot.message_handler(commands=['reset'])
 def reset_state(message):
     bot.send_message(message.chat.id, 'Сброс состояния')
