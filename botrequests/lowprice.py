@@ -1,4 +1,5 @@
 class CmdLowprice:
+
     COMMAND_NAME = 'lowprice'
     SCENARIO = {
         'start_step': 'city',
@@ -11,11 +12,18 @@ class CmdLowprice:
         'get_results': {'msg': 'Введи что то для результата', 'next_step': None},
     }
 
-    def get_msg(self, step: str):
-        return self.SCENARIO[step]['msg']
+    def __init__(self):
+        self.step = None
+        self.data = {
+            'city': None,
+            'date_from': None,
+            'date_to': None,
+            'count_hotels': None,
+            'need_photo': None,
+            'count_photos': None,
+        }
 
-    def get_next_step(self, step: str):
-        return self.SCENARIO[step]['next_step']
+
 
 
 
