@@ -63,11 +63,11 @@ def cmd_lowprice_start(message):
 def cmd_lowprice_run(message):
     user_id = message.chat.id
     msg = users[user_id].run(message)
-    if msg:
-        bot.send_message(user_id, msg)
-    else:
+    if msg == 'Конец сценария':
         users.pop(user_id)
         bot.send_message(user_id, 'Команда окончена')
+    else:
+        bot.send_message(user_id, msg)
 
 
 if __name__ == '__main__':

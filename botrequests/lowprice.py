@@ -10,9 +10,8 @@ class CmdLowprice:
         'enter_date_from': {'msg': 'Введите дату заезда.', 'next_step': 'enter_date_to'},
         'enter_date_to': {'msg': 'Введите дату отъезда.', 'next_step': 'enter_count_hotels'},
         'enter_count_hotels': {'msg': 'Введите количество отелей (не более 5-и).', 'next_step': 'need_photo'},
-        'need_photo': {'msg': 'Выводить фото отелей?', 'next_step': ['enter_count_photo', 'get_results']},
-        'enter_count_photo': {'msg': 'Количество фото отелей?', 'next_step': 'get_results'},
-        'get_results': {'msg': 'Введи что то для результата', 'next_step': None},
+        'need_photo': {'msg': 'Выводить фото отелей?', 'next_step': ['enter_count_photo', 'finish']},
+        'enter_count_photo': {'msg': 'Количество фото отелей?', 'next_step': 'finish'},
     }
 
     def __init__(self):
@@ -27,10 +26,7 @@ class CmdLowprice:
         handler = getattr(self, self.step)
         reply_msg = handler(text)
 
-        if self.step:
-            return reply_msg
-        else:
-            return None
+        return reply_msg
 
     def enter_city(self, text: str):
         if len(text) >= 3:
@@ -84,14 +80,8 @@ class CmdLowprice:
         if text.isdigit() and (1 <= int(text) <= 10):
             self.data[self.step] = text
             self.step = self.SCENARIO[self.step]['next_step']
-            return self.SCENARIO[self.step]['msg']
-        else:
-            return 'Неправильно ввели количество фото. Попробуй снова.'
-
-    def get_results(self, text):
-        if text.isdigit() and (1 <= int(text) <= 10):
-            self.data[self.step] = text
-            self.step = self.SCENARIO[self.step]['next_step']
+            if self.step == 'finish':
+                return 'Конец сценария'
             return self.SCENARIO[self.step]['msg']
         else:
             return 'Неправильно ввели количество фото. Попробуй снова.'
