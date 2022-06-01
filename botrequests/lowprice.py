@@ -41,7 +41,7 @@ class CmdLowprice:
             return 'Неправильно ввели город. Попробуй снова.'
 
     def enter_date_from(self, text: str):
-        pattern_date = r'^([1-9] |1[0-9]| 2[0-9]|3[0-1])(.|-)([1-9] |1[0-2])(.|-|)20[0-9][0-9]$'
+        pattern_date = r'^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$'
         match = re.search(pattern_date, text)
         if match:
             self.data[self.step] = text
