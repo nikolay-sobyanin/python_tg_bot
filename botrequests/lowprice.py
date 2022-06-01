@@ -85,16 +85,3 @@ class CmdLowprice:
             return self.SCENARIO[self.step]['msg']
         else:
             return 'Неправильно ввели количество фото. Попробуй снова.'
-
-
-
-
-
-
-
-
-
-
-
-
-
