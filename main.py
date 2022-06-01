@@ -20,13 +20,13 @@ def check_user(user_id: int, cls):
         return False
 
 
-@bot.message_handler(commands=['reset'])
-def cmd_reset(message):
-    bot.send_message(message.chat.id, 'Сброс состояния')
+@bot.message_handler(commands=list_commands, func=lambda x: False)
+def block_msg_types(message):
+    bot.send_message(message.chat.id, 'Проверка состояния')
 
 
 @bot.message_handler(commands=list_commands, func=lambda x: False)
-def cmd_block(message):
+def block_command(message):
     bot.send_message(message.chat.id, 'Проверка состояния')
 
 
@@ -46,6 +46,11 @@ def cmd_help(message):
                                       '/reset - сброс текущего поиска')
 
 
+@bot.message_handler(commands=['reset'])
+def cmd_reset(message):
+    bot.send_message(message.chat.id, 'Сброс состояния')
+
+
 @bot.message_handler(commands=['lowprice'])
 def cmd_lowprice_start(message):
     user_id = message.chat.id
@@ -57,7 +62,7 @@ def cmd_lowprice_start(message):
 @bot.message_handler(func=lambda message: check_user(message.chat.id, CmdLowprice))
 def cmd_lowprice_run(message):
     user_id = message.chat.id
-    msg = users[user_id].run()
+    msg = users[user_id].run(message)
     if msg:
         bot.send_message(user_id, msg)
     else:
