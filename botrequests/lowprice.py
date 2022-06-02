@@ -43,69 +43,77 @@ class CmdLowprice:
         self.data = {}
 
     def start(self):
-        return self.SCENARIO[self.step]['msg']
+        return self.SCENARIO[self.step]['message']
 
     def run(self, message):
         text = message.text
         handler = getattr(self, self.step)
-        reply_msg = handler(text)
 
-        return reply_msg
+        if type(self.SCENARIO[self.step]['next_step']) is list:
+            if handler(text) is False:
+                return self.SCENARIO[self.step]['message_error']
+
+            switch = handler(text)
+            self.step = self.SCENARIO[self.step]['next_step'][switch]
+            if self.step == 'finish':
+                return 'Мы закончили'
+            return self.SCENARIO[self.step]['message']
+
+        if handler(text):
+            self.step = self.SCENARIO[self.step]['next_step']
+            if self.step == 'finish':
+                return 'Мы закончили'
+            return self.SCENARIO[self.step]['message']
+        else:
+            return self.SCENARIO[self.step]['message_error']
 
     def enter_city(self, text: str):
         if len(text) >= 3:
             self.data[self.step] = text
-            self.step = self.SCENARIO[self.step]['next_step']
-            return self.SCENARIO[self.step]['msg']
+            return True
         else:
-            return 'Неправильно ввели город. Попробуй снова.'
+            return False
 
     def enter_date_from(self, text: str):
         pattern_date = r'^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$'
         match = re.search(pattern_date, text)
         if match:
             self.data[self.step] = text
-            self.step = self.SCENARIO[self.step]['next_step']
-            return self.SCENARIO[self.step]['msg']
+            return True
         else:
-            return 'Неправильно ввели дату. Попробуй снова.'
+            return False
 
     def enter_date_to(self, text: str):
         pattern_date = r'^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$'
         match = re.search(pattern_date, text)
         if match:
             self.data[self.step] = text
-            self.step = self.SCENARIO[self.step]['next_step']
-            return self.SCENARIO[self.step]['msg']
+            return True
         else:
-            return 'Неправильно ввели дату. Попробуй снова.'
+            return False
 
     def enter_count_hotels(self, text):
         if text.isdigit() and (1 <= int(text) <= 10):
             self.data[self.step] = text
-            self.step = self.SCENARIO[self.step]['next_step']
-            return self.SCENARIO[self.step]['msg']
+            return True
         else:
-            return 'Неправильно ввели количество отелей. Попробуй снова.'
+            return False
 
     def need_photo(self, text):
-        if text.lower() in ['yes', 'да']:
+        if text.lower() == 'да':
             self.data[self.step] = text
-            self.step = self.SCENARIO[self.step]['next_step'][0]
-            return self.SCENARIO[self.step]['msg']
-        elif text.lower() in ['no', 'нет']:
+            switch = 0
+            return switch
+        elif text.lower() == 'нет':
             self.data[self.step] = text
-            self.step = self.SCENARIO[self.step]['next_step'][1]
-            return self.SCENARIO[self.step]['msg']
+            switch = 1
+            return switch
         else:
-            return 'Неправильный ввод. Попробуй снова.'
+            return False
 
     def enter_count_photo(self, text):
         if text.isdigit() and (1 <= int(text) <= 10):
             self.data[self.step] = text
-            self.step = self.SCENARIO[self.step]['next_step']
-            if self.step == 'finish':
-                return 'Конец сценария'
-            return self.SCENARIO[self.step]['msg']
+            return True
         else:
-            return 'Неправильно ввели количество фото. Попробуй снова.'
+            return False
