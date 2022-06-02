@@ -1,5 +1,25 @@
 import re
 
+msg = {
+    'enter_city': {
+        'message': '123',
+        'message_error': '123',
+        'keyboard_answer': {'type': 'standard'},
+        'next_step': 'finish'
+    },
+    'enter_count_hotels': {
+        'message': '123',
+        'message_error': '123',
+        'keyboard_answer': {'type': 'reply', 'answers': [1, 2, 3, 4, 5]},
+        'next_step': 'finish'
+    },
+    'enter_date_from': {
+        'message': '123',
+        'message_error': '123',
+        'keyboard_answer': {'type': 'date'},
+        'next_step': 'finish'
+    },
+}
 
 class CmdLowprice:
 
