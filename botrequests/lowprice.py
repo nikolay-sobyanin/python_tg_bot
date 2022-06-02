@@ -1,36 +1,40 @@
 import re
 
-msg = {
-    'enter_city': {
-        'message': '123',
-        'message_error': '123',
-        'keyboard_answer': {'type': 'standard'},
-        'next_step': 'finish'
-    },
-    'enter_count_hotels': {
-        'message': '123',
-        'message_error': '123',
-        'keyboard_answer': {'type': 'reply', 'answers': [1, 2, 3, 4, 5]},
-        'next_step': 'finish'
-    },
-    'enter_date_from': {
-        'message': '123',
-        'message_error': '123',
-        'keyboard_answer': {'type': 'date'},
-        'next_step': 'finish'
-    },
-}
 
 class CmdLowprice:
-
     COMMAND_NAME = 'lowprice'
     SCENARIO = {
         'start_step': 'enter_city',
-        'enter_city': {'msg': 'Введите наименование города.', 'next_step': 'enter_date_from'},
-        'enter_date_from': {'msg': 'Введите дату заезда.', 'next_step': 'enter_date_to'},
-        'enter_date_to': {'msg': 'Введите дату отъезда.', 'next_step': 'enter_count_hotels'},
-        'enter_count_hotels': {'msg': 'Введите количество отелей (не более 5-и).', 'next_step': 'need_photo'},
-        'need_photo': {'msg': 'Выводить фото отелей?', 'next_step': ['enter_count_photo', 'finish']},
+        'enter_city': {
+            'message': 'В каком городе искать отели?\nБудь внимателен не ошибись!',
+            'message_error': 'Что-то пошло не так...\nГород не найден, давай попробуем еще раз!',
+            'keyboard_answer': {'type': 'standard'},
+            'next_step': 'enter_date_from'
+        },
+        'enter_date_from': {
+            'message': 'Когда заезжаем в отель?',
+            'message_error': 'Что-то пошло не так...\nДата выбрана неверно, давай попробуем еще раз!',
+            'keyboard_answer': {'type': 'date'},
+            'next_step': 'enter_date_to'
+        },
+        'enter_date_to': {
+            'message': 'Когда выезжаем из отеля?',
+            'message_error': 'Что-то пошло не так...\nДата выбрана неверно, давай попробуем еще раз!',
+            'keyboard_answer': {'type': 'date'},
+            'next_step': 'enter_count_hotels'
+        },
+        'enter_count_hotels': {
+            'message': 'Сколько вывести отелей?',
+            'message_error': 'Что-то пошло не так...\nНеверный формат ввода, давай попробуем еще раз!',
+            'keyboard_answer': {'type': 'reply', 'answers': [1, 2, 3, 4, 5]},
+            'next_step': 'need_photo'
+        },
+        'need_photo': {
+            'message': 'Фото отелей нужны?',
+            'message_error': 'Что-то пошло не так...\nНеверный формат ввода, давай попробуем еще раз!',
+            'keyboard_answer': {'type': 'reply', 'answers': ['Да', 'Нет']},
+            'next_step': ['enter_count_photo', 'finish']
+        },
         'enter_count_photo': {'msg': 'Количество фото отелей?', 'next_step': 'finish'},
     }
 
