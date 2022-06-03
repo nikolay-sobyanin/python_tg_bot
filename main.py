@@ -1,9 +1,11 @@
 import telebot
+from telebot import types
+
 from config import BOT_TOKEN
 from botrequests.lowprice import CmdLowprice
 
 bot = telebot.TeleBot(BOT_TOKEN)
-list_commands = ['start', 'help', 'lowprice', 'highprice', 'bestdeal', 'history', 'reset']
+BLOCK_COMMANDS = ['lowprice', 'highprice', 'bestdeal', 'start']
 
 """
 dict of users
@@ -20,20 +22,29 @@ def check_user(user_id: int, cls):
         return False
 
 
-@bot.message_handler(commands=list_commands, func=lambda x: False)
-def block_msg_types(message):
-    bot.send_message(message.chat.id, 'Проверка состояния')
+# Не работает! Почему?
+# func= lambda message: message.content_type != 'text'
+@bot.message_handler(content_types=['audio', 'document', 'photo', 'sticker', 'video', 'video_note', 'voice',
+                                    'location', 'contact', 'new_chat_members', 'left_chat_member', 'new_chat_title',
+                                    'new_chat_photo', 'delete_chat_photo', 'group_chat_created',
+                                    'supergroup_chat_created', 'channel_chat_created', 'migrate_to_chat_id',
+                                    'migrate_from_chat_id', 'pinned_message'])
+def block_message(message):
+    bot.send_message(message.chat.id, f'Упс... Ошибка!\nБот понимает только текстовые сообщения!')
 
 
-@bot.message_handler(commands=list_commands, func=lambda x: False)
-def block_command(message):
-    bot.send_message(message.chat.id, 'Проверка состояния')
+@bot.message_handler(commands=BLOCK_COMMANDS, func=lambda message: message.chat.id in users)
+def block_commands(message):
+    user_id = message.chat.id
+    command_name = users[user_id].COMMAND_NAME
+    bot.send_message(message.chat.id, f'Вы находитесь в сценарии команды - {command_name}.\n'
+                                      f'Введи команду /reset, чтобы выйти из сценария.')
 
 
 @bot.message_handler(commands=['start'])
 def cmd_start(message):
-    bot.send_message(message.chat.id, 'Привет! Ты запустили бота, который производит поиск отлей.\n'
-                                      'Ознакомься с его командами - /help.')
+    bot.send_message(message.chat.id, 'Я помогу тебе найти отели!\n'
+                                      'Ознакомься с моими командами - /help.')
 
 
 @bot.message_handler(commands=['help'])
@@ -48,26 +59,49 @@ def cmd_help(message):
 
 @bot.message_handler(commands=['reset'])
 def cmd_reset(message):
-    bot.send_message(message.chat.id, 'Сброс состояния')
+    user_id = message.chat.id
+    if user_id in users:
+        command_name = users[user_id].COMMAND_NAME
+        users.pop(user_id)
+        bot.send_message(message.chat.id, f'Вы покинули сценарий команды /{command_name}')
+    else:
+        bot.send_message(message.chat.id, f'Вы не находитесь в сценарии команды...')
 
 
 @bot.message_handler(commands=['lowprice'])
 def cmd_lowprice_start(message):
     user_id = message.chat.id
     users[user_id] = CmdLowprice()
-    msg = users[user_id].start()
-    bot.send_message(user_id, msg)
+    result = users[user_id].start()
+    bot.send_message(user_id, result['message_text'])
 
 
 @bot.message_handler(func=lambda message: check_user(message.chat.id, CmdLowprice))
 def cmd_lowprice_run(message):
     user_id = message.chat.id
-    msg = users[user_id].run(message)
-    if msg == 'Мы закончили':
-        users.pop(user_id)
-        bot.send_message(user_id, 'Команда окончена')
-    else:
-        bot.send_message(user_id, msg)
+    result = users[user_id].run(message)
+    result_handler(user_id, result)
+
+
+def result_handler(user_id, result):
+    if result['step'] == 'finish':
+        for i in range(1, 6):
+            bot.send_message(user_id, f'Результат № {i}!')
+            return
+
+    if result['keyboard']['type'] in [None, 'date']:
+        bot.send_message(user_id, result['message_text'])
+
+    if result['keyboard']['type'] == 'reply':
+        markup = generate_markup(result['keyboard']['answers'])
+        bot.send_message(user_id, result['message_text'], reply_markup=markup)
+
+
+def generate_markup(answers):
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
+    for answer in answers:
+        markup.add(answer)
+    return markup
 
 
 if __name__ == '__main__':
