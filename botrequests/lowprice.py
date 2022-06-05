@@ -49,8 +49,7 @@ class CmdLowprice:
                 'keyboard': self.SCENARIO[self.step]['keyboard']
             }
 
-    def run(self, message):
-        text = message.text
+    def run(self, text):
         handler = getattr(self, self.step)
         result_handler = handler(text)
 

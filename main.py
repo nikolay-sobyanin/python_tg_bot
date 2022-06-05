@@ -1,5 +1,6 @@
 import telebot
 from telebot import types
+from telegram_bot_calendar import DetailedTelegramCalendar, LSTEP
 
 from config import BOT_TOKEN
 from botrequests.lowprice import CmdLowprice
@@ -79,7 +80,7 @@ def cmd_lowprice_start(message):
 @bot.message_handler(func=lambda message: check_user(message.chat.id, CmdLowprice))
 def cmd_lowprice_run(message):
     user_id = message.chat.id
-    result = users[user_id].run(message)
+    result = users[user_id].run(message.text)
     result_handler(user_id, result)
 
 
@@ -90,8 +91,12 @@ def result_handler(user_id, result):
         users.pop(user_id)
         return
 
-    if result['keyboard']['type'] in [None, 'date']:
+    if result['keyboard']['type'] is None:
         bot.send_message(user_id, result['message_text'])
+
+    if result['keyboard']['type'] == 'date':
+        bot.send_message(user_id, result['message_text'])
+        create_calendar(user_id)
 
     if result['keyboard']['type'] == 'reply':
         markup = generate_markup(result['keyboard']['answers'])
@@ -99,10 +104,34 @@ def result_handler(user_id, result):
 
 
 def generate_markup(answers):
-    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True, row_width=2)
     for answer in answers:
         markup.add(answer)
     return markup
+
+
+def create_calendar(user_id):
+    calendar, step = DetailedTelegramCalendar().build()
+    bot.send_message(user_id,
+                     f"Select {LSTEP[step]}",
+                     reply_markup=calendar)
+
+
+@bot.callback_query_handler(func=DetailedTelegramCalendar.func())
+def cal(c):
+    result, key, step = DetailedTelegramCalendar().process(c.data)
+    if not result and key:
+        bot.edit_message_text(f"Select {LSTEP[step]}",
+                              c.message.chat.id,
+                              c.message.message_id,
+                              reply_markup=key)
+    elif result:
+        bot.edit_message_text(f"You selected {result}",
+                              c.message.chat.id,
+                              c.message.message_id)
+        user_id = c.message.chat.id
+        result_1 = users[user_id].run(str(result))
+        result_handler(user_id, result_1)
 
 
 if __name__ == '__main__':
