@@ -87,7 +87,8 @@ def result_handler(user_id, result):
     if result['step'] == 'finish':
         for i in range(1, 6):
             bot.send_message(user_id, f'Результат № {i}!')
-            return
+        users.pop(user_id)
+        return
 
     if result['keyboard']['type'] in [None, 'date']:
         bot.send_message(user_id, result['message_text'])
