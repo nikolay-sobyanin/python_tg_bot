@@ -1,17 +1,19 @@
 import telebot
 from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar, LSTEP
+from datetime import date, datetime, timedelta
 
 from config import BOT_TOKEN
 from botrequests.lowprice import CmdLowprice
 
 bot = telebot.TeleBot(BOT_TOKEN)
 BLOCK_COMMANDS = ['lowprice', 'highprice', 'bestdeal', 'start']
+DATE_FORMAT = '%d.%m.%Y'
 
 """
-dict of users
-key: user_id
-value: cmd_object
+Словарь пользователей, которые находятся в сценарии команды
+key: id пользователя
+value: объект обработчик сообщений от пользователя
 """
 users = {}
 
@@ -31,11 +33,19 @@ def check_user(user_id: int, cls):
                                     'supergroup_chat_created', 'channel_chat_created', 'migrate_to_chat_id',
                                     'migrate_from_chat_id', 'pinned_message'])
 def block_message(message):
+    """
+    Блокируем все сообщения кроме content_types='text'
+    :param message:
+    """
     bot.send_message(message.chat.id, f'Упс... Ошибка!\nБот понимает только текстовые сообщения!')
 
 
 @bot.message_handler(commands=BLOCK_COMMANDS, func=lambda message: message.chat.id in users)
 def block_commands(message):
+    """
+    Болокируем ввод команд находясь в сценарии какой-либо команды
+    :param message:
+    """
     user_id = message.chat.id
     command_name = users[user_id].COMMAND_NAME
     bot.send_message(message.chat.id, f'Вы находитесь в сценарии команды - {command_name}.\n'
@@ -60,6 +70,10 @@ def cmd_help(message):
 
 @bot.message_handler(commands=['reset'])
 def cmd_reset(message):
+    """
+    Сброс команды со сценарием
+    :param message:
+    """
     user_id = message.chat.id
     if user_id in users:
         command_name = users[user_id].COMMAND_NAME
@@ -71,6 +85,10 @@ def cmd_reset(message):
 
 @bot.message_handler(commands=['lowprice'])
 def cmd_lowprice_start(message):
+    """
+    Запуск сценария команды lowprice
+    :param message:
+    """
     user_id = message.chat.id
     users[user_id] = CmdLowprice()
     result = users[user_id].start()
@@ -79,12 +97,21 @@ def cmd_lowprice_start(message):
 
 @bot.message_handler(func=lambda message: check_user(message.chat.id, CmdLowprice))
 def cmd_lowprice_run(message):
+    """
+    Движение по сценарию команды lowprice
+    :param message:
+    """
     user_id = message.chat.id
     result = users[user_id].run(message.text)
-    result_handler(user_id, result)
+    reply_user(user_id, result)
 
 
-def result_handler(user_id, result):
+def reply_user(user_id: int, result: dict):
+    """
+    Ответ пользователю
+    :param user_id: id пользователя
+    :param result: словарь с ответом от обработчика {}
+    """
     if result['step'] == 'finish':
         for i in range(1, 6):
             bot.send_message(user_id, f'Результат № {i}!')
@@ -93,45 +120,69 @@ def result_handler(user_id, result):
 
     if result['keyboard']['type'] is None:
         bot.send_message(user_id, result['message_text'])
-
-    if result['keyboard']['type'] == 'date':
+    elif result['keyboard']['type'] == 'date':
         bot.send_message(user_id, result['message_text'])
-        create_calendar(user_id)
-
-    if result['keyboard']['type'] == 'reply':
-        markup = generate_markup(result['keyboard']['answers'])
+        generate_calendar_keyboard(user_id)
+    elif result['keyboard']['type'] == 'reply':
+        markup = generate_reply_keyboard(result['keyboard']['answers'])
         bot.send_message(user_id, result['message_text'], reply_markup=markup)
+    else:
+        raise TypeError
 
 
-def generate_markup(answers):
+def generate_reply_keyboard(answers: list):
+    """
+    Генератор клавиатуры с определенными ответами
+    :param answers: список ответов
+    """
     markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True, row_width=2)
     for answer in answers:
         markup.add(answer)
     return markup
 
 
-def create_calendar(user_id):
-    calendar, step = DetailedTelegramCalendar().build()
+def get_min_max_date(user_id: int):
+    if 'enter_date_from' in users[user_id].data:
+        min_date = datetime.strptime(users[user_id].data['enter_date_from'], DATE_FORMAT).date()
+    else:
+        min_date = date.today()
+    max_date = date.today() + timedelta(days=365)
+    return min_date, max_date
+
+
+def generate_calendar_keyboard(user_id: int):
+    """
+    Генератор инлайн клавиатуры для введения даты
+    :param user_id: id пользователя
+    :return:
+    """
+    min_date, max_date = get_min_max_date(user_id)
+    calendar, step = DetailedTelegramCalendar(min_date=min_date, max_date=max_date).build()
     bot.send_message(user_id,
                      f"Select {LSTEP[step]}",
                      reply_markup=calendar)
 
 
 @bot.callback_query_handler(func=DetailedTelegramCalendar.func())
-def cal(c):
-    result, key, step = DetailedTelegramCalendar().process(c.data)
-    if not result and key:
+def callback__calendar_keyboard(call):
+    """
+    Обработка даты от инлайн клавиатуры и дальнейшее движение по сценарию
+    :param call:
+    """
+    user_id = call.message.chat.id
+    min_date, max_date = get_min_max_date(user_id)
+    enter_date, key, step = DetailedTelegramCalendar(min_date=min_date, max_date=max_date).process(call.data)
+    if not enter_date and key:
         bot.edit_message_text(f"Select {LSTEP[step]}",
-                              c.message.chat.id,
-                              c.message.message_id,
+                              call.message.chat.id,
+                              call.message.message_id,
                               reply_markup=key)
-    elif result:
-        bot.edit_message_text(f"You selected {result}",
-                              c.message.chat.id,
-                              c.message.message_id)
-        user_id = c.message.chat.id
-        result_1 = users[user_id].run(str(result))
-        result_handler(user_id, result_1)
+    elif enter_date:
+        bot.edit_message_text(f"Ты выбрал дату {enter_date.strftime(DATE_FORMAT)}",
+                              call.message.chat.id,
+                              call.message.message_id)
+        result = users[user_id].run(enter_date.strftime(DATE_FORMAT))
+        reply_user(user_id, result)
 
 
 if __name__ == '__main__':
