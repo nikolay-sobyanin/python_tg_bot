@@ -77,11 +77,7 @@ class CmdLowprice:
 
     def _get_answer(self):
         if self.step == 'finish':
-            return {
-                'step': self.step,
-                'message_text': f'Команда {self.COMMAND_NAME} выполнена!',
-                'keyboard': {'type': None},
-            }
+            return self._get_result_cmd()
         else:
             return {
                 'step': self.step,
@@ -158,3 +154,15 @@ class CmdLowprice:
         else:
             text_error = 'Что-то пошло не так...\nНеверный формат ввода, давай попробуем еще раз!'
             return self._create_result(set_next_step=False, text_error=text_error)
+
+    def _get_result_cmd(self):
+        message_text = ''
+        for key, value in self.data.items():
+            message_text += f'{key}: {value}\n'
+        message_text += f'Команда {self.COMMAND_NAME} выполнена!'
+        return {
+                'step': self.step,
+                'message_text': message_text,
+                'keyboard': {'type': 'inline'},
+            }
+

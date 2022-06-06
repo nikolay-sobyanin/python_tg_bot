@@ -113,8 +113,8 @@ def reply_user(user_id: int, result: dict):
     :param result: словарь с ответом от обработчика {}
     """
     if result['step'] == 'finish':
-        for i in range(1, 6):
-            bot.send_message(user_id, f'Результат № {i}!')
+        markup = generate_inline_keyboard()
+        bot.send_message(user_id, result['message_text'], reply_markup=markup)
         users.pop(user_id)
         return
 
@@ -130,12 +130,19 @@ def reply_user(user_id: int, result: dict):
         raise TypeError
 
 
+def generate_inline_keyboard():
+    markup = types.InlineKeyboardMarkup()
+    url_button = types.InlineKeyboardButton(text="Перейти на hotels.ru", url="https://www.hotels.ru/")
+    markup.add(url_button)
+    return markup
+
+
 def generate_reply_keyboard(answers: list):
     """
     Генератор клавиатуры с определенными ответами
     :param answers: список ответов
     """
-    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True, row_width=2)
+    markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
     for answer in answers:
         markup.add(answer)
     return markup
