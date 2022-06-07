@@ -114,7 +114,7 @@ def reply_user(user_id: int, result: dict):
     """
     if result['step'] == 'finish':
         markup = generate_inline_keyboard()
-        bot.send_message(user_id, result['message_text'], reply_markup=markup)
+        bot.send_message(user_id, result['message_text'], disable_web_page_preview=True, reply_markup=markup)
         users.pop(user_id)
         return
 

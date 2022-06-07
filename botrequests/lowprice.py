@@ -159,7 +159,7 @@ class CmdLowprice:
         message_text = ''
         for key, value in self.data.items():
             message_text += f'{key}: {value}\n'
-        message_text += f'Команда {self.COMMAND_NAME} выполнена!'
+        message_text += f'Команда {self.COMMAND_NAME} выполнена! https://www.hotels.ru/'
         return {
                 'step': self.step,
                 'message_text': message_text,
