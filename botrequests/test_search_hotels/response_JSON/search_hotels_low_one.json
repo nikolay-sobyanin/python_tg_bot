@@ -1,0 +1,3392 @@
+{
+    "result": "OK",
+    "data": {
+        "body": {
+            "header": "Paris, France",
+            "query": {
+                "destination": {
+                    "id": "504261",
+                    "value": "Paris, France",
+                    "resolvedLocation": "CITY:504261:UNKNOWN:UNKNOWN"
+                }
+            },
+            "searchResults": {
+                "totalCount": 7494,
+                "results": [
+                    {
+                        "id": 2509325664,
+                        "name": "auberge de bondy",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "91 Rue Louis Auguste Blanqui",
+                            "extendedAddress": "",
+                            "locality": "Bondy",
+                            "postalCode": "93140",
+                            "region": "Seine-Saint-Denis",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 2.0,
+                            "rating": "2.0",
+                            "total": 1,
+                            "scale": 10
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "7.0 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "9.2 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$19",
+                                "exactCurrent": 19.26,
+                                "old": "$24",
+                                "fullyBundledPricePerStay": "total $24"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Bondy",
+                        "deals": {
+                            "specialDeal": {
+                                "dealText": "Mobile exclusive: save 19%"
+                            },
+                            "priceReasoning": "DRR-444"
+                        },
+                        "messaging": {
+                            "scarcity": "1 left on our app"
+                        },
+                        "badging": {},
+                        "coordinate": {
+                            "lat": 48.898678,
+                            "lon": 2.486932
+                        },
+                        "roomsLeft": 1,
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 78385177,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/79000000/78390000/78385200/78385177/8ee9cf17_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 1285651520,
+                        "name": "Auberge Lori",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "25 Rue de Carency",
+                            "extendedAddress": "",
+                            "locality": "Bobigny",
+                            "postalCode": "93000",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.0,
+                            "rating": "6.0",
+                            "total": 5,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "5.8 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "7.9 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$19",
+                                "exactCurrent": 19.46,
+                                "fullyBundledPricePerStay": "total $24"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Bobigny",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13",
+                        "coordinate": {
+                            "lat": 48.91084,
+                            "lon": 2.44836
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 40145360,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/41000000/40150000/40145400/40145360/e4136f0b_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 399011,
+                        "name": "Peace & Love - Hostel",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "245 Rue La Fayette",
+                            "extendedAddress": "",
+                            "locality": "Paris",
+                            "postalCode": "75010",
+                            "region": "Paris",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 5.4,
+                            "rating": "5.4",
+                            "total": 332,
+                            "scale": 10
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "1.8 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "3.8 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$25",
+                                "exactCurrent": 25.33,
+                                "old": "$28",
+                                "fullyBundledPricePerStay": "total $33"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "H\u00f4pital Saint-Louis",
+                        "deals": {
+                            "secretPrice": {
+                                "dealText": "Save more with Secret Prices"
+                            },
+                            "priceReasoning": "DRR-443"
+                        },
+                        "messaging": {
+                            "scarcity": "1 left on our app"
+                        },
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|priceRangeUK|HRW|TESCO",
+                        "coordinate": {
+                            "lat": 48.882541,
+                            "lon": 2.369154
+                        },
+                        "roomsLeft": 1,
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 4811984,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/5000000/4820000/4812000/4811984/e2784f59_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 186954,
+                        "name": "Arty Paris Porte de Versailles by River",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "62 Rue des Morillons",
+                            "extendedAddress": "",
+                            "locality": "Paris",
+                            "postalCode": "75015",
+                            "region": "Paris",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 7.4,
+                            "rating": "7.4",
+                            "total": 562,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "2.8 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "1.8 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$33",
+                                "exactCurrent": 33.47,
+                                "old": "$42",
+                                "fullyBundledPricePerStay": "total $42"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Saint-Lambert",
+                        "deals": {
+                            "secretPrice": {
+                                "dealText": "Save more with Secret Prices"
+                            },
+                            "priceReasoning": "DRR-445"
+                        },
+                        "messaging": {
+                            "scarcity": "1 left on our app"
+                        },
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.831932,
+                            "lon": 2.304451
+                        },
+                        "roomsLeft": 1,
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 559507,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/1000000/560000/559600/559507/7058af6b_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 484468,
+                        "name": "MIJE Marais",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "6 rue de Fourcy, 11 rue du Fauconnier",
+                            "extendedAddress": "12 rue des Barres",
+                            "locality": "Paris",
+                            "postalCode": "75004",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 7.8,
+                            "rating": "7.8",
+                            "total": 587,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "0.9 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "2.9 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$34",
+                                "exactCurrent": 33.5,
+                                "old": "$37",
+                                "fullyBundledPricePerStay": "total $38"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Saint-Gervais",
+                        "deals": {
+                            "specialDeal": {
+                                "dealText": "Mobile exclusive: save 10%"
+                            },
+                            "priceReasoning": "DRR-444"
+                        },
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.85484,
+                            "lon": 2.35915
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 9618721,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/10000000/9620000/9618800/9618721/6a284366_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 516966,
+                        "name": "Hotel SUB",
+                        "starRating": 3.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "2 Ter Villa Aubert",
+                            "extendedAddress": "",
+                            "locality": "Asnieres-sur-Seine",
+                            "postalCode": "92600",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 7.2,
+                            "rating": "7.2",
+                            "total": 391,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "4.7 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "4.0 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$37",
+                                "exactCurrent": 37.14,
+                                "old": "$41",
+                                "fullyBundledPricePerStay": "total $43"
+                            },
+                            "features": {
+                                "freeCancellation": true,
+                                "paymentPreference": true,
+                                "noCCRequired": false
+                            },
+                            "type": "Dual"
+                        },
+                        "neighbourhood": "Asnieres-sur-Seine",
+                        "deals": {
+                            "specialDeal": {
+                                "dealText": "Mobile exclusive: save 10%"
+                            },
+                            "priceReasoning": "DRR-444"
+                        },
+                        "messaging": {
+                            "scarcity": "4 left on our app"
+                        },
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.91355,
+                            "lon": 2.27351
+                        },
+                        "roomsLeft": 4,
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 11069643,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/12000000/11070000/11069700/11069643/abbe5fdf_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 1251140384,
+                        "name": "Chambre priv\u00e9e \u00e0 Drancy",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "7 rue Michelet",
+                            "extendedAddress": "",
+                            "locality": "Drancy",
+                            "postalCode": "93700",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.6,
+                            "rating": "6.6",
+                            "total": 21,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "6.3 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "8.4 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$39",
+                                "exactCurrent": 39.41,
+                                "fullyBundledPricePerStay": "total $44"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Drancy",
+                        "deals": {},
+                        "messaging": {
+                            "scarcity": "1 left on our app"
+                        },
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.919907,
+                            "lon": 2.452785
+                        },
+                        "roomsLeft": 1,
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 39066887,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/40000000/39070000/39066900/39066887/39ef214c_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 579186,
+                        "name": "hotelF1 Chilly-Mazarin Les Champarts",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "ZA de la Butte au Berger",
+                            "extendedAddress": "",
+                            "locality": "Chilly-Mazarin",
+                            "postalCode": "91380",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 5.6,
+                            "rating": "5.6",
+                            "total": 124,
+                            "scale": 10
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "10 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "9.8 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$40",
+                                "exactCurrent": 39.57,
+                                "fullyBundledPricePerStay": "total $44"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Chilly-Mazarin",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|TESCO",
+                        "coordinate": {
+                            "lat": 48.71541,
+                            "lon": 2.300037
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 14770073,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/15000000/14780000/14770100/14770073/d5893e92_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 386124,
+                        "name": "Enjoy Hostel",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "5 Rue Des Plantes",
+                            "extendedAddress": "",
+                            "locality": "Paris",
+                            "postalCode": "75014",
+                            "region": "Paris",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 7.4,
+                            "rating": "7.4",
+                            "total": 326,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "2.3 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "2.2 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$40",
+                                "exactCurrent": 39.65,
+                                "old": "$44",
+                                "fullyBundledPricePerStay": "total $49"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Plaisance",
+                        "deals": {
+                            "specialDeal": {
+                                "dealText": "Mobile exclusive: save 10%"
+                            },
+                            "priceReasoning": "DRR-444"
+                        },
+                        "messaging": {
+                            "scarcity": "2 left on our app"
+                        },
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.831898,
+                            "lon": 2.324608
+                        },
+                        "roomsLeft": 2,
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 4491728,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/5000000/4500000/4491800/4491728/143d52f9_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 252481,
+                        "name": "Premi\u00e8re Classe Epinay Sur Orge Savigny Sur Orge",
+                        "starRating": 2.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "1 B, Rue de Charaintru",
+                            "extendedAddress": "",
+                            "locality": "Epinay-sur-Orge",
+                            "postalCode": "91360",
+                            "region": "Essonne",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.6,
+                            "rating": "6.6",
+                            "total": 279,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "13 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "13 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$40",
+                                "exactCurrent": 40.29,
+                                "fullyBundledPricePerStay": "total $44"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Epinay-sur-Orge",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.677511,
+                            "lon": 2.335166
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 1618359,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/2000000/1620000/1618400/1618359/526d68ad_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 579184,
+                        "name": "hotelF1 Rungis Orly",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "7 rue du Pont des Halles",
+                            "extendedAddress": "",
+                            "locality": "Rungis",
+                            "postalCode": "94656",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.4,
+                            "rating": "6.4",
+                            "total": 274,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "7.4 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "7.5 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$41",
+                                "exactCurrent": 40.61,
+                                "fullyBundledPricePerStay": "total $49"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Rungis",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|TESCO",
+                        "coordinate": {
+                            "lat": 48.755816,
+                            "lon": 2.349194
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 14770162,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/15000000/14780000/14770200/14770162/b4787ea6_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 253177,
+                        "name": "Premi\u00e8re Classe Roissy Charles De Gaulle Paris Nord 2",
+                        "starRating": 2.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "309 Rue de la Belle Etoile",
+                            "extendedAddress": "ZI Paris Nord 2, BP5005",
+                            "locality": "Roissy-en-France",
+                            "postalCode": "95945",
+                            "region": "Val-d'Oise",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.6,
+                            "rating": "6.6",
+                            "total": 1381,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "12 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "13 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$41",
+                                "exactCurrent": 41.18,
+                                "fullyBundledPricePerStay": "total $47"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Roissy-en-France",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.988403,
+                            "lon": 2.51371
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 1312055,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/2000000/1320000/1312100/1312055/6ae00716_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 2343790400,
+                        "name": "easyHotel Paris Charles de Gaulle",
+                        "starRating": 2.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "10 Rue de la Belle Borne",
+                            "extendedAddress": "",
+                            "locality": "Tremblay-en-France",
+                            "postalCode": "93290",
+                            "region": "Roissy",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 8.2,
+                            "rating": "8.2",
+                            "total": 150,
+                            "scale": 10,
+                            "badge": "very-good",
+                            "badgeText": "Very Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "12 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "14 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$42",
+                                "exactCurrent": 42.42,
+                                "old": "$53",
+                                "fullyBundledPricePerStay": "total $48"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Tremblay-en-France",
+                        "deals": {
+                            "secretPrice": {
+                                "dealText": "Save more with Secret Prices"
+                            },
+                            "priceReasoning": "DRR-445"
+                        },
+                        "messaging": {
+                            "scarcity": "2 left on our app"
+                        },
+                        "badging": {},
+                        "pimmsAttributes": "D13|HRW",
+                        "coordinate": {
+                            "lat": 48.989175,
+                            "lon": 2.523443
+                        },
+                        "roomsLeft": 2,
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 73212200,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/74000000/73220000/73212200/73212200/97174434_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 572005,
+                        "name": "hotelF1 Roissy CDG",
+                        "starRating": 1.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "335 rue de la Belle Etoile",
+                            "extendedAddress": "ZAC Paris Nord 2",
+                            "locality": "Roissy-en-France",
+                            "postalCode": "95974",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.6,
+                            "rating": "6.6",
+                            "total": 929,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "12 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "13 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$43",
+                                "exactCurrent": 42.7,
+                                "fullyBundledPricePerStay": "total $48"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Roissy-en-France",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|HRW|TESCO",
+                        "coordinate": {
+                            "lat": 48.988808,
+                            "lon": 2.514141
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 13435224,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/14000000/13440000/13435300/13435224/20a10cf1_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 252829,
+                        "name": "Premiere Classe Herblay",
+                        "starRating": 1.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "Rue Rene Coty Angle Av de la Liberation",
+                            "extendedAddress": "",
+                            "locality": "Herblay",
+                            "postalCode": "95220",
+                            "region": "Val-d'Oise",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 7.0,
+                            "rating": "7.0",
+                            "total": 359,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "12 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "11 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$43",
+                                "exactCurrent": 42.97,
+                                "fullyBundledPricePerStay": "total $48"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Herblay",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 49.00168,
+                            "lon": 2.18603
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 1614344,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/2000000/1620000/1614400/1614344/c9e3a7a5_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 579223,
+                        "name": "hotelF1 Paris Saint-Denis Universit\u00e9",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "11 avenue Lenine",
+                            "extendedAddress": "",
+                            "locality": "Saint-Denis",
+                            "postalCode": "93200",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.2,
+                            "rating": "6.2",
+                            "total": 248,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "5.3 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "6.5 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$44",
+                                "exactCurrent": 43.73,
+                                "fullyBundledPricePerStay": "total $53"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Saint-Denis",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|priceRangeUK|TESCO",
+                        "coordinate": {
+                            "lat": 48.938092,
+                            "lon": 2.368268
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 14770919,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/15000000/14780000/14771000/14770919/d3d65c4b_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 252485,
+                        "name": "Hotel Premi\u00e8re Classe Saint Quentin En Yvelines - Elancourt",
+                        "starRating": 1.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "Z.A de Trappes Elancourt 65 B",
+                            "extendedAddress": "Avenue Georges Politzer",
+                            "locality": "Elancourt",
+                            "postalCode": "78190",
+                            "region": "Yvelines",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 5.0,
+                            "rating": "5.0",
+                            "total": 268,
+                            "scale": 10
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "18 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "16 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$44",
+                                "exactCurrent": 43.87,
+                                "fullyBundledPricePerStay": "total $49"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Elancourt",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.7618,
+                            "lon": 1.97428
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 1613298,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/2000000/1620000/1613300/1613298/cb8992a3_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 2450792096,
+                        "name": "The People Paris Marais",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "17 Boulevard Morland",
+                            "extendedAddress": "",
+                            "locality": "Paris",
+                            "postalCode": "75004",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 9.4,
+                            "rating": "9.4",
+                            "total": 3,
+                            "scale": 10,
+                            "badge": "exceptional",
+                            "badgeText": "Exceptional"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "1.2 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "3.1 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$44",
+                                "exactCurrent": 44.42,
+                                "old": "$49",
+                                "fullyBundledPricePerStay": "total $54"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Arsenal",
+                        "deals": {
+                            "secretPrice": {
+                                "dealText": "Save more with Secret Prices"
+                            },
+                            "priceReasoning": "DRR-443"
+                        },
+                        "messaging": {
+                            "scarcity": "1 left on our app"
+                        },
+                        "badging": {},
+                        "coordinate": {
+                            "lat": 48.849859,
+                            "lon": 2.363059
+                        },
+                        "roomsLeft": 1,
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 76556003,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/77000000/76560000/76556100/76556003/a4c93a0a_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 435282,
+                        "name": "St Christopher's Inns The Canal Hostel",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "159 rue de Crimee",
+                            "extendedAddress": "",
+                            "locality": "Paris",
+                            "postalCode": "75019",
+                            "region": "Paris",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 7.8,
+                            "rating": "7.8",
+                            "total": 706,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "2.4 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "4.4 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$45",
+                                "exactCurrent": 44.62,
+                                "old": "$50",
+                                "fullyBundledPricePerStay": "total $54"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "La Villette",
+                        "deals": {
+                            "specialDeal": {
+                                "dealText": "Mobile exclusive: save 10%"
+                            },
+                            "priceReasoning": "DRR-444"
+                        },
+                        "messaging": {
+                            "scarcity": "4 left on our app"
+                        },
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.888662,
+                            "lon": 2.379089
+                        },
+                        "roomsLeft": 4,
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 6248519,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/7000000/6250000/6248600/6248519/5b229439_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 579242,
+                        "name": "ibis budget Sucy en Brie",
+                        "starRating": 2.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "3 rue des Ameriques",
+                            "extendedAddress": "ZAC du Petit Marais",
+                            "locality": "Sucy-en-Brie",
+                            "postalCode": "94370",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.8,
+                            "rating": "6.8",
+                            "total": 384,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "9.3 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "11 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$45",
+                                "exactCurrent": 44.96,
+                                "fullyBundledPricePerStay": "total $49"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Sucy-en-Brie",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|TESCO",
+                        "coordinate": {
+                            "lat": 48.773724,
+                            "lon": 2.497672
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 14771163,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/15000000/14780000/14771200/14771163/4f2a5bde_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 194195,
+                        "name": "Geographotel Paris - Roissy CDG Airport",
+                        "starRating": 3.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "1 Bis, Rue de Paris",
+                            "extendedAddress": "",
+                            "locality": "Le Mesnil-Amelot",
+                            "postalCode": "77990",
+                            "region": "Seine-et-Marne",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.4,
+                            "rating": "6.4",
+                            "total": 1013,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "16 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "18 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$47",
+                                "exactCurrent": 47.3,
+                                "old": "$53",
+                                "fullyBundledPricePerStay": "total $54"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Le Mesnil-Amelot",
+                        "deals": {
+                            "secretPrice": {
+                                "dealText": "Save more with Secret Prices"
+                            },
+                            "priceReasoning": "DRR-443"
+                        },
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|TESCO",
+                        "coordinate": {
+                            "lat": 49.020891,
+                            "lon": 2.590372
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 607191,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/1000000/610000/607200/607191/f98c1810_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 252419,
+                        "name": "Premiere Classe Boissy Saint Leger",
+                        "starRating": 0.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "P.A de la Haie Griselle 4, Rue Pompadour",
+                            "extendedAddress": "",
+                            "locality": "Boissy-Saint-Leger",
+                            "postalCode": "94478",
+                            "region": "Val-de-Marne",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.2,
+                            "rating": "6.2",
+                            "total": 557,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "10 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "12 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$47",
+                                "exactCurrent": 47.3,
+                                "old": "$53",
+                                "fullyBundledPricePerStay": "total $53"
+                            },
+                            "features": {
+                                "freeCancellation": true,
+                                "paymentPreference": true,
+                                "noCCRequired": false
+                            },
+                            "type": "Dual"
+                        },
+                        "neighbourhood": "Boissy-Saint-Leger",
+                        "deals": {
+                            "secretPrice": {
+                                "dealText": "Save more with Secret Prices"
+                            },
+                            "priceReasoning": "DRR-443"
+                        },
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.759967,
+                            "lon": 2.501443
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 1619808,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/2000000/1620000/1619900/1619808/03f50f6c_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 252830,
+                        "name": "Premiere Classe Fleury-M\u00e9rogis",
+                        "starRating": 1.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "Lotissement la Greffiere",
+                            "extendedAddress": "",
+                            "locality": "Fleury-Merogis",
+                            "postalCode": "91700",
+                            "region": "Essonne",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 6.2,
+                            "rating": "6.2",
+                            "total": 364,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "15 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "15 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$47",
+                                "exactCurrent": 47.45,
+                                "fullyBundledPricePerStay": "total $52"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Fleury-Merogis",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 48.64338,
+                            "lon": 2.3611
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 1619164,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/2000000/1620000/1619200/1619164/73fbb8b1_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 621131,
+                        "name": "ibis budget Versailles Trappes",
+                        "starRating": 2.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "Centre de Vie Immoparc",
+                            "extendedAddress": "RN 10",
+                            "locality": "Trappes",
+                            "postalCode": "78197",
+                            "region": "",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 7.0,
+                            "rating": "7.0",
+                            "total": 221,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "18 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "16 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$48",
+                                "exactCurrent": 48.01,
+                                "fullyBundledPricePerStay": "total $54"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Trappes",
+                        "deals": {},
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|TESCO",
+                        "coordinate": {
+                            "lat": 48.76653,
+                            "lon": 1.97442
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 15145796,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/16000000/15150000/15145800/15145796/0bfa1d31_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    },
+                    {
+                        "id": 441748,
+                        "name": "Premiere Classe Roissy - A\u00e9roport CDG - Le Mesnil Amelot",
+                        "starRating": 2.0,
+                        "urls": {},
+                        "address": {
+                            "streetAddress": "Rue du Stade Sauvanet",
+                            "extendedAddress": "",
+                            "locality": "Le Mesnil-Amelot",
+                            "postalCode": "77990",
+                            "region": "Seine-et-Marne",
+                            "countryName": "France",
+                            "countryCode": "fr",
+                            "obfuscate": false
+                        },
+                        "welcomeRewards": {
+                            "collect": true
+                        },
+                        "guestReviews": {
+                            "unformattedRating": 7.4,
+                            "rating": "7.4",
+                            "total": 1089,
+                            "scale": 10,
+                            "badge": "good",
+                            "badgeText": "Good"
+                        },
+                        "landmarks": [
+                            {
+                                "label": "City center",
+                                "distance": "15 miles"
+                            },
+                            {
+                                "label": "Eiffel Tower",
+                                "distance": "17 miles"
+                            }
+                        ],
+                        "geoBullets": [],
+                        "ratePlan": {
+                            "price": {
+                                "current": "$48",
+                                "exactCurrent": 48.35,
+                                "old": "$54",
+                                "fullyBundledPricePerStay": "total $54"
+                            },
+                            "features": {
+                                "freeCancellation": false,
+                                "paymentPreference": false,
+                                "noCCRequired": false
+                            },
+                            "type": "EC"
+                        },
+                        "neighbourhood": "Le Mesnil-Amelot",
+                        "deals": {
+                            "specialDeal": {
+                                "dealText": "Mobile exclusive: save 10%"
+                            },
+                            "priceReasoning": "DRR-444"
+                        },
+                        "messaging": {},
+                        "badging": {},
+                        "pimmsAttributes": "DoubleStamps|D13|TESCO",
+                        "coordinate": {
+                            "lat": 49.017609,
+                            "lon": 2.588057
+                        },
+                        "providerType": "LOCAL",
+                        "supplierHotelId": 6570548,
+                        "isAlternative": false,
+                        "optimizedThumbUrls": {
+                            "srpDesktop": "https://exp.cdn-hotels.com/hotels/7000000/6580000/6570600/6570548/a8311919_z.jpg?impolicy=fcrop&w=250&h=140&q=high"
+                        }
+                    }
+                ],
+                "pagination": {
+                    "currentPage": 1,
+                    "pageGroup": "EXPEDIA_IN_POLYGON",
+                    "nextPageStartIndex": 25,
+                    "nextPageNumber": 2,
+                    "nextPageGroup": "EXPEDIA_IN_POLYGON"
+                }
+            },
+            "sortResults": {
+                "options": [
+                    {
+                        "label": "Featured",
+                        "itemMeta": "popular",
+                        "choices": [
+                            {
+                                "label": "Featured",
+                                "value": "BEST_SELLER",
+                                "selected": false
+                            }
+                        ],
+                        "enhancedChoices": []
+                    },
+                    {
+                        "label": "Star rating",
+                        "itemMeta": "star",
+                        "choices": [
+                            {
+                                "label": "Stars (high to low)",
+                                "value": "STAR_RATING_HIGHEST_FIRST",
+                                "selected": false
+                            },
+                            {
+                                "label": "Stars (low to high)",
+                                "value": "STAR_RATING_LOWEST_FIRST",
+                                "selected": false
+                            }
+                        ],
+                        "enhancedChoices": []
+                    },
+                    {
+                        "label": "Distance",
+                        "itemMeta": "distance",
+                        "choices": [
+                            {
+                                "label": "Distance to city center",
+                                "value": "DISTANCE_FROM_LANDMARK",
+                                "selected": false
+                            }
+                        ],
+                        "enhancedChoices": [
+                            {
+                                "label": "Landmarks",
+                                "itemMeta": "landmarks",
+                                "choices": [
+                                    {
+                                        "label": "City center",
+                                        "id": 504261.0
+                                    },
+                                    {
+                                        "label": "AccorHotels Arena",
+                                        "id": 1696523.0
+                                    },
+                                    {
+                                        "label": "Arc de Triomphe",
+                                        "id": 1431.0
+                                    },
+                                    {
+                                        "label": "Boulevard Haussmann",
+                                        "id": 1736637.0
+                                    },
+                                    {
+                                        "label": "Champs-Elysees",
+                                        "id": 1701809.0
+                                    },
+                                    {
+                                        "label": "Eiffel Tower",
+                                        "id": 520053.0
+                                    },
+                                    {
+                                        "label": "Galeries Lafayette",
+                                        "id": 1696522.0
+                                    },
+                                    {
+                                        "label": "Louvre Museum",
+                                        "id": 520052.0
+                                    },
+                                    {
+                                        "label": "Notre-Dame",
+                                        "id": 528023.0
+                                    },
+                                    {
+                                        "label": "Palais des Congres de Paris",
+                                        "id": 1635495.0
+                                    },
+                                    {
+                                        "label": "Palais Garnier",
+                                        "id": 1632921.0
+                                    },
+                                    {
+                                        "label": "Parc des Princes",
+                                        "id": 1652423.0
+                                    },
+                                    {
+                                        "label": "Paris Expo Porte de Versailles",
+                                        "id": 1636081.0
+                                    },
+                                    {
+                                        "label": "Paris Nord Villepinte Exhibition Centre",
+                                        "id": 1714405.0
+                                    },
+                                    {
+                                        "label": "Paris Olympia",
+                                        "id": 1652497.0
+                                    },
+                                    {
+                                        "label": "Place de la Bastille",
+                                        "id": 1652476.0
+                                    },
+                                    {
+                                        "label": "Place de la Republique",
+                                        "id": 1724058.0
+                                    },
+                                    {
+                                        "label": "Rue Cler",
+                                        "id": 1752172.0
+                                    },
+                                    {
+                                        "label": "Stade de France",
+                                        "id": 1652457.0
+                                    },
+                                    {
+                                        "label": "Stade Roland Garros",
+                                        "id": 10891120.0
+                                    }
+                                ]
+                            },
+                            {
+                                "label": "Train stations",
+                                "itemMeta": "stations",
+                                "choices": [
+                                    {
+                                        "label": "A\u00e9roport Charles de Gaulle 2 TGV Station",
+                                        "id": 1752148.0
+                                    },
+                                    {
+                                        "label": "Bercy Station",
+                                        "id": 1704128.0
+                                    },
+                                    {
+                                        "label": "CDG Airport Terminal 1 Station",
+                                        "id": 11131015.0
+                                    },
+                                    {
+                                        "label": "Charles de Gaulle - Etoile Station",
+                                        "id": 1700933.0
+                                    },
+                                    {
+                                        "label": "Charles de Gaulle Airport 2 Station",
+                                        "id": 1714783.0
+                                    },
+                                    {
+                                        "label": "Chatelet Station",
+                                        "id": 1700958.0
+                                    },
+                                    {
+                                        "label": "Ch\u00e2telet-Les Halles Station",
+                                        "id": 1701477.0
+                                    },
+                                    {
+                                        "label": "Gare de l'Est",
+                                        "id": 1701542.0
+                                    },
+                                    {
+                                        "label": "Gare de Lyon",
+                                        "id": 1714821.0
+                                    },
+                                    {
+                                        "label": "Gare du Nord",
+                                        "id": 1704087.0
+                                    },
+                                    {
+                                        "label": "Montparnasse Station",
+                                        "id": 1636723.0
+                                    },
+                                    {
+                                        "label": "Opera Station",
+                                        "id": 1704055.0
+                                    },
+                                    {
+                                        "label": "Orly Sud Airport Station",
+                                        "id": 11130996.0
+                                    },
+                                    {
+                                        "label": "Parc-des-Expositions Station",
+                                        "id": 1716065.0
+                                    },
+                                    {
+                                        "label": "Paris-St-Lazare Station",
+                                        "id": 1701454.0
+                                    },
+                                    {
+                                        "label": "Porte d'Orleans Station",
+                                        "id": 1704121.0
+                                    },
+                                    {
+                                        "label": "Porte Maillot Station",
+                                        "id": 1721178.0
+                                    },
+                                    {
+                                        "label": "Roissy Charles-de-Gaulle Airport Station",
+                                        "id": 1714546.0
+                                    },
+                                    {
+                                        "label": "Saint-Germain-des-Pres Station",
+                                        "id": 1704101.0
+                                    },
+                                    {
+                                        "label": "Saint-Michel - Notre-Dame Station",
+                                        "id": 1733515.0
+                                    }
+                                ]
+                            },
+                            {
+                                "label": "Airports",
+                                "itemMeta": "airports",
+                                "choices": [
+                                    {
+                                        "label": "Orly Airport (ORY)",
+                                        "id": 485292.0
+                                    },
+                                    {
+                                        "label": "Roissy - Charles de Gaulle Airport (CDG)",
+                                        "id": 485293.0
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "label": "Guest rating",
+                        "itemMeta": "rating",
+                        "choices": [
+                            {
+                                "label": "Guest rating",
+                                "value": "GUEST_RATING",
+                                "selected": false
+                            }
+                        ],
+                        "enhancedChoices": []
+                    },
+                    {
+                        "label": "Price",
+                        "itemMeta": "price",
+                        "selectedChoiceLabel": "Price (low to high)",
+                        "choices": [
+                            {
+                                "label": "Price (high to low)",
+                                "value": "PRICE_HIGHEST_FIRST",
+                                "selected": false
+                            },
+                            {
+                                "label": "Price (low to high)",
+                                "value": "PRICE",
+                                "selected": true
+                            }
+                        ],
+                        "enhancedChoices": []
+                    }
+                ],
+                "distanceOptionLandmarkId": 504261.0
+            },
+            "filters": {
+                "applied": false,
+                "name": {
+                    "item": {
+                        "value": ""
+                    },
+                    "autosuggest": {
+                        "additionalUrlParams": {
+                            "resolved-location": "CITY:504261:UNKNOWN:UNKNOWN",
+                            "q-destination": "Paris, France",
+                            "destination-id": "504261"
+                        }
+                    }
+                },
+                "starRating": {
+                    "applied": false,
+                    "items": [
+                        {
+                            "value": 5
+                        },
+                        {
+                            "value": 4
+                        },
+                        {
+                            "value": 3
+                        },
+                        {
+                            "value": 2
+                        },
+                        {
+                            "value": 1
+                        }
+                    ]
+                },
+                "guestRating": {
+                    "range": {
+                        "min": {
+                            "defaultValue": 0.0
+                        },
+                        "max": {
+                            "defaultValue": 10.0
+                        }
+                    }
+                },
+                "landmarks": {
+                    "selectedOrder": [],
+                    "items": [
+                        {
+                            "label": "City center",
+                            "value": "504261"
+                        },
+                        {
+                            "label": "Eiffel Tower",
+                            "value": "520053"
+                        },
+                        {
+                            "label": "Roissy - Charles de Gaulle Airport (CDG)",
+                            "value": "485293"
+                        },
+                        {
+                            "label": "Louvre Museum",
+                            "value": "520052"
+                        },
+                        {
+                            "label": "Palais Garnier",
+                            "value": "1632921"
+                        },
+                        {
+                            "label": "Champs-Elysees",
+                            "value": "1701809"
+                        },
+                        {
+                            "label": "Arc de Triomphe",
+                            "value": "1431"
+                        },
+                        {
+                            "label": "Orly Airport (ORY)",
+                            "value": "485292"
+                        },
+                        {
+                            "label": "Montparnasse Station",
+                            "value": "1636723"
+                        },
+                        {
+                            "label": "Paris Expo Porte de Versailles",
+                            "value": "1636081"
+                        },
+                        {
+                            "label": "Galeries Lafayette",
+                            "value": "1696522"
+                        },
+                        {
+                            "label": "Paris Nord Villepinte Exhibition Centre",
+                            "value": "1714405"
+                        },
+                        {
+                            "label": "Notre-Dame",
+                            "value": "528023"
+                        },
+                        {
+                            "label": "Gare de l'Est",
+                            "value": "1701542"
+                        },
+                        {
+                            "label": "AccorHotels Arena",
+                            "value": "1696523"
+                        },
+                        {
+                            "label": "Palais des Congres de Paris",
+                            "value": "1635495"
+                        },
+                        {
+                            "label": "CDG Airport Terminal 1 Station",
+                            "value": "11131015"
+                        },
+                        {
+                            "label": "Paris-St-Lazare Station",
+                            "value": "1701454"
+                        },
+                        {
+                            "label": "Stade de France",
+                            "value": "1652457"
+                        },
+                        {
+                            "label": "Charles de Gaulle Airport 2 Station",
+                            "value": "1714783"
+                        }
+                    ],
+                    "distance": []
+                },
+                "neighbourhood": {
+                    "applied": false,
+                    "items": [
+                        {
+                            "label": "15th Arrondissement",
+                            "value": "1731383"
+                        },
+                        {
+                            "label": "8th Arrondissement",
+                            "value": "1731373"
+                        },
+                        {
+                            "label": "6th Arrondissement",
+                            "value": "1731372"
+                        },
+                        {
+                            "label": "7th Arrondissement",
+                            "value": "1731391"
+                        },
+                        {
+                            "label": "9th Arrondissement",
+                            "value": "1731375"
+                        },
+                        {
+                            "label": "Champs-\u00c9lys\u00e9es",
+                            "value": "11117463"
+                        },
+                        {
+                            "label": "1st Arrondissement",
+                            "value": "1731364"
+                        },
+                        {
+                            "label": "5th Arrondissement",
+                            "value": "1731370"
+                        },
+                        {
+                            "label": "14th Arrondissement",
+                            "value": "1731382"
+                        },
+                        {
+                            "label": "Bercy",
+                            "value": "1691967"
+                        },
+                        {
+                            "label": "17th Arrondissement",
+                            "value": "1731385"
+                        },
+                        {
+                            "label": "13th Arrondissement",
+                            "value": "1731380"
+                        },
+                        {
+                            "label": "Saint-Germain-des-Pres",
+                            "value": "1691784"
+                        },
+                        {
+                            "label": "10th Arrondissement",
+                            "value": "1731376"
+                        },
+                        {
+                            "label": "11th Arrondissement",
+                            "value": "1731377"
+                        },
+                        {
+                            "label": "16th Arrondissement",
+                            "value": "1731384"
+                        },
+                        {
+                            "label": "12th Arrondissement",
+                            "value": "1731379"
+                        },
+                        {
+                            "label": "Latin Quarter",
+                            "value": "1639764"
+                        },
+                        {
+                            "label": "18th Arrondissement",
+                            "value": "1731387"
+                        },
+                        {
+                            "label": "2nd Arrondissement",
+                            "value": "1731365"
+                        },
+                        {
+                            "label": "4th Arrondissement",
+                            "value": "1731369"
+                        },
+                        {
+                            "label": "19th Arrondissement",
+                            "value": "1731389"
+                        },
+                        {
+                            "label": "3rd Arrondissement",
+                            "value": "1731367"
+                        },
+                        {
+                            "label": "Quartier du Faubourg-Montmartre",
+                            "value": "11117504"
+                        },
+                        {
+                            "label": "20th Arrondissement",
+                            "value": "1731390"
+                        },
+                        {
+                            "label": "Pigalle",
+                            "value": "1722994"
+                        },
+                        {
+                            "label": "La Villette",
+                            "value": "1691964"
+                        },
+                        {
+                            "label": "Les Halles",
+                            "value": "11117465"
+                        },
+                        {
+                            "label": "Madeleine",
+                            "value": "10990271"
+                        },
+                        {
+                            "label": "Porte de Clichy",
+                            "value": "10990272"
+                        },
+                        {
+                            "label": "La Plaine-Saint-Denis",
+                            "value": "11071260"
+                        },
+                        {
+                            "label": "Quartier de la Place-Vend\u00f4me",
+                            "value": "11117493"
+                        },
+                        {
+                            "label": "Meudon-la-For\u00eat",
+                            "value": "10990967"
+                        },
+                        {
+                            "label": "Notre-Dame-des-Champs",
+                            "value": "11117415"
+                        },
+                        {
+                            "label": "Belleville",
+                            "value": "10798929"
+                        },
+                        {
+                            "label": "Grenelle",
+                            "value": "11037980"
+                        },
+                        {
+                            "label": "Od\u00e9on",
+                            "value": "11117401"
+                        },
+                        {
+                            "label": "Ternes",
+                            "value": "10990286"
+                        },
+                        {
+                            "label": "Sorbonne",
+                            "value": "11117478"
+                        },
+                        {
+                            "label": "Batignolles",
+                            "value": "10565089"
+                        },
+                        {
+                            "label": "Quartier des Invalides",
+                            "value": "11117476"
+                        },
+                        {
+                            "label": "Passy",
+                            "value": "10990951"
+                        },
+                        {
+                            "label": "Porte de la Chapelle",
+                            "value": "10990283"
+                        },
+                        {
+                            "label": "Paris City Center",
+                            "value": "1730997"
+                        },
+                        {
+                            "label": "Marais",
+                            "value": "1707199"
+                        },
+                        {
+                            "label": "Montmartre",
+                            "value": "1707200"
+                        },
+                        {
+                            "label": "Montparnasse",
+                            "value": "1707272"
+                        },
+                        {
+                            "label": "Jardin des plantes",
+                            "value": "11117398"
+                        },
+                        {
+                            "label": "Palais-Royal",
+                            "value": "11117898"
+                        },
+                        {
+                            "label": "H\u00f4tel de Ville",
+                            "value": "11117460"
+                        },
+                        {
+                            "label": "Pere Lachaise",
+                            "value": "1691973"
+                        },
+                        {
+                            "label": "Vivienne",
+                            "value": "11117670"
+                        },
+                        {
+                            "label": "Auteuil",
+                            "value": "11117731"
+                        },
+                        {
+                            "label": "Les \u00celes",
+                            "value": "11117903"
+                        },
+                        {
+                            "label": "Gare",
+                            "value": "11023508"
+                        },
+                        {
+                            "label": "Chaillot",
+                            "value": "11117484"
+                        },
+                        {
+                            "label": "Clignancourt",
+                            "value": "10990917"
+                        },
+                        {
+                            "label": "Arts-et-M\u00e9tiers",
+                            "value": "11117727"
+                        },
+                        {
+                            "label": "L'Europe",
+                            "value": "10990273"
+                        },
+                        {
+                            "label": "Parc-de-Montsouris",
+                            "value": "11117422"
+                        },
+                        {
+                            "label": "Porte-Dauphine",
+                            "value": "11117728"
+                        },
+                        {
+                            "label": "Quartier du Petit-Montrouge",
+                            "value": "11117456"
+                        },
+                        {
+                            "label": "Quartier de l'\u00c9cole-Militaire",
+                            "value": "11117442"
+                        },
+                        {
+                            "label": "Chauss\u00e9e-d'Antin",
+                            "value": "11117383"
+                        },
+                        {
+                            "label": "Butte-aux-Cailles",
+                            "value": "10990262"
+                        },
+                        {
+                            "label": "La Varenne Saint-Hilaire",
+                            "value": "1712788"
+                        },
+                        {
+                            "label": "Necker",
+                            "value": "11117444"
+                        },
+                        {
+                            "label": "Porte-Saint-Martin",
+                            "value": "11117389"
+                        },
+                        {
+                            "label": "Universit\u00e9",
+                            "value": "11117433"
+                        },
+                        {
+                            "label": "Quinze-Vingts",
+                            "value": "11117492"
+                        },
+                        {
+                            "label": "H\u00f4pital Saint-Louis",
+                            "value": "11117449"
+                        },
+                        {
+                            "label": "Quartier de la Porte-Saint-Denis",
+                            "value": "11117488"
+                        },
+                        {
+                            "label": "Ivry-port",
+                            "value": "11117454"
+                        },
+                        {
+                            "label": "Picpus",
+                            "value": "11117736"
+                        },
+                        {
+                            "label": "Quartier de Rochechouart",
+                            "value": "11117718"
+                        },
+                        {
+                            "label": "Quartier de Javel",
+                            "value": "11117503"
+                        },
+                        {
+                            "label": "Faubourg de l'Arche",
+                            "value": "11117423"
+                        },
+                        {
+                            "label": "Bonne-Nouvelle",
+                            "value": "11117912"
+                        },
+                        {
+                            "label": "Quartier de la Salp\u00eatri\u00e8re",
+                            "value": "11117416"
+                        },
+                        {
+                            "label": "Quartier de la Folie-M\u00e9ricourt",
+                            "value": "11117400"
+                        },
+                        {
+                            "label": "Charonne",
+                            "value": "11117475"
+                        },
+                        {
+                            "label": "Nanterre Centre",
+                            "value": "11117901"
+                        },
+                        {
+                            "label": "Quartier Saint-Georges",
+                            "value": "11117669"
+                        },
+                        {
+                            "label": "Quartier Saint-Ambroise",
+                            "value": "11117477"
+                        },
+                        {
+                            "label": "Quartier de la Monnaie",
+                            "value": "11117441"
+                        },
+                        {
+                            "label": "Quartier de la Maison-Blanche",
+                            "value": "11117450"
+                        },
+                        {
+                            "label": "Quartier du Gros-Caillou",
+                            "value": "11117419"
+                        },
+                        {
+                            "label": "Saint-Lambert",
+                            "value": "11117899"
+                        },
+                        {
+                            "label": "Quartier de la Muette",
+                            "value": "11117740"
+                        },
+                        {
+                            "label": "Val-de-Gr\u00e2ce",
+                            "value": "11117916"
+                        },
+                        {
+                            "label": "Petit Nanterre",
+                            "value": "11117659"
+                        },
+                        {
+                            "label": "Domaine du Bois",
+                            "value": "11117733"
+                        },
+                        {
+                            "label": "Quartier de la Roquette",
+                            "value": "11117425"
+                        },
+                        {
+                            "label": "Arsenal",
+                            "value": "11117434"
+                        },
+                        {
+                            "label": "Gaillon",
+                            "value": "11117902"
+                        },
+                        {
+                            "label": "Plaisance",
+                            "value": "11117913"
+                        },
+                        {
+                            "label": "Saint-Gervais",
+                            "value": "11117430"
+                        },
+                        {
+                            "label": "Bel-Air",
+                            "value": "10996974"
+                        },
+                        {
+                            "label": "Quartier des Grandes-Carri\u00e8res",
+                            "value": "11117439"
+                        },
+                        {
+                            "label": "Quartier de la Chapelle",
+                            "value": "11117406"
+                        },
+                        {
+                            "label": "Saint-Thomas-d'Aquin",
+                            "value": "11117453"
+                        },
+                        {
+                            "label": "Asiatique",
+                            "value": "10565702"
+                        },
+                        {
+                            "label": "Quartier du Mail",
+                            "value": "11117482"
+                        },
+                        {
+                            "label": "Faubourg-du-Roule",
+                            "value": "11117734"
+                        },
+                        {
+                            "label": "Quartier de la Goutte-d'Or",
+                            "value": "11117914"
+                        },
+                        {
+                            "label": "Saint-Vincent-de-Paul",
+                            "value": "11117428"
+                        },
+                        {
+                            "label": "Saint-Germain-l'Auxerrois",
+                            "value": "11117717"
+                        },
+                        {
+                            "label": "Saint-Louis",
+                            "value": "11117882"
+                        },
+                        {
+                            "label": "Saint-Victor",
+                            "value": "11117518"
+                        },
+                        {
+                            "label": "\u00c9pinettes",
+                            "value": "11117412"
+                        },
+                        {
+                            "label": "Notre-Dame",
+                            "value": "11117864"
+                        },
+                        {
+                            "label": "Porchefontaine",
+                            "value": "11117459"
+                        },
+                        {
+                            "label": "Gambetta",
+                            "value": "11117667"
+                        },
+                        {
+                            "label": "Quartier de B\u00e9con",
+                            "value": "11117749"
+                        },
+                        {
+                            "label": "Quartier de la Boule - Champs-Pierreux",
+                            "value": "11117485"
+                        },
+                        {
+                            "label": "Bois - Clos d'Orl\u00e9ans",
+                            "value": "11117435"
+                        },
+                        {
+                            "label": "Saint-Louis",
+                            "value": "11118052"
+                        },
+                        {
+                            "label": "Le Parc Saint-Maur",
+                            "value": "11117431"
+                        },
+                        {
+                            "label": "Triangle de Choisy",
+                            "value": "11117468"
+                        },
+                        {
+                            "label": "Quartier de la Plaine-de-Monceaux",
+                            "value": "11117617"
+                        },
+                        {
+                            "label": "Plateau - Mont-Val\u00e9rien",
+                            "value": "11117409"
+                        },
+                        {
+                            "label": "Quartier Sainte-Marguerite",
+                            "value": "11117397"
+                        },
+                        {
+                            "label": "Quartier Sainte-Avoye",
+                            "value": "11117867"
+                        },
+                        {
+                            "label": "Jussieu",
+                            "value": "11117438"
+                        },
+                        {
+                            "label": "Front de Lac",
+                            "value": "11117656"
+                        },
+                        {
+                            "label": "Croulebarbe",
+                            "value": "11118087"
+                        },
+                        {
+                            "label": "Les M\u00fbriers",
+                            "value": "11117871"
+                        },
+                        {
+                            "label": "Saint-Merri",
+                            "value": "11117517"
+                        },
+                        {
+                            "label": "La Source",
+                            "value": "11117385"
+                        },
+                        {
+                            "label": "Archives",
+                            "value": "11117487"
+                        },
+                        {
+                            "label": "Chantiers",
+                            "value": "11117917"
+                        },
+                        {
+                            "label": "Louis Bertrand-Mirabeau-S\u00e9mard",
+                            "value": "11117418"
+                        },
+                        {
+                            "label": "C\u0153ur de Ville",
+                            "value": "11117735"
+                        },
+                        {
+                            "label": "Pasteur-Rousseau",
+                            "value": "11118103"
+                        },
+                        {
+                            "label": "Am\u00e9rique",
+                            "value": "11117384"
+                        },
+                        {
+                            "label": "Parc-Nord",
+                            "value": "11117655"
+                        },
+                        {
+                            "label": "Quartier du Pont-de-Flandre",
+                            "value": "11117483"
+                        },
+                        {
+                            "label": "Combat",
+                            "value": "11117405"
+                        },
+                        {
+                            "label": "Diderot",
+                            "value": "11117897"
+                        },
+                        {
+                            "label": "Beaut\u00e9 Baltard",
+                            "value": "11117458"
+                        },
+                        {
+                            "label": "Enfants-Rouges",
+                            "value": "11117420"
+                        },
+                        {
+                            "label": "Saint-Fargeau",
+                            "value": "11117466"
+                        },
+                        {
+                            "label": "Le Tremblay",
+                            "value": "11117726"
+                        },
+                        {
+                            "label": "Monmousseau-V\u00e9rollot",
+                            "value": "11117452"
+                        },
+                        {
+                            "label": "Champeval",
+                            "value": "11118046"
+                        },
+                        {
+                            "label": "Clagny Glatigny",
+                            "value": "11117426"
+                        },
+                        {
+                            "label": "Quartier du Vieux-Pont - Sainte-Genevi\u00e8ve",
+                            "value": "11117730"
+                        },
+                        {
+                            "label": "Les Hautes Noues",
+                            "value": "11117448"
+                        },
+                        {
+                            "label": "Les Stades",
+                            "value": "11117911"
+                        },
+                        {
+                            "label": "Montaigut",
+                            "value": "11117921"
+                        },
+                        {
+                            "label": "Petit-Colombes",
+                            "value": "12527148"
+                        },
+                        {
+                            "label": "Notre Dame",
+                            "value": "12518520"
+                        },
+                        {
+                            "label": "Cit\u00e9 des P\u00e9richaux",
+                            "value": "12522346"
+                        },
+                        {
+                            "label": "C\u00f4te d'Or-Les Sarrazins",
+                            "value": "11117471"
+                        },
+                        {
+                            "label": "Flandres",
+                            "value": "12518599"
+                        },
+                        {
+                            "label": "Bel-Air Nord",
+                            "value": "12508362"
+                        },
+                        {
+                            "label": "Alouettes",
+                            "value": "11117619"
+                        },
+                        {
+                            "label": "Curial Cambrai",
+                            "value": "12530437"
+                        },
+                        {
+                            "label": "Bleuets - Bordi\u00e8res - Pinsons",
+                            "value": "11117474"
+                        },
+                        {
+                            "label": "R\u00e9publique\u2013Point-du-Jour",
+                            "value": "12512928"
+                        },
+                        {
+                            "label": "Les Puces de Saint-Ouen",
+                            "value": "12501858"
+                        },
+                        {
+                            "label": "Jean Zay",
+                            "value": "11118075"
+                        },
+                        {
+                            "label": "Drancy Centre",
+                            "value": "12518391"
+                        },
+                        {
+                            "label": "Villa Montmorency",
+                            "value": "12537070"
+                        },
+                        {
+                            "label": "Vignerons",
+                            "value": "11118058"
+                        },
+                        {
+                            "label": "Village",
+                            "value": "11117467"
+                        },
+                        {
+                            "label": "Les Gondoles",
+                            "value": "12530498"
+                        },
+                        {
+                            "label": "Mont-Mesly",
+                            "value": "12502723"
+                        },
+                        {
+                            "label": "Faubourg Saint-Germain",
+                            "value": "12525050"
+                        },
+                        {
+                            "label": "Chenevier-D\u00e9m\u00e9nitroux",
+                            "value": "11117410"
+                        },
+                        {
+                            "label": "Silly-Gallieni",
+                            "value": "12503777"
+                        },
+                        {
+                            "label": "Plateau \u2014 Pyramide",
+                            "value": "12536871"
+                        },
+                        {
+                            "label": "Parchamp\u2013Albert Kahn",
+                            "value": "12508449"
+                        },
+                        {
+                            "label": "Les Mousseaux",
+                            "value": "12530595"
+                        },
+                        {
+                            "label": "Le Vieux Saint-Maur",
+                            "value": "11117469"
+                        },
+                        {
+                            "label": "Haut du Mont-Mesly",
+                            "value": "11117411"
+                        },
+                        {
+                            "label": "La Mare",
+                            "value": "12537054"
+                        },
+                        {
+                            "label": "Prince\u2013Marmottan",
+                            "value": "12513040"
+                        },
+                        {
+                            "label": "Chemin de l'\u00cele",
+                            "value": "11117424"
+                        },
+                        {
+                            "label": "Quartier Centre Ville",
+                            "value": "12523569"
+                        },
+                        {
+                            "label": "Quartier Victor Hugo",
+                            "value": "11117388"
+                        },
+                        {
+                            "label": "Centre Ville",
+                            "value": "12527506"
+                        },
+                        {
+                            "label": "Zone d'am\u00e9nagement concert\u00e9 des Docks",
+                            "value": "12518452"
+                        },
+                        {
+                            "label": "Python Duvernois",
+                            "value": "12518621"
+                        },
+                        {
+                            "label": "Saint Blaise",
+                            "value": "12523597"
+                        },
+                        {
+                            "label": "Les Viselets",
+                            "value": "11117403"
+                        },
+                        {
+                            "label": "Petit-Ivry",
+                            "value": "11117436"
+                        },
+                        {
+                            "label": "Quartier des peupliers",
+                            "value": "12527407"
+                        },
+                        {
+                            "label": "Plaisance",
+                            "value": "11117443"
+                        },
+                        {
+                            "label": "Falgui\u00e8re",
+                            "value": "12537096"
+                        },
+                        {
+                            "label": "Adamville",
+                            "value": "11117748"
+                        },
+                        {
+                            "label": "Noyer Renard",
+                            "value": "12530182"
+                        },
+                        {
+                            "label": "Billancourt\u2013Rives de Seine",
+                            "value": "12522253"
+                        },
+                        {
+                            "label": "Croix des M\u00e8ches",
+                            "value": "11118018"
+                        },
+                        {
+                            "label": "Sorano",
+                            "value": "11117464"
+                        },
+                        {
+                            "label": "Les Amandiers",
+                            "value": "12518802"
+                        },
+                        {
+                            "label": "Le Plateau",
+                            "value": "11117479"
+                        },
+                        {
+                            "label": "Grange aux Belles",
+                            "value": "12518404"
+                        },
+                        {
+                            "label": "Ormetteau-Port",
+                            "value": "11117750"
+                        },
+                        {
+                            "label": "Le Port sous la Lune",
+                            "value": "11117505"
+                        },
+                        {
+                            "label": "La Pie",
+                            "value": "11117451"
+                        },
+                        {
+                            "label": "Riquet Stalingrad",
+                            "value": "12513170"
+                        },
+                        {
+                            "label": "Quartier Massy-Op\u00e9ra I",
+                            "value": "12536873"
+                        },
+                        {
+                            "label": "Quartier de l'Horloge",
+                            "value": "12527363"
+                        },
+                        {
+                            "label": "Strasbourg -Saint-Denis",
+                            "value": "12516649"
+                        },
+                        {
+                            "label": "Porte d'Asni\u00e8res",
+                            "value": "12530434"
+                        }
+                    ]
+                },
+                "accommodationType": {
+                    "applied": false,
+                    "items": [
+                        {
+                            "label": "Agritourism",
+                            "value": "40"
+                        },
+                        {
+                            "label": "Apart-hotels",
+                            "value": "20"
+                        },
+                        {
+                            "label": "Apartments",
+                            "value": "15"
+                        },
+                        {
+                            "label": "B&Bs",
+                            "value": "5"
+                        },
+                        {
+                            "label": "Cabins and lodges",
+                            "value": "9"
+                        },
+                        {
+                            "label": "Caravan parks",
+                            "value": "21"
+                        },
+                        {
+                            "label": "Castles",
+                            "value": "27"
+                        },
+                        {
+                            "label": "Chalets",
+                            "value": "10"
+                        },
+                        {
+                            "label": "Cottages",
+                            "value": "11"
+                        },
+                        {
+                            "label": "Country houses",
+                            "value": "24"
+                        },
+                        {
+                            "label": "Guest houses",
+                            "value": "30"
+                        },
+                        {
+                            "label": "Hostels",
+                            "value": "12"
+                        },
+                        {
+                            "label": "Hotels",
+                            "value": "1"
+                        },
+                        {
+                            "label": "Houseboats",
+                            "value": "16"
+                        },
+                        {
+                            "label": "Inns",
+                            "value": "8"
+                        },
+                        {
+                            "label": "Palaces",
+                            "value": "29"
+                        },
+                        {
+                            "label": "Resorts",
+                            "value": "3"
+                        },
+                        {
+                            "label": "Vacation homes",
+                            "value": "4"
+                        },
+                        {
+                            "label": "Villas",
+                            "value": "14"
+                        }
+                    ]
+                },
+                "facilities": {
+                    "applied": false,
+                    "items": [
+                        {
+                            "label": "24-hour front desk",
+                            "value": "2063"
+                        },
+                        {
+                            "label": "Airport transfers",
+                            "value": "513"
+                        },
+                        {
+                            "label": "Bar",
+                            "value": "515"
+                        },
+                        {
+                            "label": "Bathtub in room",
+                            "value": "517"
+                        },
+                        {
+                            "label": "Breakfast included",
+                            "value": "2048"
+                        },
+                        {
+                            "label": "Business facilities",
+                            "value": "519"
+                        },
+                        {
+                            "label": "Casino",
+                            "value": "2112"
+                        },
+                        {
+                            "label": "Childcare",
+                            "value": "521"
+                        },
+                        {
+                            "label": "Connecting rooms available",
+                            "value": "523"
+                        },
+                        {
+                            "label": "Cribs available",
+                            "value": "525"
+                        },
+                        {
+                            "label": "Electric vehicle charging point",
+                            "value": "1073743315"
+                        },
+                        {
+                            "label": "Gym",
+                            "value": "2"
+                        },
+                        {
+                            "label": "Internet Access",
+                            "value": "8"
+                        },
+                        {
+                            "label": "Kitchen",
+                            "value": "32"
+                        },
+                        {
+                            "label": "Meeting Facilities",
+                            "value": "1"
+                        },
+                        {
+                            "label": "Non-smoking",
+                            "value": "529"
+                        },
+                        {
+                            "label": "Parking",
+                            "value": "134234112"
+                        },
+                        {
+                            "label": "Pet Friendly",
+                            "value": "64"
+                        },
+                        {
+                            "label": "Pool",
+                            "value": "128"
+                        },
+                        {
+                            "label": "Restaurant",
+                            "value": "256"
+                        },
+                        {
+                            "label": "Ski-in/ski-out",
+                            "value": "535"
+                        },
+                        {
+                            "label": "Ski storage",
+                            "value": "533"
+                        },
+                        {
+                            "label": "Smoking areas",
+                            "value": "537"
+                        },
+                        {
+                            "label": "Spa",
+                            "value": "539"
+                        },
+                        {
+                            "label": "WiFi included",
+                            "value": "527"
+                        }
+                    ]
+                },
+                "accessibility": {
+                    "applied": false,
+                    "items": [
+                        {
+                            "label": "Accessibility equipment for the deaf",
+                            "value": "2097152"
+                        },
+                        {
+                            "label": "Accessible bathroom",
+                            "value": "131072"
+                        },
+                        {
+                            "label": "Accessible parking",
+                            "value": "524288"
+                        },
+                        {
+                            "label": "Accessible path of travel",
+                            "value": "65536"
+                        },
+                        {
+                            "label": "Braille or raised signage",
+                            "value": "4194304"
+                        },
+                        {
+                            "label": "In-room accessibility",
+                            "value": "1048576"
+                        },
+                        {
+                            "label": "Roll-in shower",
+                            "value": "262144"
+                        },
+                        {
+                            "label": "Wheelchair accessible rooms",
+                            "value": "541"
+                        }
+                    ]
+                },
+                "themesAndTypes": {
+                    "applied": false,
+                    "items": [
+                        {
+                            "label": "Adventure",
+                            "value": "18"
+                        },
+                        {
+                            "label": "Boutique",
+                            "value": "4"
+                        },
+                        {
+                            "label": "Business",
+                            "value": "14"
+                        },
+                        {
+                            "label": "Casino",
+                            "value": "8"
+                        },
+                        {
+                            "label": "Family-friendly",
+                            "value": "25"
+                        },
+                        {
+                            "label": "Golf",
+                            "value": "26"
+                        },
+                        {
+                            "label": "Historic",
+                            "value": "2"
+                        },
+                        {
+                            "label": "Hot Springs",
+                            "value": "22"
+                        },
+                        {
+                            "label": "LGBTQ Welcoming",
+                            "value": "21"
+                        },
+                        {
+                            "label": "Luxury",
+                            "value": "15"
+                        },
+                        {
+                            "label": "Romantic",
+                            "value": "1"
+                        },
+                        {
+                            "label": "Shopping",
+                            "value": "17"
+                        },
+                        {
+                            "label": "Ski",
+                            "value": "28"
+                        },
+                        {
+                            "label": "Spa Hotel",
+                            "value": "27"
+                        }
+                    ]
+                },
+                "price": {
+                    "label": "Nightly Price",
+                    "range": {
+                        "min": {
+                            "defaultValue": 0
+                        },
+                        "max": {
+                            "defaultValue": 500
+                        },
+                        "increments": 5
+                    },
+                    "multiplier": 1
+                },
+                "paymentPreference": {
+                    "items": [
+                        {
+                            "label": "Fully refundable",
+                            "value": "fc"
+                        },
+                        {
+                            "label": "Book without card details",
+                            "value": "ncc"
+                        },
+                        {
+                            "label": "Pay with Hotels.com gift card",
+                            "value": "gc"
+                        }
+                    ]
+                },
+                "welcomeRewards": {
+                    "label": "Hotels.com\u00ae Rewards",
+                    "items": [
+                        {
+                            "label": "Collect stamps",
+                            "value": "collect"
+                        },
+                        {
+                            "label": "Redeem reward* nights",
+                            "value": "redeem"
+                        }
+                    ]
+                }
+            },
+            "pointOfSale": {
+                "currency": {
+                    "code": "USD",
+                    "symbol": "$",
+                    "separators": ",.",
+                    "format": "${0}"
+                }
+            },
+            "miscellaneous": {
+                "pageViewBeaconUrl": "/taps/v1/PageView?deviceType=App-Phone&sort-order=PRICE&rooms=1&destRegionID=504261&hotelIds=2509325664,1285651520,399011,186954,484468,516966,1251140384,579186,386124,252481,579184,253177,2343790400,572005,252829,579223,252485,2450792096,435282,579242,194195,252419,252830,621131,441748&adults=1&userAgent=Hotels.com/Android%2080.0.1.9.release-80_0%20(80000660)&userGuid=6b1b8f62-a769-4a5b-802d-41453657627c&pageName=Hotel-Search&slots=HSR_A,HSR_B,HSR_C,HSR_D,HSR_E,HSR_F,HSR_G,HSR_H,HSR_I,HSR_J&checkIn=2022-06-10&children=0&culture=en_US&testVersionOverride=4961.0,904.0,7561.0,7215.0,8218.0,8711.0,8928.1,9008.0,8347.2,9004.0,8952.0,7992.2,8915.0,9729.0,9864.0,10155.0,10185.0,10473.0,10320.0,10361.0&domain=www.hotels.com&userIP=127.0.0.1&action=pageview&publisher=expedia&checkOut=2022-06-11&programId=1",
+                "showLegalInfoForStrikethroughPrices": true,
+                "legalInfoForStrikethroughPrices": "The struck-out price is based on the property\u2019s standard rate on our app, as determined and supplied by the property.",
+                "compressionMessaging": {
+                    "percentage": 77,
+                    "popularityMessage": "We are 77% booked! Paris is popular for your travel dates."
+                }
+            },
+            "pageInfo": {
+                "pageType": "dateful"
+            }
+        },
+        "common": {
+            "pointOfSale": {
+                "numberSeparators": ",.",
+                "brandName": "Hotels.com"
+            },
+            "tracking": {
+                "omniture": {
+                    "s.prop33": "D=v33",
+                    "s.prop32": "D=v43",
+                    "s.prop74": "search result with dates | ms shown | N",
+                    "s.products": "LOCAL;78385177,LOCAL;40145360,MULTISOURCE;4811984",
+                    "s.eVar16": "Mob :: aApp",
+                    "s.eVar40": "D=v0",
+                    "s.eVar41": "USD",
+                    "s.eVar63": "b4773535-4b3d-42e4-9951-a16a43e62bef",
+                    "s.eVar42": "2|1|20220610|20220611",
+                    "s.eVar4": "|SI:anonymous|VS:returnVisitor|HCR:notApplicable|FC:notApplicable|NS:unknown|TI:notApplicable|SM:notApplicable|IR:anonymous|",
+                    "s.eVar43": "en_US|HCOM_US|www.hotels.com",
+                    "s.eVar3": "1|0",
+                    "s.eVar22": "1|USD|24:2509325664:24.0800:19.2600:1|24:1285651520:19.4600:19.4600:0|24:399011:28.1500:25.3300:0|24:186954:41.8400:33.4700:0|24:484468:37.2200:33.5000:1",
+                    "s.eVar2": "Paris, France",
+                    "s.eVar23": "1|USD|24:516966:41.4200:37.1400:1|24:1251140384:39.4100:39.4100:0|24:579186:39.5700:39.5700:0|24:386124:44.2200:39.6500:1|24:252481:40.2900:40.2900:0",
+                    "s.eVar24": "MCTC=20;TU=NA;PDID=NULL;MVT=",
+                    "s.eVar7": "2",
+                    "s.server": "www.hotels.com",
+                    "s.eVar6": "504261",
+                    "s.prop29": "D=v42",
+                    "s.eVar5": "1",
+                    "s.prop27": "6b1b8f62-a769-4a5b-802d-41453657627c",
+                    "s.eVar9": "Price - low to high",
+                    "s.prop21": "0",
+                    "s.prop20": "1",
+                    "s.eVar69": "Mob :: aApp",
+                    "s.currencyCode": "USD",
+                    "s.eVar26": "US:TX:DENTON:623",
+                    "s.eVar29": "Mob :: aApp",
+                    "s.prop9": "7494",
+                    "s.eVar95": "Unknown",
+                    "s.prop7": "2908",
+                    "s.eVar31": "D=v0",
+                    "s.eVar32": "D=v0",
+                    "s.eVar33": "search result with dates",
+                    "s.eVar34": "H1871:007.002,M376:000.000,M904:000.000,M3736:000.000,M4200:000.000,M4440.2,M4869:001.000,M4952:050.000,M4961:001.000,M5184:001.000,M5342:000.000,M5663:000.000,M6388:000.000,M6775:000.000,M6779:000.000,M7015.1,M7192:000.000,M7215:000.000,M7296:000.000,M7305:000.000,M7306:000.000,M7353:000.000,M7362.1,M7552:023.001,M7763:000.000,M7765.2,M7870:000.000,M7895:000.000,M8336:000.000,M8347:019.002,M8405:002.001,M8483:000.000,M8692:000.000,M8693:000.000,M8698:000.000,M8708:000.000,M8718:000.000,M8915:000.000,M8928:019.001,M8952:000.000,M8954:000.000,M8976:000.000,M8992:000.000,M9035:000.000,M9155:000.000,M9220:000.000,M9281:000.000,M9282:000.000,M9297:000.000,M9301:000.000,M9351:000.000,M9420:000.000,M9431:000.000,M9469:000.000,M9549:000.000,M9567.1,M9691:000.000,M9693:000.000,M9699:004.001,M9729:000.000,M9752:000.000,M9771.0,M9864:000.000,M9924:000.000,M9961:000.000,M9971:000.000,M10001:000.000,M10007:000.000,M10013:002.001,M10086:000.000,M10121:000.000,M10137:000.000,M10155:000.000,M10185:000.000,M10248:000.000,M10259:000.000,M10282:000.000,M10300:000.000,M10320:000.000,M10361:000.000,M10473:000.000,M10482:000.000,M9215:001.000",
+                    "s.eVar13": "389367",
+                    "s.prop19": "1",
+                    "s.events": "event324,event320",
+                    "s.prop18": "D=v6",
+                    "s.prop5": "389367",
+                    "s.prop15": "1",
+                    "s.prop3": "Paris, France",
+                    "s.prop14": "D=v7",
+                    "s.prop36": "|SI:anonymous|VS:returnVisitor|HCR:notApplicable|FC:notApplicable|NS:unknown|TI:notApplicable|SM:notApplicable|IR:anonymous|",
+                    "s.eVar93": "aws.us-west-2.unknown",
+                    "s.prop2": "Price - low to high"
+                }
+            }
+        }
+    }
+}

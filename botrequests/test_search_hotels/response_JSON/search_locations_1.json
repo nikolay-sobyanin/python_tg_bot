@@ -1,0 +1,207 @@
+{
+    "term": "Russia Perm",
+    "moresuggestions": 10,
+    "autoSuggestInstance": null,
+    "trackingID": "51f511f874944184b2a495592a5c7ce2",
+    "misspellingfallback": false,
+    "suggestions": [
+        {
+            "group": "CITY_GROUP",
+            "entities": []
+        },
+        {
+            "group": "HOTEL_GROUP",
+            "entities": [
+                {
+                    "geoId": "46981559",
+                    "destinationId": "1504409888",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 58.00867,
+                    "longitude": 56.23351,
+                    "searchDetail": null,
+                    "caption": "Hostel My World, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Hostel My World"
+                },
+                {
+                    "geoId": "5398140",
+                    "destinationId": "173740480",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 57.96233,
+                    "longitude": 56.12246,
+                    "searchDetail": null,
+                    "caption": "Marmelade Hotel, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Marmelade Hotel"
+                },
+                {
+                    "geoId": "27364430",
+                    "destinationId": "876661760",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 58.01568,
+                    "longitude": 56.24087,
+                    "searchDetail": null,
+                    "caption": "Vicont, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Vicont"
+                },
+                {
+                    "geoId": "38389241",
+                    "destinationId": "1229455712",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 58.006319,
+                    "longitude": 56.285745,
+                    "searchDetail": null,
+                    "caption": "Holiday Inn <span class='highlighted'>Perm</span>, an IHG Hotel, Perm, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Holiday Inn Perm, an IHG Hotel"
+                },
+                {
+                    "geoId": "23419905",
+                    "destinationId": "750436960",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 57.97997,
+                    "longitude": 56.19803,
+                    "searchDetail": null,
+                    "caption": "Gloria, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Gloria"
+                },
+                {
+                    "geoId": "46093538",
+                    "destinationId": "1475993216",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 58.011459,
+                    "longitude": 56.240841,
+                    "searchDetail": null,
+                    "caption": "Hotel Eva, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Hotel Eva"
+                },
+                {
+                    "geoId": "25033748",
+                    "destinationId": "802079936",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 57.977073,
+                    "longitude": 56.184195,
+                    "searchDetail": null,
+                    "caption": "Four Elements <span class='highlighted'>Perm</span>, Perm, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Four Elements Perm"
+                },
+                {
+                    "geoId": "45635482",
+                    "destinationId": "1461335424",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 57.436305,
+                    "longitude": 56.996663,
+                    "searchDetail": null,
+                    "caption": "Apeks, Kungur, <span class='highlighted'>Perm</span> Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Apeks"
+                },
+                {
+                    "geoId": "23620158",
+                    "destinationId": "756845056",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 57.984825,
+                    "longitude": 56.197499,
+                    "searchDetail": null,
+                    "caption": "Hotel Karamel, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Hotel Karamel"
+                },
+                {
+                    "geoId": "27365613",
+                    "destinationId": "876699616",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 57.98776,
+                    "longitude": 56.26947,
+                    "searchDetail": null,
+                    "caption": "Abazhur, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Abazhur"
+                },
+                {
+                    "geoId": "3983660",
+                    "destinationId": "364148",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 58.008908,
+                    "longitude": 56.252284,
+                    "searchDetail": null,
+                    "caption": "Business-hotel Sibiria, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Business-hotel Sibiria"
+                },
+                {
+                    "geoId": "27389905",
+                    "destinationId": "877476960",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 58.00637,
+                    "longitude": 56.20718,
+                    "searchDetail": null,
+                    "caption": "Hostel-P, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Hostel-P"
+                },
+                {
+                    "geoId": "42337820",
+                    "destinationId": "1355810240",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 57.989357,
+                    "longitude": 55.725984,
+                    "searchDetail": null,
+                    "caption": "Allur, Ust-Kachka, <span class='highlighted'>Perm</span> Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Allur"
+                },
+                {
+                    "geoId": "23039277",
+                    "destinationId": "738256864",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 58.00168,
+                    "longitude": 56.26206,
+                    "searchDetail": null,
+                    "caption": "Snegiri, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Snegiri"
+                },
+                {
+                    "geoId": "61001967",
+                    "destinationId": "1953062944",
+                    "landmarkCityDestinationId": null,
+                    "type": "HOTEL",
+                    "redirectPage": "DEFAULT_PAGE",
+                    "latitude": 58.001019,
+                    "longitude": 56.237751,
+                    "searchDetail": null,
+                    "caption": "Abri Luxe Sky City, <span class='highlighted'>Perm</span>, Perm Krai, <span class='highlighted'>Russia</span>",
+                    "name": "Abri Luxe Sky City"
+                }
+            ]
+        },
+        {
+            "group": "LANDMARK_GROUP",
+            "entities": []
+        },
+        {
+            "group": "TRANSPORT_GROUP",
+            "entities": []
+        }
+    ],
+    "geocodeFallback": false
+}
