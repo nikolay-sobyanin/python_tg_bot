@@ -106,7 +106,7 @@ class CmdLowprice:
     def _enter_city(self, text: str):
         result = self.hotel_api.search_city(location=text)
         if result['city_found']:
-            self.data[self.step] = {'destinationID': result['destinationId'], 'city_name': result['name']}
+            self.data[self.step] = {'destinationID': result['destinationID'], 'city_name': result['city_name']}
             return self._create_result(set_next_step=True)
         else:
             return self._create_result(set_next_step=False, text_error=result['text_error'])
