@@ -3,12 +3,11 @@ from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar, LSTEP
 from datetime import date, datetime, timedelta
 
-from config import BOT_TOKEN
+from config import BOT_TOKEN, FORMAT_DATE
 from botrequests.lowprice import CmdLowprice
 
 bot = telebot.TeleBot(BOT_TOKEN)
 BLOCK_COMMANDS = ['lowprice', 'highprice', 'bestdeal', 'start']
-DATE_FORMAT = '%d.%m.%Y'
 
 """
 Словарь пользователей, которые находятся в сценарии команды
@@ -150,7 +149,7 @@ def generate_reply_keyboard(answers: list):
 
 def get_min_max_date(user_id: int):
     if 'enter_date_from' in users[user_id].data:
-        min_date = datetime.strptime(users[user_id].data['enter_date_from'], DATE_FORMAT).date()
+        min_date = datetime.strptime(users[user_id].data['enter_date_from'], FORMAT_DATE).date()
     else:
         min_date = date.today()
     max_date = date.today() + timedelta(days=365)
@@ -185,10 +184,10 @@ def callback__calendar_keyboard(call):
                               call.message.message_id,
                               reply_markup=key)
     elif enter_date:
-        bot.edit_message_text(f"Ты выбрал дату {enter_date.strftime(DATE_FORMAT)}",
+        bot.edit_message_text(f"Ты выбрал дату {enter_date.strftime(FORMAT_DATE)}",
                               call.message.chat.id,
                               call.message.message_id)
-        result = users[user_id].run(enter_date.strftime(DATE_FORMAT))
+        result = users[user_id].run(enter_date.strftime(FORMAT_DATE))
         reply_user(user_id, result)
 
 

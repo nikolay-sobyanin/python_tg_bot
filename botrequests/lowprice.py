@@ -1,4 +1,6 @@
 import re
+from search_hotels import SearchHotels
+from config import PATTERN_DATE
 
 
 class CmdLowprice:
@@ -40,6 +42,7 @@ class CmdLowprice:
 
     def __init__(self):
         self.step = self.SCENARIO['start_step']
+        self.hotel_api = SearchHotels()
         self.data = {}
 
     def start(self):
@@ -61,7 +64,7 @@ class CmdLowprice:
         """
         handler = getattr(self, '_' + self.step)
         result_handler = handler(text)
-        if result_handler['set_next_step'] is True:
+        if result_handler['set_next_step']:
             self._set_next_step(switch=result_handler['switch'])
             return self._get_answer()
         else:
@@ -101,16 +104,15 @@ class CmdLowprice:
         }
 
     def _enter_city(self, text: str):
-        if len(text) >= 3:
-            self.data[self.step] = text
+        result = self.hotel_api.search_city(location=text)
+        if result['city_found']:
+            self.data[self.step] = {'destinationID': result['destinationId'], 'city_name': result['name']}
             return self._create_result(set_next_step=True)
         else:
-            text_error = 'Что-то пошло не так...\nГород не найден, давай попробуем еще раз!'
-            return self._create_result(set_next_step=False, text_error=text_error)
+            return self._create_result(set_next_step=False, text_error=result['text_error'])
 
     def _enter_date_from(self, text: str):
-        pattern_date = r'^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$'
-        if re.search(pattern_date, text):
+        if re.search(PATTERN_DATE, text):
             self.data[self.step] = text
             return self._create_result(set_next_step=True)
         else:
@@ -118,8 +120,7 @@ class CmdLowprice:
             return self._create_result(set_next_step=False, text_error=text_error)
 
     def _enter_date_to(self, text: str):
-        pattern_date = r'^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$'
-        if re.search(pattern_date, text):
+        if re.search(PATTERN_DATE, text):
             self.data[self.step] = text
             return self._create_result(set_next_step=True)
         else:
@@ -156,13 +157,5 @@ class CmdLowprice:
             return self._create_result(set_next_step=False, text_error=text_error)
 
     def _get_result_cmd(self):
-        message_text = ''
-        for key, value in self.data.items():
-            message_text += f'{key}: {value}\n'
-        message_text += f'Команда {self.COMMAND_NAME} выполнена! https://www.hotels.ru/'
-        return {
-                'step': self.step,
-                'message_text': message_text,
-                'keyboard': {'type': 'inline'},
-            }
+        pass
 
