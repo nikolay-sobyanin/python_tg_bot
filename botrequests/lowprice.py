@@ -157,5 +157,22 @@ class CmdLowprice:
             return self._create_result(set_next_step=False, text_error=text_error)
 
     def _get_result_cmd(self):
-        pass
+        destination_id = self.data['enter_city']['destinationID']
+        count_hotels = self.data['enter_count_hotels']
+        check_in = self.data['enter_date_from']
+        check_out = self.data['enter_date_to']
+
+        data_hotels = self.hotel_api.search_hotels(destination_id, count_hotels, check_in, check_out)
+
+        if data_hotels['hotels_found']:
+            if self.data['need_photo'] == 'да':
+                count_photos = int(self.data['enter_count_photo'])
+
+                for hotel in data_hotels['hotels']:
+                    url_photos = self.hotel_api.get_url_photos(hotel['id'], count_photos)
+                    hotel['url_photos'] = url_photos['urls']
+
+        return {'step': 'finish', 'data_hotels': data_hotels}
+
+
 

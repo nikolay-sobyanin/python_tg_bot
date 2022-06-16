@@ -103,20 +103,18 @@ class SearchHotels:
             hotels.append({'id': hotel_id, 'name': name, 'address': address, 'rate': rate})
         return {'hotels_found': True, 'hotels': hotels}
 
-    def get_url_photos(self, hotels_id: list, count_photos: int):
+    def get_url_photos(self, hotel_id: list, count_photos: int):
         """
-        :param hotels_id: ID отелей
+        :param hotel_id: ID отеля
         :param count_photos: количество фото отеля
-        :return: словарь key: hotel_id, value: list of url photos
+        :return: список url фото
         """
-        url_photos_hotels = {}
-        for hotel_id in hotels_id:
-            connect, data = self._request_url_photos(hotel_id)
-            if connect:
-                result = self._handler_url_photos(data, count_photos)
-                url_photos_hotels[hotel_id] = {'photos_found': True, 'url': result}
-            else:
-                url_photos_hotels[hotel_id] = {'photos_found': False, 'text_error': data}
+        connect, data = self._request_url_photos(hotel_id)
+        if connect:
+            result = self._handler_url_photos(data, count_photos)
+            return {'photos_found': True, 'urls': result}
+        else:
+            return {'photos_found': False, 'text_error': data}
 
     def _request_url_photos(self, hotel_id):
         url = self.URL + '/properties/get-hotel-photos'

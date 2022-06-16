@@ -1,3 +1,5 @@
+from pprint import pprint
+
 import telebot
 from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar, LSTEP
@@ -112,8 +114,14 @@ def reply_user(user_id: int, result: dict):
     :param result: словарь с ответом от обработчика {}
     """
     if result['step'] == 'finish':
+        data_hotels = result['data_hotels']
+
+        if not data_hotels['hotels_found']:
+            bot.send_message(user_id, data_hotels['text_error'])
+            cmd_reset()
+        pprint(data_hotels)
         markup = generate_inline_keyboard()
-        bot.send_message(user_id, result['message_text'], disable_web_page_preview=True, reply_markup=markup)
+        bot.send_message(user_id, 'Закончил поиск!', disable_web_page_preview=True, reply_markup=markup)
         users.pop(user_id)
         return
 
