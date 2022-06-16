@@ -165,14 +165,11 @@ class CmdLowprice:
         data_hotels = self.hotel_api.search_hotels(destination_id, count_hotels, check_in, check_out)
 
         if data_hotels['hotels_found']:
-            if self.data['need_photo'] == 'да':
+            if self.data['need_photo'].lower() == 'да':
                 count_photos = int(self.data['enter_count_photo'])
 
-                for hotel in data_hotels['hotels']:
+                for i, hotel in enumerate(data_hotels['hotels']):
                     url_photos = self.hotel_api.get_url_photos(hotel['id'], count_photos)
-                    hotel['url_photos'] = url_photos['urls']
+                    data_hotels['hotels'][i]['url_photos'] = url_photos['urls']
 
         return {'step': 'finish', 'data_hotels': data_hotels}
-
-
-
