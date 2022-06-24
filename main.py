@@ -26,8 +26,6 @@ def check_user(user_id: int, cls):
         return False
 
 
-# Не работает! Почему?
-# func= lambda message: message.content_type != 'text'
 @bot.message_handler(content_types=['audio', 'document', 'photo', 'sticker', 'video', 'video_note', 'voice',
                                     'location', 'contact', 'new_chat_members', 'left_chat_member', 'new_chat_title',
                                     'new_chat_photo', 'delete_chat_photo', 'group_chat_created',
@@ -122,6 +120,9 @@ def reply_user(user_id: int, result: dict):
         pprint(data_hotels)
         markup = generate_inline_keyboard()
         bot.send_message(user_id, 'Закончил поиск!', disable_web_page_preview=True, reply_markup=markup)
+
+        medias = [types.InputMediaPhoto(data_hotels['hotels'][0]['url_photos'][0])]
+        bot.send_media_group(user_id, medias)
         users.pop(user_id)
         return
 
@@ -178,7 +179,7 @@ def generate_calendar_keyboard(user_id: int):
 
 
 @bot.callback_query_handler(func=DetailedTelegramCalendar.func())
-def callback__calendar_keyboard(call):
+def callback_calendar_keyboard(call):
     """
     Обработка даты от инлайн клавиатуры и дальнейшее движение по сценарию
     :param call:
