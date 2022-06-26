@@ -8,34 +8,38 @@ class CmdLowprice:
     SCENARIO = {
         'start_step': 'enter_city',
         'enter_city': {
-            'message': 'В каком городе искать отели?\nБудь внимателен не ошибись!',
-            'keyboard': {'type': None},
+            'message': 'Начнем поиск!\n\n'
+                       'В каком городе мне искать отели?\n'
+                       'Чтобы я точно нашел его укажи страну, регион, город.',
+            'keyboard': None,
             'next_step': 'enter_date_from'
         },
         'enter_date_from': {
-            'message': 'Когда заезжаем в отель?',
-            'keyboard': {'type': 'date'},
+            'message': 'Выбери дату заезда?',
+            'keyboard': 'date',
             'next_step': 'enter_date_to'
         },
         'enter_date_to': {
-            'message': 'Когда выезжаем из отеля?',
-            'message_error': 'Что-то пошло не так...\nДата выбрана неверно, давай попробуем еще раз!',
-            'keyboard': {'type': 'date'},
+            'message': 'Выбери дату отъезда?',
+            'keyboard': 'date',
             'next_step': 'enter_count_hotels'
         },
         'enter_count_hotels': {
-            'message': 'Сколько вывести отелей?',
-            'keyboard': {'type': 'reply', 'answers': [str(x) for x in range(2, 6)]},
+            'message': 'Сколько найти отелей?',
+            'keyboard': 'reply',
+            'answers': [str(x) for x in range(2, 6)],
             'next_step': 'need_photo'
         },
         'need_photo': {
-            'message': 'Фото отелей нужны?',
-            'keyboard': {'type': 'reply', 'answers': ['Да', 'Нет']},
+            'message': 'Фото отелей прикрепить?',
+            'keyboard': 'reply',
+            'answers': ['Да', 'Нет'],
             'next_step': ['enter_count_photo', 'finish']
         },
         'enter_count_photo': {
-            'message': 'Сколько фото отелей вывести?',
-            'keyboard': {'type': 'reply', 'answers': [str(x) for x in range(4, 11, 2)]},
+            'message': 'Сколько фото прикрепить?',
+            'keyboard': 'reply',
+            'answers': [str(x) for x in range(4, 11, 2)],
             'next_step': 'finish'
         },
     }
@@ -46,63 +50,38 @@ class CmdLowprice:
         self.data = {}
 
     def start(self):
-        """
-        Выдаем сообщение для стартового шага
-        :return: возвращаем словарь с параметрами ответа
-        """
-        return {
-                'step': self.step,
-                'message_text': self.SCENARIO[self.step]['message'],
-                'keyboard': self.SCENARIO[self.step]['keyboard']
-            }
+        return self._get_answer()
 
     def run(self, text: str):
         """
         Обрабатываем ответы пользователя и двигаемся по сценарию
         :param text: сообщение от пользователя
-        :return: dict с результатом сценария или шага
+        :return: словарь с ответом от обработчика {'step': <name_step>, 'message_text': <text>, 'keyboard': <type>},
+        но если step = 'finish' {'step': 'finish', 'hotels': []}
         """
-        handler = getattr(self, '_' + self.step)
-        result_handler = handler(text)
-        if result_handler['set_next_step']:
-            self._set_next_step(switch=result_handler['switch'])
-            return self._get_answer()
+        handler = getattr(self, '_' + self.step)  # Выбираем обработчик сообщения от пользователя (param = text)
+        result = handler(text)
+        #  return None or int or error
+        self._set_next_step(switch=result)
+        if self.step == 'finish':
+            return self._get_result_cmd()
         else:
-            return self._get_error(text_error=result_handler['text_error'])
+            return self._get_answer()
 
     def _set_next_step(self, switch):
         if switch is None:
             self.step = self.SCENARIO[self.step]['next_step']
-        elif isinstance(switch, int) and 0 <= switch <= len(self.SCENARIO[self.step]['next_step']) - 1:
-            self.step = self.SCENARIO[self.step]['next_step'][switch]
         else:
-            raise TypeError
+            self.step = self.SCENARIO[self.step]['next_step'][switch]
 
     def _get_answer(self):
-        if self.step == 'finish':
-            return self._get_result_cmd()
-        else:
-            return {
-                'step': self.step,
-                'message_text': self.SCENARIO[self.step]['message'],
-                'keyboard': self.SCENARIO[self.step]['keyboard']
-            }
-
-    def _get_error(self, text_error: str):
         return {
             'step': self.step,
-            'message_text': text_error,
+            'message_text': self.SCENARIO[self.step]['message'],
             'keyboard': self.SCENARIO[self.step]['keyboard']
         }
 
     #  Обработчики сообщений
-    def _create_result(self, set_next_step: bool, switch=None, text_error=None):
-        return {
-            'set_next_step': set_next_step,
-            'switch': switch,
-            'text_error': text_error
-        }
-
     def _enter_city(self, text: str):
         result = self.hotel_api.search_city(location=text)
         if result['city_found']:

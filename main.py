@@ -1,5 +1,3 @@
-from pprint import pprint
-
 import telebot
 from telebot import types
 from telegram_bot_calendar import DetailedTelegramCalendar, LSTEP
@@ -9,7 +7,7 @@ from config import BOT_TOKEN, FORMAT_DATE
 from botrequests.lowprice import CmdLowprice
 
 bot = telebot.TeleBot(BOT_TOKEN)
-BLOCK_COMMANDS = ['lowprice', 'highprice', 'bestdeal', 'start']
+BLOCK_COMMANDS = ['start', 'lowprice', 'highprice', 'bestdeal', 'history']
 
 """
 Словарь пользователей, которые находятся в сценарии команды
@@ -36,7 +34,8 @@ def block_message(message):
     Блокируем все сообщения кроме content_types='text'
     :param message:
     """
-    bot.send_message(message.chat.id, f'Упс... Ошибка!\nБот понимает только текстовые сообщения!')
+    bot.send_message(message.chat.id, f'Прости, я не такой умный :(\n'
+                                      f'Я понимаю только текс, но я буду учиться :)')
 
 
 @bot.message_handler(commands=BLOCK_COMMANDS, func=lambda message: message.chat.id in users)
@@ -47,24 +46,30 @@ def block_commands(message):
     """
     user_id = message.chat.id
     command_name = users[user_id].COMMAND_NAME
-    bot.send_message(message.chat.id, f'Вы находитесь в сценарии команды - {command_name}.\n'
-                                      f'Введи команду /reset, чтобы выйти из сценария.')
+    bot.send_message(message.chat.id, f'Ты выполняешь команду - {command_name}.\n'
+                                      f'Если хочешь закончить, выполни /reset')
 
 
 @bot.message_handler(commands=['start'])
 def cmd_start(message):
-    bot.send_message(message.chat.id, 'Я помогу тебе найти отели!\n'
+    bot.send_message(message.chat.id, 'Я помогаю находить отели!\n'
                                       'Ознакомься с моими командами - /help.')
 
 
 @bot.message_handler(commands=['help'])
 def cmd_help(message):
-    bot.send_message(message.chat.id, 'Инструкция по работе бота.\n'
-                                      '/lowprice - поиск топ самых дешёвых отелей в городе\n'
-                                      '/highprice - поиск топ самых дорогих отелей в городе\n'
-                                      '/bestdeal - поиск отелей наиболее подходящих по цене и расположению от центра\n'
-                                      '/history - вывод истории поиска отелей\n'
-                                      '/reset - сброс текущего поиска')
+    user_id = message.chat.id
+    if user_id in users:
+        command_name = users[user_id].COMMAND_NAME
+        bot.send_message(message.chat.id, f'Ты ты выполняешь команду /{command_name}\n'
+                                          f'Если хочешь прервать её, используй /reset')
+    else:
+        bot.send_message(message.chat.id, 'Посмотри что я умею:\n'
+                                          '/lowprice - найду самые дешёвые отели в городе\n'
+                                          '/highprice - найду самые дорогие отели в городе\n'
+                                          '/bestdeal - найду отели лучшие по цене и расположению от центра\n'
+                                          '/history - покажу тебе истории поиска отелей\n'
+                                          '/reset - сброшу текущий команду')
 
 
 @bot.message_handler(commands=['reset'])
@@ -77,9 +82,10 @@ def cmd_reset(message):
     if user_id in users:
         command_name = users[user_id].COMMAND_NAME
         users.pop(user_id)
-        bot.send_message(message.chat.id, f'Вы покинули сценарий команды /{command_name}')
+        bot.send_message(message.chat.id, f'Ты досрочно завершил поиск /{command_name}!\n'
+                                          f'Ты можешь начать новый, /help тебе поможет')
     else:
-        bot.send_message(message.chat.id, f'Вы не находитесь в сценарии команды...')
+        bot.send_message(message.chat.id, f'Упс... Ты не выполняешь поиск...')
 
 
 @bot.message_handler(commands=['lowprice'])
@@ -91,7 +97,7 @@ def cmd_lowprice_start(message):
     user_id = message.chat.id
     users[user_id] = CmdLowprice()
     result = users[user_id].start()
-    bot.send_message(user_id, result['message_text'])
+    reply_user(user_id, result)
 
 
 @bot.message_handler(func=lambda message: check_user(message.chat.id, CmdLowprice))
@@ -101,7 +107,10 @@ def cmd_lowprice_run(message):
     :param message:
     """
     user_id = message.chat.id
-    result = users[user_id].run(message.text)
+    try:
+        result = users[user_id].run(message.text)
+    except:
+        raise
     reply_user(user_id, result)
 
 
@@ -109,7 +118,8 @@ def reply_user(user_id: int, result: dict):
     """
     Ответ пользователю
     :param user_id: id пользователя
-    :param result: словарь с ответом от обработчика {}
+    :param result: словарь с ответом от обработчика {'step': <name_step>, 'message_text': <text>, 'keyboard': <type>},
+    но если step = 'finish' {'step': 'finish', 'hotels': []}
     """
     if result['step'] == 'finish':
         data_hotels = result['data_hotels']
@@ -117,8 +127,7 @@ def reply_user(user_id: int, result: dict):
         if not data_hotels['hotels_found']:
             bot.send_message(user_id, data_hotels['text_error'])
             cmd_reset()
-        pprint(data_hotels)
-        markup = generate_inline_keyboard()
+        markup = create_inline_keyboard()
         bot.send_message(user_id, 'Закончил поиск!', disable_web_page_preview=True, reply_markup=markup)
 
         medias = [types.InputMediaPhoto(data_hotels['hotels'][0]['url_photos'][0])]
@@ -130,22 +139,24 @@ def reply_user(user_id: int, result: dict):
         bot.send_message(user_id, result['message_text'])
     elif result['keyboard']['type'] == 'date':
         bot.send_message(user_id, result['message_text'])
-        generate_calendar_keyboard(user_id)
+        create_calendar_keyboard(user_id)
     elif result['keyboard']['type'] == 'reply':
-        markup = generate_reply_keyboard(result['keyboard']['answers'])
+        markup = create_reply_keyboard(result['answers'])
         bot.send_message(user_id, result['message_text'], reply_markup=markup)
-    else:
-        raise TypeError
 
 
-def generate_inline_keyboard():
+def send_result():
+    pass
+
+
+def create_inline_keyboard(text, url):
     markup = types.InlineKeyboardMarkup()
-    url_button = types.InlineKeyboardButton(text="Перейти на hotels.ru", url="https://www.hotels.ru/")
+    url_button = types.InlineKeyboardButton(text=text, url=url)
     markup.add(url_button)
     return markup
 
 
-def generate_reply_keyboard(answers: list):
+def create_reply_keyboard(answers: list):
     """
     Генератор клавиатуры с определенными ответами
     :param answers: список ответов
@@ -156,16 +167,18 @@ def generate_reply_keyboard(answers: list):
     return markup
 
 
+#  Создание клавиатуры ввода даты
 def get_min_max_date(user_id: int):
-    if 'enter_date_from' in users[user_id].data:
-        min_date = datetime.strptime(users[user_id].data['enter_date_from'], FORMAT_DATE).date()
+    data = users[user_id].data
+    if 'enter_date_from' in data:
+        min_date = datetime.strptime(data['enter_date_from'], FORMAT_DATE).date()
     else:
         min_date = date.today()
-    max_date = date.today() + timedelta(days=365)
+    max_date = date.today() + timedelta(days=180)
     return min_date, max_date
 
 
-def generate_calendar_keyboard(user_id: int):
+def create_calendar_keyboard(user_id: int):
     """
     Генератор инлайн клавиатуры для введения даты
     :param user_id: id пользователя
@@ -173,9 +186,7 @@ def generate_calendar_keyboard(user_id: int):
     """
     min_date, max_date = get_min_max_date(user_id)
     calendar, step = DetailedTelegramCalendar(min_date=min_date, max_date=max_date).build()
-    bot.send_message(user_id,
-                     f"Select {LSTEP[step]}",
-                     reply_markup=calendar)
+    bot.send_message(user_id, f'Выбери {LSTEP[step]}', reply_markup=calendar)
 
 
 @bot.callback_query_handler(func=DetailedTelegramCalendar.func())
@@ -188,15 +199,13 @@ def callback_calendar_keyboard(call):
     min_date, max_date = get_min_max_date(user_id)
     enter_date, key, step = DetailedTelegramCalendar(min_date=min_date, max_date=max_date).process(call.data)
     if not enter_date and key:
-        bot.edit_message_text(f"Select {LSTEP[step]}",
-                              call.message.chat.id,
-                              call.message.message_id,
-                              reply_markup=key)
-    elif enter_date:
-        bot.edit_message_text(f"Ты выбрал дату {enter_date.strftime(FORMAT_DATE)}",
+        bot.edit_message_text(f'Выбери {LSTEP[step]}', call.message.chat.id, call.message.message_id, reply_markup=key)
+    else:
+        bot.edit_message_text(f'Ты выбрал дату: {enter_date.strftime("%d.%m.%Y")}',
                               call.message.chat.id,
                               call.message.message_id)
-        result = users[user_id].run(enter_date.strftime(FORMAT_DATE))
+        date_str = enter_date.strftime(FORMAT_DATE)
+        result = users[user_id].run(date_str)
         reply_user(user_id, result)
 
 
