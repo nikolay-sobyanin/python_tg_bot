@@ -1,5 +1,6 @@
 import re
-from search_hotels import SearchHotels
+from requests.exceptions import ConnectionError, HTTPError
+from botrequests.search_hotels import SearchHotels
 from config import PATTERN_DATE
 
 
@@ -11,35 +12,32 @@ class CmdLowprice:
             'message': 'Начнем поиск!\n\n'
                        'В каком городе мне искать отели?\n'
                        'Чтобы я точно нашел его укажи страну, регион, город.',
-            'keyboard': None,
+            'keyboard': {'type': None},
             'next_step': 'enter_date_from'
         },
         'enter_date_from': {
             'message': 'Выбери дату заезда?',
-            'keyboard': 'date',
+            'keyboard': {'type': 'date'},
             'next_step': 'enter_date_to'
         },
         'enter_date_to': {
             'message': 'Выбери дату отъезда?',
-            'keyboard': 'date',
+            'keyboard': {'type': 'date'},
             'next_step': 'enter_count_hotels'
         },
         'enter_count_hotels': {
             'message': 'Сколько найти отелей?',
-            'keyboard': 'reply',
-            'answers': [str(x) for x in range(2, 6)],
+            'keyboard': {'type': 'reply', 'answers': [str(x) for x in range(2, 6)]},
             'next_step': 'need_photo'
         },
         'need_photo': {
             'message': 'Фото отелей прикрепить?',
-            'keyboard': 'reply',
-            'answers': ['Да', 'Нет'],
+            'keyboard': {'type': 'reply', 'answers': ['Да', 'Нет']},
             'next_step': ['enter_count_photo', 'finish']
         },
         'enter_count_photo': {
             'message': 'Сколько фото прикрепить?',
-            'keyboard': 'reply',
-            'answers': [str(x) for x in range(4, 11, 2)],
+            'keyboard': {'type': 'reply', 'answers': [str(x) for x in range(4, 11, 2)]},
             'next_step': 'finish'
         },
     }
@@ -60,8 +58,22 @@ class CmdLowprice:
         но если step = 'finish' {'step': 'finish', 'hotels': []}
         """
         handler = getattr(self, '_' + self.step)  # Выбираем обработчик сообщения от пользователя (param = text)
-        result = handler(text)
-        #  return None or int or error
+
+        try:
+            result = handler(text)  # return switch = (None or int) or error
+        except ValueError as exc:
+            return {
+                'step': self.step,
+                'message_text': exc,
+                'keyboard': self.SCENARIO[self.step]['keyboard']
+            }
+        except (ConnectionError, HTTPError):
+            return {
+                'step': self.step,
+                'message_text': 'Ошибка соединения с сервером...\nВыполни /reset и повтори запрос позже.',
+                'keyboard': self.SCENARIO[self.step]['keyboard']
+            }
+
         self._set_next_step(switch=result)
         if self.step == 'finish':
             return self._get_result_cmd()
@@ -84,56 +96,46 @@ class CmdLowprice:
     #  Обработчики сообщений
     def _enter_city(self, text: str):
         result = self.hotel_api.search_city(location=text)
-        if result['city_found']:
-            self.data[self.step] = {'destinationID': result['destinationID'], 'city_name': result['city_name']}
-            return self._create_result(set_next_step=True)
-        else:
-            return self._create_result(set_next_step=False, text_error=result['text_error'])
+        self.data[self.step] = {'destinationID': result['destinationID'], 'city_name': result['city_name']}
+        return None
 
     def _enter_date_from(self, text: str):
         if re.search(PATTERN_DATE, text):
             self.data[self.step] = text
-            return self._create_result(set_next_step=True)
+            return None
         else:
-            text_error = 'Что-то пошло не так...\nДата выбрана неверно, давай попробуем еще раз!'
-            return self._create_result(set_next_step=False, text_error=text_error)
+            raise ValueError('Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!')
 
     def _enter_date_to(self, text: str):
         if re.search(PATTERN_DATE, text):
             self.data[self.step] = text
-            return self._create_result(set_next_step=True)
+            return None
         else:
-            text_error = 'Что-то пошло не так...\nДата выбрана неверно, давай попробуем еще раз!'
-            return self._create_result(set_next_step=False, text_error=text_error)
+            raise ValueError('Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!')
 
     def _enter_count_hotels(self, text: str):
         if text.isdigit() and (1 <= int(text) <= 10):
             self.data[self.step] = text
-            return self._create_result(set_next_step=True)
+            return None
         else:
-            text_error = 'Что-то пошло не так...\nНеверный формат ввода, давай попробуем еще раз!'
-            return self._create_result(set_next_step=False, text_error=text_error)
+            raise ValueError('Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!')
 
     def _need_photo(self, text: str):
         if text.lower() == 'да':
             self.data[self.step] = text
-            switch = 0
-            return self._create_result(set_next_step=True, switch=switch)
+            return 0
         elif text.lower() == 'нет':
             self.data[self.step] = text
-            switch = 1
-            return self._create_result(set_next_step=True, switch=switch)
+            return 1
         else:
-            text_error = 'Что-то пошло не так...\nНеверный формат ввода, давай попробуем еще раз!'
-            return self._create_result(set_next_step=False, text_error=text_error)
+            raise ValueError('Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!')
 
     def _enter_count_photo(self, text: str):
         if text.isdigit() and (1 <= int(text) <= 10):
             self.data[self.step] = text
-            return self._create_result(set_next_step=True)
+            return None
         else:
-            text_error = 'Что-то пошло не так...\nНеверный формат ввода, давай попробуем еще раз!'
-            return self._create_result(set_next_step=False, text_error=text_error)
+            raise ValueError('Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!')
 
     def _get_result_cmd(self):
         destination_id = self.data['enter_city']['destinationID']
@@ -141,14 +143,13 @@ class CmdLowprice:
         check_in = self.data['enter_date_from']
         check_out = self.data['enter_date_to']
 
-        data_hotels = self.hotel_api.search_hotels(destination_id, count_hotels, check_in, check_out)
+        hotels = self.hotel_api.search_hotels(destination_id, count_hotels, check_in, check_out)
 
-        if data_hotels['hotels_found']:
-            if self.data['need_photo'].lower() == 'да':
-                count_photos = int(self.data['enter_count_photo'])
+        if self.data['need_photo'].lower() == 'да':
+            count_photos = int(self.data['enter_count_photo'])
 
-                for i, hotel in enumerate(data_hotels['hotels']):
-                    url_photos = self.hotel_api.get_url_photos(hotel['id'], count_photos)
-                    data_hotels['hotels'][i]['url_photos'] = url_photos['urls']
+            for i, hotel in enumerate(hotels):
+                url_photos = self.hotel_api.get_url_photos(hotel['id'], count_photos)
+                hotels[i]['url_photos'] = url_photos
 
-        return {'step': 'finish', 'data_hotels': data_hotels}
+        return {'step': 'finish', 'hotels': hotels}

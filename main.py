@@ -107,10 +107,7 @@ def cmd_lowprice_run(message):
     :param message:
     """
     user_id = message.chat.id
-    try:
-        result = users[user_id].run(message.text)
-    except:
-        raise
+    result = users[user_id].run(message.text)
     reply_user(user_id, result)
 
 
@@ -122,15 +119,11 @@ def reply_user(user_id: int, result: dict):
     но если step = 'finish' {'step': 'finish', 'hotels': []}
     """
     if result['step'] == 'finish':
-        data_hotels = result['data_hotels']
+        hotels = result['hotels']
 
-        if not data_hotels['hotels_found']:
-            bot.send_message(user_id, data_hotels['text_error'])
-            cmd_reset()
-        markup = create_inline_keyboard()
+        markup = create_inline_keyboard(text='123', url='https://yandex.ru/')
         bot.send_message(user_id, 'Закончил поиск!', disable_web_page_preview=True, reply_markup=markup)
-
-        medias = [types.InputMediaPhoto(data_hotels['hotels'][0]['url_photos'][0])]
+        medias = [types.InputMediaPhoto(hotels[0]['url_photos'][0])]
         bot.send_media_group(user_id, medias)
         users.pop(user_id)
         return
@@ -141,10 +134,11 @@ def reply_user(user_id: int, result: dict):
         bot.send_message(user_id, result['message_text'])
         create_calendar_keyboard(user_id)
     elif result['keyboard']['type'] == 'reply':
-        markup = create_reply_keyboard(result['answers'])
+        markup = create_reply_keyboard(result['keyboard']['answers'])
         bot.send_message(user_id, result['message_text'], reply_markup=markup)
 
 
+# TODO сделать функцию
 def send_result():
     pass
 

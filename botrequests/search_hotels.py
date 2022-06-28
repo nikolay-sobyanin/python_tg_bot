@@ -4,7 +4,7 @@ from config import HOTELS_API_KEY
 
 class SearchHotels:
     HOTELS_API_HOST = 'hotels4.p.rapidapi.com'
-    URL = "https://hotels4.p.rapidapi.com"
+    URL = "https://hotels4.p.rapidapi.сom"
 
     HEADERS = {
         "X-RapidAPI-Host": HOTELS_API_HOST,
@@ -20,12 +20,9 @@ class SearchHotels:
         :param location: Страна, регион, город
         :return: словарь с destination_id и наименование города, либо текст ошибки
         """
-        connect, data = self._request_locations(location)
-        if connect:
-            result = self._handler_locations(data)
-            return result
-        else:
-            return {'city_found': False, 'text_error': data}
+        data = self._request_locations(location)
+        result = self._handler_locations(data)
+        return result
 
     def _request_locations(self, location: str):
         """
@@ -35,10 +32,8 @@ class SearchHotels:
         url = self.URL + '/locations/v2/search'
         querystring = {'query': location, 'locale': self.locale, 'currency': self.currency}
         response = requests.request("GET", url, headers=self.HEADERS, params=querystring)
-        if response.status_code == 200:
-            return True, response.json()
-        else:
-            return False, 'Нет сооединения с сервером...\nПовторите запрос!'
+        response.raise_for_status()
+        return response.json()
 
     def _handler_locations(self, data: dict):
         """
@@ -48,9 +43,9 @@ class SearchHotels:
         places = data['suggestions'][0]['entities']
         for place in places:
             if place['type'] == 'CITY':
-                return {'city_found': True, 'destinationID': place['destinationId'], 'city_name': place['name']}
+                return {'destinationID': place['destinationId'], 'city_name': place['name']}
         else:
-            return {'city_found': False, 'text_error': ' Я не нашел город...\nУточни запрос!'}
+            raise ValueError('Я не смог найти город...\nУточни запрос!')
 
     def search_hotels(self, destination_id: str, count_hotels: int, check_in: str, check_out: str,
                       adults=2, sort_order='PRICE'):
@@ -64,12 +59,9 @@ class SearchHotels:
         STAR_RATING_LOWEST_FIRST, DISTANCE_FROM_LANDMARK, GUEST_RATING, PRICE_HIGHEST_FIRST, PRICE)
         :return: список отелей
         """
-        connect, data = self._request_hotels(destination_id, count_hotels, check_in, check_out, adults, sort_order)
-        if connect:
-            result = self._handler_hotels(data)
-            return result
-        else:
-            return {'hotels_found': False, 'text_error': data}
+        data = self._request_hotels(destination_id, count_hotels, check_in, check_out, adults, sort_order)
+        result = self._handler_hotels(data)
+        return result
 
     def _request_hotels(self, destination_id, count_hotels, check_in, check_out, adults, sort_order):
         url = self.URL + '/properties/list'
@@ -77,31 +69,25 @@ class SearchHotels:
                        'checkIn': check_in, 'checkOut': check_out, 'adults1': str(adults), 'sortOrder': sort_order,
                        'locale': self.locale, 'currency': self.currency}
         response = requests.request("GET", url, headers=self.HEADERS, params=querystring)
-        if response.status_code == 200:
-            return True, response.json()
-        else:
-            return False, 'Нет сооединения с сервером...\nПовторите запрос!'
+        response.raise_for_status()
+        return response.json()
 
     def _handler_hotels(self, data):
         """
         :param data: json с данными о локациях
         :return: список отелей, либо ошибка
         """
-        if data['result'] != 'OK':
-            return {'hotels_found': False, 'text_error': ' Я не нашел отели по твоему запросу...\nПопробуй еще раз!'}
-
         found_hotels = data['data']['body']['searchResults']['results']
-        if not found_hotels:
-            return {'hotels_found': False, 'text_error': ' Я не нашел отели по твоему запросу...\nПопробуй еще раз!'}
-
         hotels = []
         for hotel in found_hotels:
             hotel_id = str(hotel['id'])
             name = hotel['name']
-            address = hotel['address']['streetAddress']
+            address = hotel['address']
+            address_str = address['countryName'] + ', ' + address['locality'] + ', ' + address['streetAddress']
             rate = hotel['ratePlan']['price']['current']
-            hotels.append({'id': hotel_id, 'name': name, 'address': address, 'rate': rate})
-        return {'hotels_found': True, 'hotels': hotels}
+            url = 'https://www.hotels.com/ho' + hotel_id
+            hotels.append({'id': hotel_id, 'name': name, 'address': address_str, 'rate': rate, 'url': url})
+        return hotels
 
     def get_url_photos(self, hotel_id: list, count_photos: int):
         """
@@ -109,21 +95,16 @@ class SearchHotels:
         :param count_photos: количество фото отеля
         :return: список url фото
         """
-        connect, data = self._request_url_photos(hotel_id)
-        if connect:
-            result = self._handler_url_photos(data, count_photos)
-            return {'photos_found': True, 'urls': result}
-        else:
-            return {'photos_found': False, 'text_error': data}
+        data = self._request_url_photos(hotel_id)
+        result = self._handler_url_photos(data, count_photos)
+        return result
 
     def _request_url_photos(self, hotel_id):
         url = self.URL + '/properties/get-hotel-photos'
         querystring = {"id": hotel_id}
         response = requests.request("GET", url, headers=self.HEADERS, params=querystring)
-        if response.status_code == 200:
-            return True, response.json()
-        else:
-            return False, 'Нет сооединения с сервером...\nПовторите запрос!'
+        response.raise_for_status()
+        return response.json()
 
     def _handler_url_photos(self, data, count_photos):
         url_photos = []
@@ -132,6 +113,5 @@ class SearchHotels:
             url_photos.append(url_photo)
             if len(url_photos) == count_photos:
                 return url_photos
-        else:
-            return url_photos
+        return url_photos
 
