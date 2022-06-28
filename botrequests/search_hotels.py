@@ -1,5 +1,6 @@
 import requests
-from config import HOTELS_API_KEY
+from datetime import datetime
+from config import HOTELS_API_KEY, FORMAT_DATE
 
 
 class SearchHotels:
@@ -60,8 +61,14 @@ class SearchHotels:
         :return: список отелей
         """
         data = self._request_hotels(destination_id, count_hotels, check_in, check_out, adults, sort_order)
-        result = self._handler_hotels(data)
+        count_days = self._get_count_days(check_in, check_out)
+        result = self._handler_hotels(data, count_days)
         return result
+
+    def _get_count_days(self, check_in, check_out):
+        date_from = datetime.strptime(check_in, FORMAT_DATE).date()
+        date_to = datetime.strptime(check_out, FORMAT_DATE).date()
+        return (date_to - date_from).days
 
     def _request_hotels(self, destination_id, count_hotels, check_in, check_out, adults, sort_order):
         url = self.URL + '/properties/list'
@@ -72,7 +79,7 @@ class SearchHotels:
         response.raise_for_status()
         return response.json()
 
-    def _handler_hotels(self, data):
+    def _handler_hotels(self, data, count_days):
         """
         :param data: json с данными о локациях
         :return: список отелей, либо ошибка
@@ -85,8 +92,15 @@ class SearchHotels:
             address = hotel['address']
             address_str = address['countryName'] + ', ' + address['locality'] + ', ' + address['streetAddress']
             rate = hotel['ratePlan']['price']['current']
+            rate_all = rate[0] + str(float(rate[1:]) * count_days)
             url = 'https://www.hotels.com/ho' + hotel_id
-            hotels.append({'id': hotel_id, 'name': name, 'address': address_str, 'rate': rate, 'url': url})
+            hotels.append({'id': hotel_id,
+                           'name': name,
+                           'address': address_str,
+                           'rate': rate,
+                           'rate_all': rate_all,
+                           'url': url,
+                           })
         return hotels
 
     def get_url_photos(self, hotel_id: list, count_photos: int):

@@ -58,7 +58,6 @@ class CmdLowprice:
         но если step = 'finish' {'step': 'finish', 'hotels': []}
         """
         handler = getattr(self, '_' + self.step)  # Выбираем обработчик сообщения от пользователя (param = text)
-
         try:
             result = handler(text)  # return switch = (None or int) or error
         except ValueError as exc:
@@ -138,18 +137,15 @@ class CmdLowprice:
             raise ValueError('Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!')
 
     def _get_result_cmd(self):
-        destination_id = self.data['enter_city']['destinationID']
-        count_hotels = self.data['enter_count_hotels']
-        check_in = self.data['enter_date_from']
-        check_out = self.data['enter_date_to']
-
-        hotels = self.hotel_api.search_hotels(destination_id, count_hotels, check_in, check_out)
+        hotels = self.hotel_api.search_hotels(
+            destination_id=self.data['enter_city']['destinationID'],
+            count_hotels=self.data['enter_count_hotels'],
+            check_in=self.data['enter_date_from'],
+            check_out=self.data['enter_date_to'])
 
         if self.data['need_photo'].lower() == 'да':
             count_photos = int(self.data['enter_count_photo'])
-
             for i, hotel in enumerate(hotels):
                 url_photos = self.hotel_api.get_url_photos(hotel['id'], count_photos)
                 hotels[i]['url_photos'] = url_photos
-
         return {'step': 'finish', 'hotels': hotels}

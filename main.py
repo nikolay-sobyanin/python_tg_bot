@@ -120,11 +120,7 @@ def reply_user(user_id: int, result: dict):
     """
     if result['step'] == 'finish':
         hotels = result['hotels']
-
-        markup = create_inline_keyboard(text='123', url='https://yandex.ru/')
-        bot.send_message(user_id, 'Закончил поиск!', disable_web_page_preview=True, reply_markup=markup)
-        medias = [types.InputMediaPhoto(hotels[0]['url_photos'][0])]
-        bot.send_media_group(user_id, medias)
+        send_result(user_id, hotels)
         users.pop(user_id)
         return
 
@@ -138,9 +134,18 @@ def reply_user(user_id: int, result: dict):
         bot.send_message(user_id, result['message_text'], reply_markup=markup)
 
 
-# TODO сделать функцию
-def send_result():
-    pass
+def send_result(user_id, hotels):
+    for hotel in hotels:
+        message_text = f'Название отеля: {hotel["name"]}\n' \
+                       f'Адрес: {hotel["address"]}\n' \
+                       f'Стоимость одних суток: {hotel["rate"]}\n' \
+                       f'Стоимость за весь период проживания: {hotel["rate_all"]}\n'
+        markup = create_inline_keyboard(text=hotel['name'], url=hotel['url'])
+        bot.send_message(user_id, message_text, disable_web_page_preview=True, reply_markup=markup)
+
+        if 'url_photos' in hotel.keys():
+            medias = [types.InputMediaPhoto(url) for url in hotel['url_hotels']]
+            bot.send_media_group(user_id, medias)
 
 
 def create_inline_keyboard(text, url):
