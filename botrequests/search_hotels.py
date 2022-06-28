@@ -5,7 +5,7 @@ from config import HOTELS_API_KEY, FORMAT_DATE
 
 class SearchHotels:
     HOTELS_API_HOST = 'hotels4.p.rapidapi.com'
-    URL = "https://hotels4.p.rapidapi.сom"
+    URL = 'https://hotels4.p.rapidapi.com'
 
     HEADERS = {
         "X-RapidAPI-Host": HOTELS_API_HOST,

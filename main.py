@@ -120,7 +120,9 @@ def reply_user(user_id: int, result: dict):
     """
     if result['step'] == 'finish':
         hotels = result['hotels']
+        bot.send_message(user_id, 'Вывожу результаты поиска:')
         send_result(user_id, hotels)
+        bot.send_message(user_id, 'Поиск закончен!')
         users.pop(user_id)
         return
 
@@ -144,7 +146,7 @@ def send_result(user_id, hotels):
         bot.send_message(user_id, message_text, disable_web_page_preview=True, reply_markup=markup)
 
         if 'url_photos' in hotel.keys():
-            medias = [types.InputMediaPhoto(url) for url in hotel['url_hotels']]
+            medias = [types.InputMediaPhoto(url) for url in hotel['url_photos']]
             bot.send_media_group(user_id, medias)
 
 
