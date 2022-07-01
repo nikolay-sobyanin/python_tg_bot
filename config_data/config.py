@@ -7,7 +7,19 @@ else:
     load_dotenv()
 
 BOT_TOKEN = os.getenv('BOT_TOKEN')
+
+#  HOTEL API
 RAPID_API_KEY = os.getenv('RAPID_API_KEY')
+HOTELS_API_HOST = 'hotels4.p.rapidapi.com'
+START_URL = 'https://hotels4.p.rapidapi.com'
+HEADERS = {
+    "X-RapidAPI-Host": HOTELS_API_HOST,
+    "X-RapidAPI-Key": RAPID_API_KEY
+}
+LOCALE = 'en_US'
+CURRENCY = 'USD'
+
+
 DEFAULT_COMMANDS = (
     ('start', "Запустить бота"),
     ('help', "Вывести справку"),
