@@ -1,7 +1,7 @@
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-def get_inline_cities_keyboard(cities: list) -> InlineKeyboardMarkup:
+def get_markup(cities: list) -> InlineKeyboardMarkup:
     markup = InlineKeyboardMarkup()
     for city in cities:
         markup.add(InlineKeyboardButton(text=city['city_name'],
