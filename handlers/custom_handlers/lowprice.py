@@ -1,8 +1,7 @@
 from loader import bot
 from states.lowprice import UserLowpriceState
-from telebot.types import Message
-from utils.parsers import parser_cities
-from utils import find_send_hotels
+from telebot.types import Message, CallbackQuery
+from utils import find_hotels, find_cities
 from keyboards import inline, reply
 
 
@@ -17,11 +16,8 @@ def bot_lowprice(message: Message) -> None:
 
 
 @bot.message_handler(state=UserLowpriceState.city)
-def get_city(message: Message) -> None:
-    cities = parser_cities.find_cities(message.text)
-    markup = inline.cities.get_markup(cities)
-    msg_text = 'Уточни, пожалуйста:'
-    bot.send_message(message.from_user.id, msg_text, reply_markup=markup)
+def city(message: Message) -> None:
+    find_cities.send_results(message)
 
 
 @bot.callback_query_handler(func=lambda call: call.data.split(':')[0] == 'city')
@@ -29,21 +25,21 @@ def callback_city(call) -> None:
     with bot.retrieve_data(call.from_user.id, call.message.chat.id) as data:
         data['city_name'] = call.data.split(':')[1]
         data['destination_id'] = call.data.split(':')[2]
-        bot.edit_message_text(f'Ты выбрал город:{data["city_name"]}', call.message.chat.id, call.message.message_id)
+        bot.edit_message_text(f'Ты выбрал город: {data["city_name"]}', call.message.chat.id, call.message.message_id)
 
     bot.set_state(call.from_user.id, UserLowpriceState.check_in, call.message.chat.id)
-    get_check_in(call)
+    check_in(call)
 
 
 @bot.message_handler(state=UserLowpriceState.check_in)
-def get_check_in(message: Message) -> None:
+def check_in(message: Message) -> None:
     msg_text = 'Выбери дату заезда?'
     bot.send_message(message.from_user.id, msg_text)
     inline.date.send_calendar(message, calendar_id=1)
 
 
 @bot.callback_query_handler(func=inline.date.callback_calendar(calendar_id=1))
-def callback_calendar_check_in(call):
+def callback_calendar_check_in(call) -> None:
     enter_date = inline.date.next_step_calendar(call, calendar_id=1)
 
     if enter_date:
@@ -51,18 +47,18 @@ def callback_calendar_check_in(call):
             data['check_in'] = enter_date
 
         bot.set_state(call.from_user.id, UserLowpriceState.check_out, call.message.chat.id)
-        get_check_out(call)
+        check_out(call)
 
 
 @bot.message_handler(state=UserLowpriceState.check_out)
-def get_check_out(message: Message) -> None:
+def check_out(message: Message) -> None:
     msg_text = 'Выбери дату отъезда?'
     bot.send_message(message.from_user.id, msg_text)
     inline.date.send_calendar(message, calendar_id=2)
 
 
 @bot.callback_query_handler(func=inline.date.callback_calendar(calendar_id=2))
-def callback_calendar_check_out(call):
+def callback_calendar_check_out(call) -> None:
     enter_date = inline.date.next_step_calendar(call, calendar_id=2)
 
     if enter_date:
@@ -76,7 +72,7 @@ def callback_calendar_check_out(call):
 
 
 @bot.message_handler(state=UserLowpriceState.count_hotels)
-def get_count_hotels(message: Message) -> None:
+def count_hotels(message: Message) -> None:
     if message.text.isdigit() and (1 <= int(message.text) <= 5):
         with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
             data['count_hotels'] = message.text
@@ -91,7 +87,7 @@ def get_count_hotels(message: Message) -> None:
 
 
 @bot.message_handler(state=UserLowpriceState.need_photos)
-def get_need_photos(message: Message) -> None:
+def need_photos(message: Message) -> None:
     if message.text.lower() == 'да':
         with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
             data['need_photos'] = message.text
@@ -104,19 +100,19 @@ def get_need_photos(message: Message) -> None:
         with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
             data['need_photos'] = message.text
 
-        find_send_hotels.send_results(message, sort_order='PRICE')
+        find_hotels.send_results(message, sort_order='PRICE')
     else:
         error_text = 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!'
         bot.send_message(message.from_user.id, error_text)
 
 
 @bot.message_handler(state=UserLowpriceState.count_photos)
-def get_count_photos(message: Message) -> None:
+def count_photos(message: Message) -> None:
     if message.text.isdigit() and (1 <= int(message.text) <= 10):
         with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
             data['count_photos'] = message.text
 
-        find_send_hotels.send_results(message, sort_order='PRICE')
+        find_hotels.send_results(message, sort_order='PRICE')
     else:
         error_text = 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!'
         bot.send_message(message.from_user.id, error_text)
