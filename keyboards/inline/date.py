@@ -31,7 +31,3 @@ def next_step_calendar(call, calendar_id: int, min_date=MIN_DATE, max_date=MAX_D
                               call.message.chat.id,
                               call.message.message_id)
         return enter_date.strftime(FORMAT_DATE)
-
-
-def get_date(date_str: str):
-    return datetime.strptime(date_str, FORMAT_DATE).date()
