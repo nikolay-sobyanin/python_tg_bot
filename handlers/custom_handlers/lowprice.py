@@ -1,11 +1,9 @@
 from loader import bot
 from states.lowprice import UserLowpriceState
 from telebot.types import Message
-from config_data.config import FORMAT_DATE
 from utils.parsers import parser_cities
 from utils import find_send_hotels
 from keyboards import inline, reply
-from telegram_bot_calendar import DetailedTelegramCalendar, LSTEP
 
 
 @bot.message_handler(commands=['lowprice'])
@@ -41,23 +39,16 @@ def callback_city(call) -> None:
 def get_check_in(message: Message) -> None:
     msg_text = 'Выбери дату заезда?'
     bot.send_message(message.from_user.id, msg_text)
-    calendar, step = inline.date.get_markup(calendar_id=1)
-    bot.send_message(message.from_user.id, f'Выберите {step}', reply_markup=calendar)
+    inline.date.send_calendar(message, calendar_id=1)
 
 
-@bot.callback_query_handler(func=DetailedTelegramCalendar.func(calendar_id=1))
+@bot.callback_query_handler(func=inline.date.callback_calendar(calendar_id=1))
 def callback_calendar_check_in(call):
-    enter_date, key, step = DetailedTelegramCalendar(calendar_id=1).process(call.data)
-    if not enter_date and key:
-        bot.edit_message_text(f'Выбери {LSTEP[step]}', call.message.chat.id, call.message.message_id,
-                              reply_markup=key)
-    else:
-        bot.edit_message_text(f'Ты выбрал дату: {enter_date.strftime("%d.%m.%Y")}',
-                              call.message.chat.id,
-                              call.message.message_id)
+    enter_date = inline.date.next_step_calendar(call, calendar_id=1)
 
+    if enter_date:
         with bot.retrieve_data(call.from_user.id, call.message.chat.id) as data:
-            data['check_in'] = enter_date.strftime(FORMAT_DATE)
+            data['check_in'] = enter_date
 
         bot.set_state(call.from_user.id, UserLowpriceState.check_out, call.message.chat.id)
         get_check_out(call)
@@ -67,22 +58,16 @@ def callback_calendar_check_in(call):
 def get_check_out(message: Message) -> None:
     msg_text = 'Выбери дату отъезда?'
     bot.send_message(message.from_user.id, msg_text)
-    calendar, step = inline.date.get_markup(calendar_id=2)
-    bot.send_message(message.from_user.id, f'Выберите {step}', reply_markup=calendar)
+    inline.date.send_calendar(message, calendar_id=2)
 
 
-@bot.callback_query_handler(func=DetailedTelegramCalendar.func(calendar_id=2))
+@bot.callback_query_handler(func=inline.date.callback_calendar(calendar_id=2))
 def callback_calendar_check_out(call):
-    enter_date, key, step = DetailedTelegramCalendar(calendar_id=2).process(call.data)
-    if not enter_date and key:
-        bot.edit_message_text(f'Выбери {LSTEP[step]}', call.message.chat.id, call.message.message_id,
-                              reply_markup=key)
-    else:
-        bot.edit_message_text(f'Ты выбрал дату: {enter_date.strftime("%d.%m.%Y")}',
-                              call.message.chat.id,
-                              call.message.message_id)
+    enter_date = inline.date.next_step_calendar(call, calendar_id=2)
+
+    if enter_date:
         with bot.retrieve_data(call.from_user.id, call.message.chat.id) as data:
-            data['check_out'] = enter_date.strftime(FORMAT_DATE)
+            data['check_out'] = enter_date
 
         bot.set_state(call.from_user.id, UserLowpriceState.count_hotels, call.message.chat.id)
         msg_text = 'Сколько найти отелей?'
