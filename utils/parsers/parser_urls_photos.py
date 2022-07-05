@@ -1,7 +1,7 @@
 import re
 import json
-from config_data.config import START_URL, HEADERS, LOCALE, CURRENCY
-from utils.request_to_api_hotels import request_to_api
+from config_data.config import START_URL, HEADERS
+from .request_to_api_hotels import request_to_api
 
 
 def find_urls_photos(hotel_id: str, count_photos: str) -> list:

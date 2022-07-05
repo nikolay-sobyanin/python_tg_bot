@@ -1,8 +1,8 @@
 import re
 import json
 from config_data.config import START_URL, HEADERS, LOCALE, CURRENCY
-from utils.request_to_api_hotels import request_to_api
-from utils.misc.count_days import get_count_days
+from .request_to_api_hotels import request_to_api
+from utils import date_worker
 
 
 def find_hotels(**kwargs) -> list:
@@ -15,7 +15,7 @@ def find_hotels(**kwargs) -> list:
     pattern = r'(?<=,)"results":.+?(?=,"pagination)'
     find = re.search(pattern, data_text)
     if find:
-        count_days = get_count_days(kwargs['check_in'], kwargs['check_out'])
+        count_days = date_worker.get_count_days(kwargs['check_in'], kwargs['check_out'])
         data_json = json.loads(f"{{{find[0]}}}")
         hotels = list()
         for hotel in data_json['results']:

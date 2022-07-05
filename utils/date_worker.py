@@ -16,3 +16,9 @@ def get_today() -> date:
 
 def get_delta_date(days: int, start_date=get_today()) -> date:
     return start_date + timedelta(days=days)
+
+
+def get_count_days(start_date: str, end_date: str) -> int:
+    date_from = datetime.strptime(start_date, FORMAT_DATE).date()
+    date_to = datetime.strptime(end_date, FORMAT_DATE).date()
+    return (date_to - date_from).days
