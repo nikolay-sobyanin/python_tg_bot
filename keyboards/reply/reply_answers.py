@@ -1,4 +1,4 @@
-from telebot.types import ReplyKeyboardMarkup, KeyboardButton
+from telebot.types import ReplyKeyboardMarkup
 
 
 def get_markup(answers: list) -> ReplyKeyboardMarkup:

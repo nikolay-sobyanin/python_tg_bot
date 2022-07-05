@@ -1,5 +1,5 @@
 from loader import bot
-from telebot.types import Message, InputMediaPhoto
+from telebot.types import Message, InputMediaPhoto, ReplyKeyboardRemove
 from utils.parsers import parser_hotels, parser_urls_photos
 from keyboards import inline
 
@@ -22,5 +22,5 @@ def send_results(message: Message, sort_order) -> None:
                 medias = [InputMediaPhoto(url_photo) for url_photo in urls_photos]
                 bot.send_media_group(message.from_user.id, medias)
 
-    bot.send_message(message.from_user.id, 'Поиск закончен!')
+    bot.send_message(message.from_user.id, 'Поиск закончен!', reply_markup=ReplyKeyboardRemove())
     bot.set_state(message.from_user.id, None, message.chat.id)
