@@ -2,6 +2,10 @@ from config_data.config import FORMAT_DATE
 from datetime import date, datetime, timedelta
 
 
+def get_now() -> datetime:
+    return datetime.now()
+
+
 def get_date_obj(date_str: str) -> date:
     return datetime.strptime(date_str, FORMAT_DATE).date()
 

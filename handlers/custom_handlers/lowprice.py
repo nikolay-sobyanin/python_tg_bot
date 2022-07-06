@@ -8,6 +8,7 @@ from keyboards import inline, reply
 @bot.message_handler(commands=['lowprice'])
 def bot_lowprice(message: Message) -> None:
     bot.set_state(message.from_user.id, UserLowpriceState.city, message.chat.id)
+    user_data.set_data(message, 'name_cmd', message.text)
     msg_text = 'Начнем поиск!\n' \
                'ВАЖНО! Временно поиск отелей в России недоступен.\n\n' \
                'В каком городе искать отели?\n' \

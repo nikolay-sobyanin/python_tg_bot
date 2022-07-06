@@ -1,4 +1,5 @@
 from peewee import *
+from utils import date_worker
 
 DB = SqliteDatabase('database/history.db')
 TABLE_NAME = 'History Users'
@@ -20,8 +21,8 @@ if TABLE_NAME not in DB.get_tables():
     db_table.create_table()
 
 
-def add_row(user_id: int, name_cmd: str, time_cmd: str, hotels: str) -> None:
-    db_table.create(user_id=user_id, name_cmd=name_cmd, time_cmd=time_cmd, hotels=hotels)
+def add_row(user_id: int, name_cmd: str, hotels: str) -> None:
+    db_table.create(user_id=user_id, name_cmd=name_cmd, time_cmd=date_worker.get_now(), hotels=hotels)
 
 
 def get_user_history(user_id: int, count_rows: int) -> list:

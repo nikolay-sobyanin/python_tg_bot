@@ -4,6 +4,7 @@ from utils.parsers import parser_hotels, parser_urls_photos
 from utils import user_data
 from keyboards import inline
 from requests.exceptions import HTTPError, ConnectionError
+from database import db_worker
 
 
 def send_results(message: Message, sort_order) -> None:
@@ -37,4 +38,9 @@ def send_results(message: Message, sort_order) -> None:
                 medias = [InputMediaPhoto(url_photo) for url_photo in urls_photos]
                 bot.send_media_group(message.from_user.id, medias)
 
+        db_worker.add_row(
+            user_id=message.from_user.id,
+            name_cmd=user_data.get_one_value(message, 'name_cmd'),
+            hotels=';'.join([hotel['name'] for hotel in hotels])
+        )
         bot.send_message(message.from_user.id, 'Поиск закончен!', reply_markup=ReplyKeyboardRemove())
