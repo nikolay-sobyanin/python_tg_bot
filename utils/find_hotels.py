@@ -27,4 +27,3 @@ def send_results(message: Message, sort_order) -> None:
             bot.send_media_group(message.from_user.id, medias)
 
     bot.send_message(message.from_user.id, 'Поиск закончен!', reply_markup=ReplyKeyboardRemove())
-    bot.set_state(message.from_user.id, None, message.chat.id)
