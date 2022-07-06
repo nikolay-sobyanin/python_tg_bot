@@ -100,6 +100,7 @@ def need_photos(message: Message) -> None:
         user_data.set_data(message, 'need_photos', message.text)
         find_hotels.send_results(message, sort_order='PRICE')
         bot.delete_state(message.from_user.id, message.chat.id)
+        bot.reset_data(message.from_user.id, message.chat.id)
     else:
         error_text = 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!'
         bot.send_message(message.from_user.id, error_text)
@@ -111,6 +112,7 @@ def count_photos(message: Message) -> None:
         user_data.set_data(message, 'count_photos', message.text)
         find_hotels.send_results(message, sort_order='PRICE')
         bot.delete_state(message.from_user.id, message.chat.id)
+        bot.reset_data(message.from_user.id, message.chat.id)
     else:
         error_text = 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!'
         bot.send_message(message.from_user.id, error_text)

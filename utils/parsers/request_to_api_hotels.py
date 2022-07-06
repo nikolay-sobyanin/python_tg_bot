@@ -9,6 +9,7 @@ def request_to_api(url, headers, querystring) -> str:
             return response.text
         else:
             raise HTTPError
-    except (HTTPError, ConnectionError):
-        print('Ошибка соединения с сервером')
-
+    except HTTPError:
+        raise HTTPError('Не могу связаться с сервером...\nКоманда сброшена. Выполни запрос позже.')
+    except ConnectionError:
+        raise ConnectionError('Не могу связаться с сервером...\nКоманда сброшена. Выполни запрос позже.')

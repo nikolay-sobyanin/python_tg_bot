@@ -3,6 +3,7 @@ import json
 from config_data.config import START_URL, HEADERS, LOCALE, CURRENCY
 from .request_to_api_hotels import request_to_api
 from utils import date_worker
+from requests.exceptions import HTTPError
 
 
 def find_hotels(**kwargs) -> list:
@@ -27,4 +28,8 @@ def find_hotels(**kwargs) -> list:
                            'rate_all': rate[0] + str(float(rate[1:]) * count_days),
                            'url': 'https://www.hotels.com/ho' + str(hotel['id']),
                            })
+        if not hotels:
+            raise ValueError('Я не нашел отели по твоему запросу. Команда сброшена.')
         return hotels
+    else:
+        raise HTTPError('Не могу обработать ответ от сервера...\nКоманда сброшена. Выполни запрос позже.')

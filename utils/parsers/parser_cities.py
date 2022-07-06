@@ -2,6 +2,7 @@ import re
 import json
 from config_data.config import START_URL, HEADERS, LOCALE, CURRENCY
 from .request_to_api_hotels import request_to_api
+from requests.exceptions import HTTPError
 
 
 def find_cities(city: str) -> list:
@@ -16,4 +17,8 @@ def find_cities(city: str) -> list:
         for city in data_json['entities']:
             city_name = re.sub(r'</?span.*?>', '', city['caption'])
             cities.append({'city_name': city_name, 'destination_id': city['destinationId']})
+        if not cities:
+            raise ValueError('Я не нашел города.\nУточни запрос.')
         return cities
+    else:
+        raise HTTPError('Не могу обработать ответ от сервера...\nКоманда сброшена. Выполни запрос позже..')
