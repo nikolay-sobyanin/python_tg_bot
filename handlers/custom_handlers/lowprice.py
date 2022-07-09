@@ -3,6 +3,7 @@ from states.lowprice import UserLowpriceState
 from telebot.types import Message, CallbackQuery
 from utils import find_hotels, find_cities, user_data, date_worker
 from keyboards import inline, reply
+from utils.logging.logger import my_logger
 
 
 @bot.message_handler(commands=['lowprice'])
@@ -14,6 +15,8 @@ def bot_lowprice(message: Message) -> None:
                'В каком городе искать отели?\n' \
                'Чтобы мне было проще укажи страну, регион, город на английском языке.'
     bot.send_message(message.from_user.id, msg_text)
+    my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                   f'Запустил команду бота /lowprice.')
 
 
 @bot.message_handler(state=UserLowpriceState.city)
@@ -27,6 +30,8 @@ def callback_city(call: CallbackQuery) -> None:
     user_data.set_data(call, 'destination_id', call.data.split(':')[2])
     city_name = user_data.get_one_value(call, 'city_name')
     bot.edit_message_text(f'Ты выбрал город: {city_name}', call.message.chat.id, call.message.message_id)
+    my_logger.info(f'user id: {call.from_user.id}, user name: {call.from_user.full_name}. '
+                   f'Выбрал город: {city_name}.')
 
     bot.set_state(call.from_user.id, UserLowpriceState.check_in, call.message.chat.id)
     check_in(call)
@@ -46,6 +51,8 @@ def callback_calendar_check_in(call) -> None:
     if enter_date:
         user_data.set_data(call, 'check_in', enter_date)
         bot.set_state(call.from_user.id, UserLowpriceState.check_out, call.message.chat.id)
+        my_logger.info(f'user id: {call.from_user.id}, user name: {call.from_user.full_name}. '
+                       f'Выбрал дату заезда: {enter_date}')
         check_out(call)
 
 
@@ -67,6 +74,8 @@ def callback_calendar_check_out(call: CallbackQuery) -> None:
 
     if enter_date:
         user_data.set_data(call, 'check_out', enter_date)
+        my_logger.info(f'user id: {call.from_user.id}, user name: {call.from_user.full_name}. '
+                       f'Выбрал дату отъезда: {enter_date}')
 
         bot.set_state(call.from_user.id, UserLowpriceState.count_hotels, call.message.chat.id)
         msg_text = 'Сколько найти отелей?'
@@ -78,6 +87,8 @@ def callback_calendar_check_out(call: CallbackQuery) -> None:
 def count_hotels(message: Message) -> None:
     if message.text.isdigit() and (1 <= int(message.text) <= 5):
         user_data.set_data(message, 'count_hotels', message.text)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Выбрал количество отелей: {message.text}')
 
         bot.set_state(message.from_user.id, UserLowpriceState.need_photos, message.chat.id)
         msg_text = 'Фото отелей прикрепить?'
@@ -86,12 +97,16 @@ def count_hotels(message: Message) -> None:
     else:
         error_text = 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!'
         bot.send_message(message.from_user.id, error_text)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Неверный ввод количества отелей.')
 
 
 @bot.message_handler(state=UserLowpriceState.need_photos)
 def need_photos(message: Message) -> None:
     if message.text.lower() == 'да':
         user_data.set_data(message, 'need_photos', message.text)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Выбрал необходимость фото: {message.text}')
 
         bot.set_state(message.from_user.id, UserLowpriceState.count_photos, message.chat.id)
         msg_text = 'Сколько фото прикрепить?'
@@ -99,21 +114,33 @@ def need_photos(message: Message) -> None:
         bot.send_message(message.from_user.id, msg_text, reply_markup=markup)
     elif message.text.lower() == 'нет':
         user_data.set_data(message, 'need_photos', message.text)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Выбрал необходимость фото: {message.text}')
         find_hotels.send_results(message, sort_order='PRICE')
         bot.delete_state(message.from_user.id, message.chat.id)
         bot.reset_data(message.from_user.id, message.chat.id)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Закончил выполнение команды /lowprice')
     else:
         error_text = 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!'
         bot.send_message(message.from_user.id, error_text)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Неверный ввод необходимости фото.')
 
 
 @bot.message_handler(state=UserLowpriceState.count_photos)
 def count_photos(message: Message) -> None:
     if message.text.isdigit() and (1 <= int(message.text) <= 10):
         user_data.set_data(message, 'count_photos', message.text)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Выбрал количество фото отелей: {message.text}')
         find_hotels.send_results(message, sort_order='PRICE')
         bot.delete_state(message.from_user.id, message.chat.id)
         bot.reset_data(message.from_user.id, message.chat.id)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Закончил выполнение команды /lowprice')
     else:
         error_text = 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!'
         bot.send_message(message.from_user.id, error_text)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Неверный ввод количества фото.')

@@ -3,6 +3,7 @@ from telebot.types import Message
 from utils.parsers import parser_cities
 from keyboards import inline
 from requests.exceptions import HTTPError, ConnectionError
+from utils.logging.logger import my_logger
 
 
 def send_results(message: Message):
@@ -16,9 +17,13 @@ def send_results(message: Message):
         bot.send_message(message.from_user.id, msg_text)
         bot.delete_state(message.from_user.id, message.chat.id)
         bot.reset_data(message.from_user.id, message.chat.id)
+        my_logger.error(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                        f'Ошибка соединения с сервером.')
     except ValueError as exc:
         msg_text = str(exc)
         bot.send_message(message.from_user.id, msg_text)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Бот не нашел города. Уточнение запроса от пользователя.')
     else:
         markup = inline.cities.get_markup(cities)
         msg_text = 'Уточни, пожалуйста:'

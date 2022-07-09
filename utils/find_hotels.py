@@ -5,6 +5,7 @@ from utils import user_data
 from keyboards import inline
 from requests.exceptions import HTTPError, ConnectionError
 from database import db_worker
+from utils.logging.logger import my_logger
 
 
 def send_results(message: Message, sort_order) -> None:
@@ -19,11 +20,15 @@ def send_results(message: Message, sort_order) -> None:
         bot.send_message(message.from_user.id, msg_text)
         bot.delete_state(message.from_user.id, message.chat.id)
         bot.reset_data(message.from_user.id, message.chat.id)
+        my_logger.error(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                        f'Ошибка соединения с сервером.')
     except KeyError:
         msg_text = 'Не могу обработать ответ от сервера...\nКоманда сброшена. Выполни запрос позже.'
         bot.send_message(message.from_user.id, msg_text)
         bot.delete_state(message.from_user.id, message.chat.id)
         bot.reset_data(message.from_user.id, message.chat.id)
+        my_logger.error(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                        f'Ошибка обработки информации на сервере.')
     else:
         for hotel in hotels:
             msg_text = f'Название отеля: {hotel["name"]}\n' \

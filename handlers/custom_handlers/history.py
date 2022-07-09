@@ -4,6 +4,7 @@ from telebot.types import Message, ReplyKeyboardRemove
 from keyboards import reply
 from database import db_worker
 from utils import date_worker
+from utils.logging.logger import my_logger
 
 
 @bot.message_handler(commands=['history'])
@@ -12,6 +13,8 @@ def bot_history(message: Message) -> None:
     msg_text = 'Сколько вывести запросов команд?'
     markup = reply.reply_answers.get_markup([str(i) for i in range(2, 6)])
     bot.send_message(message.from_user.id, msg_text, reply_markup=markup)
+    my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                   f'Запустил команду бота /history.')
 
 
 @bot.message_handler(state=UserHistoryState.count_rows)
@@ -28,7 +31,11 @@ def send_history(message: Message) -> None:
             bot.send_message(message.from_user.id, msg_text)
         bot.delete_state(message.from_user.id, message.chat.id)
         bot.send_message(message.from_user.id, 'Я вывел историю запросов.', reply_markup=ReplyKeyboardRemove())
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Бот выполнил команду /history.')
     else:
         error_text = 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!'
         bot.send_message(message.from_user.id, error_text)
+        my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
+                       f'Неверный ввод количества истории запроса команд.')
 
