@@ -21,14 +21,24 @@ def bot_lowprice(message: Message) -> None:
 
 @bot.message_handler(state=UserLowpriceState.city)
 def city(message: Message) -> None:
-    find_cities.send_results(message)
+    global cities
+    cities = find_cities.get_send_results(message)
 
 
 @bot.callback_query_handler(func=lambda call: call.data.split(':')[0] == 'city')
 def callback_city(call: CallbackQuery) -> None:
-    user_data.set_data(call, 'city_name', call.data.split(':')[1])
-    user_data.set_data(call, 'destination_id', call.data.split(':')[2])
-    city_name = user_data.get_one_value(call, 'city_name')
+    global cities
+    destination_id = call.data.split(':')[1]
+    city_name = None
+    for _city in cities:
+        if _city['destination_id'] == destination_id:
+            city_name = _city['city_name']
+            break
+    del cities
+
+    user_data.set_data(call, 'destination_id', destination_id)
+    user_data.set_data(call, 'city_name', city_name)
+
     bot.edit_message_text(f'Ты выбрал город: {city_name}', call.message.chat.id, call.message.message_id)
     my_logger.info(f'user id: {call.from_user.id}, user name: {call.from_user.full_name}. '
                    f'Выбрал город: {city_name}.')

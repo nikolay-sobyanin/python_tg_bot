@@ -25,7 +25,7 @@ def find_hotels(**kwargs) -> list:
                            'name': hotel['name'],
                            'address': hotel['address']['streetAddress'],
                            'rate': rate,
-                           'rate_all': rate[0] + str(float(rate[1:]) * count_days),
+                           'rate_all': rate[0] + str(float(rate[1:].replace(',', '.')) * count_days),
                            'url': 'https://www.hotels.com/ho' + str(hotel['id']),
                            })
         if not hotels:

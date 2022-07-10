@@ -6,7 +6,7 @@ from requests.exceptions import HTTPError, ConnectionError
 from utils.logging.logger import my_logger
 
 
-def send_results(message: Message):
+def get_send_results(message: Message):
     msg_text = 'Подожди, ищу города...'
     bot.send_message(message.from_user.id, msg_text)
 
@@ -28,4 +28,6 @@ def send_results(message: Message):
         markup = inline.cities.get_markup(cities)
         msg_text = 'Уточни, пожалуйста:'
         bot.send_message(message.from_user.id, msg_text, reply_markup=markup)
+        return cities
+
 
