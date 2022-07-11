@@ -2,7 +2,7 @@ from loader import bot
 from telebot.types import Message, CallbackQuery
 
 
-def set_data(message: Message or CallbackQuery, key: str, value: str) -> None:
+def set_data(message: Message or CallbackQuery, key: str, value) -> None:
     if isinstance(message, Message):
         with bot.retrieve_data(message.from_user.id, message.chat.id) as data:
             data[key] = value

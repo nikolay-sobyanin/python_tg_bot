@@ -16,7 +16,11 @@ def find_cities(city: str) -> list:
         cities = list()
         for city in data_json['entities']:
             city_name = re.sub(r'</?span.*?>', '', city['caption'])
-            cities.append({'city_name': city_name, 'destination_id': city['destinationId']})
+            cities.append({
+                'city_name': city_name,
+                'destination_id': city['destinationId'],
+                'city_coordinate': (city['latitude'], city['longitude'])
+            })
         if not cities:
             raise ValueError('Я не нашел города.\nУточни запрос.')
         return cities
