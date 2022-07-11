@@ -5,6 +5,8 @@ from utils import find_hotels, find_cities, user_data, date_worker
 from keyboards import inline, reply
 from utils.logging.logger import my_logger
 
+cities = list()  # Переменная модуля для записи найденных городов, далее её удаляю
+
 
 @bot.message_handler(commands=['lowprice'])
 def bot_lowprice(message: Message) -> None:
@@ -19,19 +21,17 @@ def bot_lowprice(message: Message) -> None:
                    f'Запустил команду бота /lowprice.')
 
 
-cities = list()
-
-
 @bot.message_handler(state=UserLowpriceState.city)
 def city(message: Message) -> None:
     global cities
     cities = find_cities.get_send_results(message)
 
 
-@bot.callback_query_handler(func=lambda call: call.data.split(':')[0] == 'city')
+@bot.callback_query_handler(state=UserLowpriceState.city, func=None)
 def callback_city(call: CallbackQuery) -> None:
     global cities
-    destination_id = call.data.split(':')[1]
+    destination_id = call.data
+
     city_name = None
     for _city in cities:
         if _city['destination_id'] == destination_id:
@@ -54,12 +54,12 @@ def callback_city(call: CallbackQuery) -> None:
 def check_in(message: Message or CallbackQuery) -> None:
     msg_text = 'Выбери дату заезда?'
     bot.send_message(message.from_user.id, msg_text)
-    inline.date.send_calendar(message, calendar_id=1)
+    inline.date.send_calendar(message)
 
 
-@bot.callback_query_handler(func=inline.date.callback_calendar(calendar_id=1))
+@bot.callback_query_handler(state=UserLowpriceState.check_in, func=inline.date.callback_calendar())
 def callback_calendar_check_in(call) -> None:
-    enter_date = inline.date.next_step_calendar(call, calendar_id=1)
+    enter_date = inline.date.next_step_calendar(call)
 
     if enter_date:
         user_data.set_data(call, 'check_in', enter_date)
@@ -76,14 +76,14 @@ def check_out(message: Message or CallbackQuery) -> None:
 
     min_date = date_worker.get_date_obj(user_data.get_one_value(message, 'check_in'))
     min_date = date_worker.get_delta_date(days=1, start_date=min_date)
-    inline.date.send_calendar(message, calendar_id=2, min_date=min_date)
+    inline.date.send_calendar(message, min_date=min_date)
 
 
-@bot.callback_query_handler(func=inline.date.callback_calendar(calendar_id=2))
+@bot.callback_query_handler(state=UserLowpriceState.check_out, func=inline.date.callback_calendar())
 def callback_calendar_check_out(call: CallbackQuery) -> None:
     min_date = date_worker.get_date_obj(user_data.get_one_value(call, 'check_in'))
     min_date = date_worker.get_delta_date(days=1, start_date=min_date)
-    enter_date = inline.date.next_step_calendar(call, calendar_id=2, min_date=min_date)
+    enter_date = inline.date.next_step_calendar(call, min_date=min_date)
 
     if enter_date:
         user_data.set_data(call, 'check_out', enter_date)

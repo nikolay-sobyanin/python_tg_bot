@@ -8,18 +8,18 @@ MIN_DATE = date_worker.get_today()
 MAX_DATE = date_worker.get_delta_date(days=180)
 
 
-def send_calendar(message: Message or CallbackQuery, calendar_id: int, min_date=MIN_DATE, max_date=MAX_DATE):
-    calendar, step = DetailedTelegramCalendar(calendar_id=calendar_id, min_date=min_date,
+def send_calendar(message: Message or CallbackQuery, min_date=MIN_DATE, max_date=MAX_DATE):
+    calendar, step = DetailedTelegramCalendar(min_date=min_date,
                                               max_date=max_date, locale='ru').build()
     bot.send_message(message.from_user.id, f'Выбери:', reply_markup=calendar)
 
 
-def callback_calendar(calendar_id: int):
-    return DetailedTelegramCalendar.func(calendar_id=calendar_id)
+def callback_calendar():
+    return DetailedTelegramCalendar.func()
 
 
-def next_step_calendar(call, calendar_id: int, min_date=MIN_DATE, max_date=MAX_DATE):
-    enter_date, key, step = DetailedTelegramCalendar(calendar_id=calendar_id, min_date=min_date,
+def next_step_calendar(call, min_date=MIN_DATE, max_date=MAX_DATE):
+    enter_date, key, step = DetailedTelegramCalendar(min_date=min_date,
                                                      max_date=max_date, locale='ru').process(call.data)
     if not enter_date and key:
         bot.edit_message_text(f'Выбери:', call.message.chat.id, call.message.message_id,
