@@ -3,3 +3,4 @@ python-dotenv==0.20.0
 python-telegram-bot-calendar==1.0.5
 peewee==3.15.0
 loguru==0.6.0
+geopy==2.2.0
