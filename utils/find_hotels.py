@@ -74,11 +74,31 @@ def send_results_price_coordinate(message: Message, sort_order) -> None:
         my_logger.error(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
                         f'Ошибка обработки информации на сервере.')
     else:
+        my_logger.debug(hotels)
+
+        count_hotels = user_data.get_one_value(message, 'count_hotels')
+        my_logger.debug(count_hotels)
+
         city_coordinate = user_data.get_one_value(message, 'city_coordinate')
+        my_logger.debug(city_coordinate)
+
         min_dist, max_dist = user_data.get_one_value(message, 'distance_range')
         min_dist, max_dist = float(min_dist), float(max_dist)
-        dist = distance(city_coordinate, hotel['hotel_coordinate']).km
+
+        my_logger.debug(min_dist)
+        my_logger.debug(max_dist)
+
+        hotels_name = list()
         for hotel in hotels:
+            dist = distance(city_coordinate, hotel['hotel_coordinate']).km
+
+            if not (min_dist < dist < max_dist):
+                my_logger.debug(f'{dist} - {hotel["name"]} НЕ прошел')
+                continue
+
+            my_logger.debug(f'{dist} - {hotel["name"]} прошел')
+            hotels_name.append(hotel["name"])
+
             msg_text = f'Название отеля: {hotel["name"]}\n' \
                        f'Адрес: {hotel["address"]}\n' \
                        f'Стоимость одних суток: {hotel["rate"]}\n' \
@@ -90,6 +110,9 @@ def send_results_price_coordinate(message: Message, sort_order) -> None:
                 urls_photos = parser_urls_photos.find_urls_photos(hotel['id'], data['count_photos'])
                 medias = [InputMediaPhoto(url_photo) for url_photo in urls_photos]
                 bot.send_media_group(message.from_user.id, medias)
+
+            if len(hotels_name) == int(count_hotels):
+                break
 
         db_worker.add_row(
             user_id=message.from_user.id,
