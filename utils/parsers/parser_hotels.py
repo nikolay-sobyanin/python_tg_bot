@@ -1,8 +1,8 @@
 import re
 import json
 from config_data.config import START_URL, HEADERS, LOCALE, CURRENCY
-from .request_to_api_hotels import request_to_api
-from utils import date_worker
+from utils.misc.api_hotels import request_api
+from utils.misc import date_worker
 from requests.exceptions import HTTPError
 
 
@@ -12,7 +12,7 @@ def find_hotels(**kwargs) -> list:
                    'checkIn': kwargs['check_in'], 'checkOut': kwargs['check_out'], 'adults1': '2',
                    'sortOrder': kwargs['sort_order'], 'locale': LOCALE, 'currency': CURRENCY}
 
-    data_text = request_to_api(url=url, headers=HEADERS, querystring=querystring)
+    data_text = request_api(url=url, headers=HEADERS, querystring=querystring)
     pattern = r'(?<=,)"results":.+?(?=,"pagination)'
     find = re.search(pattern, data_text)
     if find:
@@ -42,7 +42,7 @@ def find_hotels_price_coordinate(**kwargs) -> list:
                    'priceMin': kwargs['price_range'][0], 'priceMax': kwargs['price_range'][1],
                    'sortOrder': kwargs['sort_order'], 'locale': LOCALE, 'currency': CURRENCY}
 
-    data_text = request_to_api(url=url, headers=HEADERS, querystring=querystring)
+    data_text = request_api(url=url, headers=HEADERS, querystring=querystring)
     pattern = r'(?<=,)"results":.+?(?=,"pagination)'
     find = re.search(pattern, data_text)
     if find:

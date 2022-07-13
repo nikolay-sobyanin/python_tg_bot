@@ -1,14 +1,14 @@
 import re
 import json
 from config_data.config import START_URL, HEADERS, LOCALE, CURRENCY
-from .request_to_api_hotels import request_to_api
+from utils.misc.api_hotels import request_api
 from requests.exceptions import HTTPError
 
 
 def find_cities(city: str) -> list:
     url = START_URL + '/locations/v2/search'
     querystring = {'query': city, 'locale': LOCALE, 'currency': CURRENCY}
-    data_text = request_to_api(url=url, headers=HEADERS, querystring=querystring)
+    data_text = request_api(url=url, headers=HEADERS, querystring=querystring)
     pattern = r'(?<="CITY_GROUP",).+?[\]]'
     find = re.search(pattern, data_text)
     if find:

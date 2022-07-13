@@ -1,5 +1,5 @@
 from peewee import *
-from utils import date_worker
+from utils.misc import date_worker
 
 DB = SqliteDatabase('database/history.db')
 TABLE_NAME = 'History Users'

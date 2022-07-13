@@ -1,13 +1,13 @@
 import re
 import json
 from config_data.config import START_URL, HEADERS
-from .request_to_api_hotels import request_to_api
+from utils.misc.api_hotels import request_api
 
 
 def find_urls_photos(hotel_id: str, count_photos: str) -> list:
     url = START_URL + '/properties/get-hotel-photos'
     querystring = {"id": hotel_id}
-    data_text = request_to_api(url=url, headers=HEADERS, querystring=querystring)
+    data_text = request_api(url=url, headers=HEADERS, querystring=querystring)
     pattern = r'(?<=,)"hotelImages":.+?(?=,"roomImages)'
     find = re.search(pattern, data_text)
     if find:

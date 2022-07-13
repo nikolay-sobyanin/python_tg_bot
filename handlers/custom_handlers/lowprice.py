@@ -1,7 +1,8 @@
 from loader import bot
 from states.lowprice import UserLowpriceState
 from telebot.types import Message, CallbackQuery
-from utils import find_hotels, find_cities, user_data, date_worker
+from utils import find_hotels, find_cities, manager_user_data
+from utils.misc import date_worker
 from keyboards import inline, reply
 from utils.logging.logger import my_logger
 
@@ -12,11 +13,7 @@ cities = list()  # Переменная модуля для записи най�
 def bot_lowprice(message: Message) -> None:
     bot.set_state(message.from_user.id, UserLowpriceState.city, message.chat.id)
     user_data.set_data(message, 'name_cmd', message.text)
-    msg_text = 'Начнем поиск!\n' \
-               'ВАЖНО! Временно поиск отелей в России недоступен.\n\n' \
-               'В каком городе искать отели?\n' \
-               'Чтобы мне было проще укажи страну, регион, город на английском языке.'
-    bot.send_message(message.from_user.id, msg_text)
+
     my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
                    f'Запустил команду бота /lowprice.')
 

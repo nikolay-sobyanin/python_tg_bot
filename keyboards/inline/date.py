@@ -1,8 +1,7 @@
 from loader import bot
 from telebot.types import Message, CallbackQuery
 from telegram_bot_calendar import DetailedTelegramCalendar
-from utils import date_worker
-
+from utils.misc import date_worker
 
 MIN_DATE = date_worker.get_today()
 MAX_DATE = date_worker.get_delta_date(days=180)
@@ -26,7 +25,7 @@ def next_step_calendar(call, min_date=MIN_DATE, max_date=MAX_DATE):
                               reply_markup=key)
         return None
     else:
-        bot.edit_message_text(f'Ты выбрал дату: {date_worker.get_date_str(enter_date,format_date="%d.%m.%Y")}',
+        bot.edit_message_text(f'Ты выбрал дату: {date_worker.get_date_str(enter_date, format_date="%d.%m.%Y")}',
                               call.message.chat.id,
                               call.message.message_id)
         return date_worker.get_date_str(enter_date)

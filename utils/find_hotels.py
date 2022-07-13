@@ -1,7 +1,7 @@
 from loader import bot
 from telebot.types import Message, InputMediaPhoto, ReplyKeyboardRemove
 from utils.parsers import parser_hotels, parser_urls_photos
-from utils import user_data
+from utils import manager_user_data
 from keyboards import inline
 from requests.exceptions import HTTPError, ConnectionError
 from database import db_worker
