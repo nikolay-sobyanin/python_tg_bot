@@ -1,7 +1,7 @@
 from loader import bot
 from states.history import UserHistoryState
 from telebot.types import Message, ReplyKeyboardRemove
-from keyboards import reply
+from keyboards import reply_old
 from database import db_worker
 from utils.misc import date_worker
 from utils.logging.logger import my_logger
@@ -11,7 +11,7 @@ from utils.logging.logger import my_logger
 def bot_history(message: Message) -> None:
     bot.set_state(message.from_user.id, UserHistoryState.count_rows, message.chat.id)
     msg_text = 'Сколько вывести запросов команд?'
-    markup = reply.reply_answers.get_markup([str(i) for i in range(2, 6)])
+    markup = reply_old.reply_answers.get_markup([str(i) for i in range(2, 6)])
     bot.send_message(message.from_user.id, msg_text, reply_markup=markup)
     my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
                    f'Запустил команду бота /history.')

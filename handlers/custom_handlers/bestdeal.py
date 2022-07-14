@@ -1,9 +1,9 @@
 from loader import bot
 from states.bestdeal import UserBestdealState
 from telebot.types import Message, CallbackQuery
-from utils import find_hotels, find_cities, manager_user_data
+from utils import find_hotels, find_cities, user_data_manager
 from utils.misc import date_worker
-from keyboards import inline, reply
+from keyboards import inline_old, reply_old
 import re
 from utils.logging.logger import my_logger
 
@@ -58,12 +58,12 @@ def callback_city(call: CallbackQuery) -> None:
 def check_in(message: Message or CallbackQuery) -> None:
     msg_text = 'Выбери дату заезда?'
     bot.send_message(message.from_user.id, msg_text)
-    inline.date.send_calendar(message)
+    inline_old.date.send_calendar(message)
 
 
-@bot.callback_query_handler(state=UserBestdealState.check_in, func=inline.date.callback_calendar())
+@bot.callback_query_handler(state=UserBestdealState.check_in, func=inline_old.date.callback_calendar())
 def callback_calendar_check_in(call) -> None:
-    enter_date = inline.date.next_step_calendar(call)
+    enter_date = inline_old.date.next_step_calendar(call)
 
     if enter_date:
         user_data.set_data(call, 'check_in', enter_date)
@@ -80,14 +80,14 @@ def check_out(message: Message or CallbackQuery) -> None:
 
     min_date = date_worker.get_date_obj(user_data.get_one_value(message, 'check_in'))
     min_date = date_worker.get_delta_date(days=1, start_date=min_date)
-    inline.date.send_calendar(message, min_date=min_date)
+    inline_old.date.send_calendar(message, min_date=min_date)
 
 
-@bot.callback_query_handler(state=UserBestdealState.check_out, func=inline.date.callback_calendar())
+@bot.callback_query_handler(state=UserBestdealState.check_out, func=inline_old.date.callback_calendar())
 def callback_calendar_check_out(call: CallbackQuery) -> None:
     min_date = date_worker.get_date_obj(user_data.get_one_value(call, 'check_in'))
     min_date = date_worker.get_delta_date(days=1, start_date=min_date)
-    enter_date = inline.date.next_step_calendar(call, min_date=min_date)
+    enter_date = inline_old.date.next_step_calendar(call, min_date=min_date)
 
     if enter_date:
         user_data.set_data(call, 'check_out', enter_date)
@@ -131,7 +131,7 @@ def distance_range(message: Message) -> None:
             bot.set_state(message.from_user.id, UserBestdealState.count_hotels, message.chat.id)
             user_data.set_data(message, 'distance_range', (min_dist, max_dist))
             msg_text = 'Сколько найти отелей?'
-            markup = reply.reply_answers.get_markup([str(i) for i in range(2, 6)])
+            markup = reply_old.reply_answers.get_markup([str(i) for i in range(2, 6)])
             bot.send_message(message.from_user.id, msg_text, reply_markup=markup)
             my_logger.info(f'user id: {message.from_user.id}, user name: {message.from_user.full_name}. '
                            f'Ввел диапазон расстояний: {min_dist} - {max_dist}')
@@ -152,7 +152,7 @@ def count_hotels(message: Message) -> None:
 
         bot.set_state(message.from_user.id, UserBestdealState.need_photos, message.chat.id)
         msg_text = 'Фото отелей прикрепить?'
-        markup = reply.reply_answers.get_markup(['Да', 'Нет'])
+        markup = reply_old.reply_answers.get_markup(['Да', 'Нет'])
         bot.send_message(message.from_user.id, msg_text, reply_markup=markup)
     else:
         error_text = 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!'
@@ -170,7 +170,7 @@ def need_photos(message: Message) -> None:
 
         bot.set_state(message.from_user.id, UserBestdealState.count_photos, message.chat.id)
         msg_text = 'Сколько фото прикрепить?'
-        markup = reply.reply_answers.get_markup([str(i) for i in range(4, 11, 2)])
+        markup = reply_old.reply_answers.get_markup([str(i) for i in range(4, 11, 2)])
         bot.send_message(message.from_user.id, msg_text, reply_markup=markup)
     elif message.text.lower() == 'нет':
         user_data.set_data(message, 'need_photos', message.text)

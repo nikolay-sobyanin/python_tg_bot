@@ -1,8 +1,8 @@
 from loader import bot
 from telebot.types import Message, InputMediaPhoto, ReplyKeyboardRemove
 from utils.parsers import parser_hotels, parser_urls_photos
-from utils import manager_user_data
-from keyboards import inline
+from utils import user_data_manager
+from keyboards import inline_old
 from requests.exceptions import HTTPError, ConnectionError
 from database import db_worker
 from utils.logging.logger import my_logger
@@ -36,7 +36,7 @@ def send_results(message: Message, sort_order) -> None:
                        f'Адрес: {hotel["address"]}\n' \
                        f'Стоимость одних суток: {hotel["rate"]}\n' \
                        f'Стоимость за весь период проживания: {hotel["rate_all"]}\n'
-            markup = inline.url.get_markup(text=hotel['name'], url=hotel['url'])
+            markup = inline_old.url.get_markup(text=hotel['name'], url=hotel['url'])
             bot.send_message(message.from_user.id, msg_text, disable_web_page_preview=True, reply_markup=markup)
 
             if data['need_photos'].lower() == 'да':
@@ -103,7 +103,7 @@ def send_results_price_coordinate(message: Message, sort_order) -> None:
                        f'Адрес: {hotel["address"]}\n' \
                        f'Стоимость одних суток: {hotel["rate"]}\n' \
                        f'Стоимость за весь период проживания: {hotel["rate_all"]}\n'
-            markup = inline.url.get_markup(text=hotel['name'], url=hotel['url'])
+            markup = inline_old.url.get_markup(text=hotel['name'], url=hotel['url'])
             bot.send_message(message.from_user.id, msg_text, disable_web_page_preview=True, reply_markup=markup)
 
             if data['need_photos'].lower() == 'да':
