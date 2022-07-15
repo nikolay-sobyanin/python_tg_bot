@@ -291,7 +291,6 @@ class FindHotels:
 
                 hotels.append({'id': hotel['id'],
                                'name': hotel['name'],
-                               'address': hotel['address']['streetAddress'],
                                'rate': rate,
                                'rate_all': rate_all,
                                'coordinate': hotel_coordinate,
@@ -326,21 +325,22 @@ class FindHotels:
         city_coordinate = request_data['city']['coordinate']
 
         hotels = list()
-        for page in range(1, 5):
-            page_hotels = FindHotels._parser_page(request_data=request_data, page=str(page))
-
-            if request_data['command'] == '/bestdeal':
-                min_dist, max_dist = request_data['distance_range']
-                min_dist, max_dist = float(min_dist), float(max_dist)
+        if request_data['command'] == '/bestdeal':
+            min_dist, max_dist = request_data['distance_range']
+            min_dist, max_dist = float(min_dist), float(max_dist)
+            for page in range(1, 5):
+                page_hotels = FindHotels._parser_page(request_data=request_data, page=str(page))
                 for hotel in page_hotels:
                     dist = distance(city_coordinate, hotel['coordinate']).km
                     if min_dist < dist < max_dist:
+                        hotel['distance'] = dist
                         hotels.append(hotel)
                     if len(hotels) == count_hotels:
                         return hotels
-            else:
-                hotels = page_hotels[0:count_hotels]
-                return hotels
+            return hotels
+
+        page_hotels = FindHotels._parser_page(request_data=request_data)
+        hotels = page_hotels[0:count_hotels]
         return hotels
 
     @staticmethod
@@ -359,9 +359,11 @@ class FindHotels:
         else:
             for hotel in hotels:
                 msg_text = f'Название отеля: {hotel["name"]}\n' \
-                           f'Адрес: {hotel["address"]}\n' \
                            f'Стоимость одних суток: {hotel["rate"]}\n' \
                            f'Стоимость за весь период проживания: {hotel["rate_all"]}\n'
+
+                if data['command'] == '/bestdeal':
+                    msg_text += f'Дистанция до центра: {hotel["distance"]:.2f} km'
 
                 markup = InlineMarkup.create_url_buttons([(hotel['name'], hotel['url'])])
                 bot.send_message(message.from_user.id, msg_text, disable_web_page_preview=True, reply_markup=markup)
