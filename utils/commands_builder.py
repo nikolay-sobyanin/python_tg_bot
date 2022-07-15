@@ -39,9 +39,9 @@ class FindCity:
             for city in data_json['entities']:
                 city_name = re.sub(r'</?span.*?>', '', city['caption'])
                 cities.append({
-                    'city_name': city_name,
+                    'name': city_name,
                     'destination_id': city['destinationId'],
-                    'city_coordinate': (city['latitude'], city['longitude'])
+                    'coordinate': (city['latitude'], city['longitude'])
                 })
 
             if not cities:
@@ -69,7 +69,7 @@ class FindCity:
             UserData.set(message, 'cities', cities)
             my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Сохранил города.')
             markup = InlineMarkup.create_callback_buttons(
-                [(city['city_name'], city['destination_id']) for city in cities]
+                [(city['name'], city['destination_id']) for city in cities]
             )
             bot.send_message(message.from_user.id, 'Уточни, пожалуйста:', reply_markup=markup)
             my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Уточнение поиска города.')
@@ -82,11 +82,11 @@ class FindCity:
         for city in cities:
             if city['destination_id'] == destination_id:
                 UserData.set(call, 'city', city)
-                bot.edit_message_text(f'Ты выбрал город: {city["city_name"]}',
+                bot.edit_message_text(f'Ты выбрал город: {city["name"]}',
                                       call.message.chat.id, call.message.message_id)
                 UserData.del_one_value(call, 'cities')
                 my_logger.info(f'{call.from_user.full_name} (id: {call.from_user.id}): '
-                               f'Выбрал город: {city["city_name"]}.')
+                               f'Выбрал город: {city["name"]}.')
                 return True
         return False
 
@@ -204,6 +204,57 @@ class CountPhotos:
             return False
 
 
+class PriceRange:
+
+    @staticmethod
+    def start(message: Message or CallbackQuery) -> None:
+        msg_text = 'Введи диапазон цен в $ в формате min - max\nНапример, 50 - 250'
+        bot.send_message(message.from_user.id, msg_text)
+        my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Ввод диапазона цен.')
+
+    @staticmethod
+    def catch(message: Message) -> bool:
+        text = message.text.replace(' ', '')
+        pattern = r'^\d{1,5}-\d{1,5}$'
+        if re.match(pattern, text):
+            min_price, max_price = text.split('-')
+            if int(min_price) < int(max_price):
+                UserData.set(message, 'price_range', (min_price, max_price))
+                my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): '
+                               f'Диапазона цен: {min_price} - {max_price}.')
+                return True
+
+        bot.send_message(message.from_user.id, 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!')
+        my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Неверный ввод')
+        return False
+
+
+class DistanceRange:
+
+    @staticmethod
+    def start(message: Message or CallbackQuery) -> None:
+        msg_text = 'Введи диапазон расстояний в км в формате min - max\nНапример, 0.2 - 1.5'
+        bot.send_message(message.from_user.id, msg_text)
+        my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Ввод диапазона расстояний.')
+
+    @staticmethod
+    def catch(message: Message) -> bool:
+        text = message.text.replace(' ', '')
+        text = text.replace(',', '.')
+        pattern = r'^(\d{1,2}[.])?\d{1,2}-(\d{1,2}[.])?\d{1,2}$'
+        if re.match(pattern, text):
+            min_dist, max_dist = text.split('-')
+            if float(min_dist) < float(max_dist):
+                UserData.set(message, 'distance_range', (min_dist, max_dist))
+                my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): '
+                               f'Диапазона цен: {min_dist} - {max_dist}.')
+                return True
+
+        bot.send_message(message.from_user.id, 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!')
+        my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Неверный ввод')
+        return False
+
+
 class FindHotels:
 
     @staticmethod
@@ -273,14 +324,16 @@ class FindHotels:
     def _find_hotels(request_data: dict) -> list:
         count_hotels = int(request_data['count_hotels'])
         city_coordinate = request_data['city']['coordinate']
+
         hotels = list()
         for page in range(1, 5):
             page_hotels = FindHotels._parser_page(request_data=request_data, page=str(page))
+
             if request_data['command'] == '/bestdeal':
                 min_dist, max_dist = request_data['distance_range']
                 min_dist, max_dist = float(min_dist), float(max_dist)
                 for hotel in page_hotels:
-                    dist = distance(city_coordinate, hotel['hotel_coordinate']).km
+                    dist = distance(city_coordinate, hotel['coordinate']).km
                     if min_dist < dist < max_dist:
                         hotels.append(hotel)
                     if len(hotels) == count_hotels:

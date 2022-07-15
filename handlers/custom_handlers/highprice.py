@@ -7,7 +7,7 @@ from utils.logging.logger import my_logger
 
 
 @bot.message_handler(commands=['highprice'])
-def bot_lowprice(message: Message) -> None:
+def bot_highprice(message: Message) -> None:
     bot.send_message(message.from_user.id, 'Начнем поиск самых дешевых отелей.')
 
     bot.set_state(message.from_user.id, UserHighpriceState.city, message.chat.id)
@@ -47,7 +47,7 @@ def check_out(message: Message or CallbackQuery) -> None:
 
 
 @bot.callback_query_handler(state=UserHighpriceState.check_out, func=CheckOut.is_callback())
-def callback_calendar_check_out(call: CallbackQuery) -> None:
+def callback_check_out(call: CallbackQuery) -> None:
     if CheckOut.catch(call):
         bot.set_state(call.from_user.id, UserHighpriceState.count_hotels, call.message.chat.id)
 

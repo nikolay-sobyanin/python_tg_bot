@@ -47,7 +47,7 @@ def check_out(message: Message or CallbackQuery) -> None:
 
 
 @bot.callback_query_handler(state=UserLowpriceState.check_out, func=CheckOut.is_callback())
-def callback_calendar_check_out(call: CallbackQuery) -> None:
+def callback_check_out(call: CallbackQuery) -> None:
     if CheckOut.catch(call):
         bot.set_state(call.from_user.id, UserLowpriceState.count_hotels, call.message.chat.id)
 
