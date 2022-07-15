@@ -13,7 +13,7 @@ from database.db_worker import DataBaseWorker
 from .logging.logger import my_logger
 from geopy.distance import distance
 
-
+# TODO все блоки команд
 class FindCity:
 
     @staticmethod
@@ -253,6 +253,13 @@ class DistanceRange:
         bot.send_message(message.from_user.id, 'Что-то пошло не так...\nНеверный ввод! Попробуй еще раз!')
         my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Неверный ввод')
         return False
+
+
+# TODO проработать данный объект. Проработать алгоритм поиска отелей, пока что плохо. Лучше разделить задачу на более мелкие
+# TODO плохо читаемый элемент
+# TODO сделай для каждой команды отдельный вывод. Может сделать лучше отдельный модуль?
+# TODO Впиши в документации какую user data формует команда, тогда будет все понятно.
+# TODO Опиши что лучше выводить в информации отелей и все получится!
 
 
 class FindHotels:
