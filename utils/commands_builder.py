@@ -13,6 +13,7 @@ from database.db_worker import DataBaseWorker
 from .logging.logger import my_logger
 from geopy.distance import distance
 
+
 # TODO все блоки команд
 class FindCity:
 
@@ -28,10 +29,10 @@ class FindCity:
     def _parser(city: str) -> list:
         url = START_URL + '/locations/v2/search'
         querystring = {'query': city, 'locale': LOCALE, 'currency': CURRENCY}
-        data_text = APIHotels.request_api(url=url, headers=HEADERS, querystring=querystring)
+        data = APIHotels.request_api(url=url, headers=HEADERS, querystring=querystring)
 
         pattern = r'(?<="CITY_GROUP",).+?[\]]'
-        find = re.search(pattern, data_text)
+        find = re.search(pattern, data)
         if find:
             data_json = json.loads(f"{{{find[0]}}}")
 
@@ -152,7 +153,7 @@ class CountHotels:
     @staticmethod
     def catch(message: Message) -> bool:
         if message.text.isdigit() and (1 <= int(message.text) <= 5):
-            UserData.set(message, 'count_hotels', message.text)
+            UserData.set(message, 'count_hotels', int(message.text))
             my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): '
                            f'Кол-во отелей: {message.text}.')
             return True
@@ -194,7 +195,7 @@ class CountPhotos:
     @staticmethod
     def catch(message: Message) -> bool:
         if message.text.isdigit() and (1 <= int(message.text) <= 10):
-            UserData.set(message, 'count_photos', message.text)
+            UserData.set(message, 'count_photos', int(message.text))
             my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): '
                            f'Кол-во фото: {message.text}.')
             return True
@@ -255,18 +256,11 @@ class DistanceRange:
         return False
 
 
-# TODO проработать данный объект. Проработать алгоритм поиска отелей, пока что плохо. Лучше разделить задачу на более мелкие
-# TODO плохо читаемый элемент
-# TODO сделай для каждой команды отдельный вывод. Может сделать лучше отдельный модуль?
-# TODO Впиши в документации какую user data формует команда, тогда будет все понятно.
-# TODO Опиши что лучше выводить в информации отелей и все получится!
-
-
 class FindHotels:
 
     @staticmethod
-    def _create_querystring(pageNumber: str, request_data: dict) -> dict:
-        querystring = {'destinationId': request_data['city']['destination_id'], 'pageNumber': pageNumber,
+    def _create_querystring(request_data: dict, page_number: int) -> dict:
+        querystring = {'destinationId': request_data['city']['destination_id'], 'pageNumber': str(page_number),
                        'pageSize': '25', 'checkIn': request_data['check_in'], 'checkOut': request_data['check_out'],
                        'adults1': '2', 'sortOrder': request_data['sort_order'], 'locale': LOCALE, 'currency': CURRENCY}
         if 'price_range' in request_data.keys():
@@ -277,11 +271,26 @@ class FindHotels:
         return querystring
 
     @staticmethod
-    def _parser_page(request_data: dict, page='1') -> list:
+    def _all_rate(rate: str, count_days: int) -> str:
+        all_rate = rate[1:]
+        if re.match(r'^\d+$', all_rate):
+            all_rate = int(all_rate) * count_days
+            return rate[0] + str(all_rate)
+        elif re.match(r'^\d+[.]\d{2}$', all_rate):
+            all_rate = int(all_rate) * count_days
+            return rate[0] + str(all_rate)
+        elif re.match(r'^\d{1,3}[.]\d{3}[.]\d{2}$', all_rate):
+            all_rate = all_rate.split('.')
+            all_rate = all_rate[0] + all_rate[1]
+            all_rate = int(all_rate) * count_days
+            return rate[0] + str(all_rate)
+
+    @staticmethod
+    def _parser_page(request_data: dict, page=1) -> list:
         url = START_URL + '/properties/list'
         count_days = DateWorker.count_days(request_data['check_in'], request_data['check_out'])
+        querystring = FindHotels._create_querystring(request_data, page)
 
-        querystring = FindHotels._create_querystring(pageNumber=str(page), request_data=request_data)
         data = APIHotels.request_api(url=url, headers=HEADERS, querystring=querystring)
         pattern = r'(?<=,)"results":.+?(?=,"pagination)'
         find = re.search(pattern, data)
@@ -290,10 +299,7 @@ class FindHotels:
             data_json = json.loads(f"{{{find[0]}}}")
             for hotel in data_json['results']:
                 rate = hotel['ratePlan']['price']['current']
-                rate_all = float(rate[1:].replace(',', '.'))
-                rate_all = int(rate_all) * count_days
-                rate_all = rate[0] + str(rate_all)
-
+                rate_all = FindHotels._all_rate(rate, count_days)
                 hotel_coordinate = (hotel['coordinate']['lat'], hotel['coordinate']['lon'])
 
                 hotels.append({'id': hotel['id'],
@@ -310,9 +316,9 @@ class FindHotels:
             raise HTTPError('Не могу обработать ответ от сервера...\nКоманда сброшена. Выполни запрос позже.')
 
     @staticmethod
-    def _parser_urls_photos(hotel_id: str, count_photos: str) -> list:
+    def _parser_urls_photos(hotel_id: int, count_photos: int) -> list:
         url = START_URL + '/properties/get-hotel-photos'
-        querystring = {"id": hotel_id}
+        querystring = {"id": str(hotel_id)}
         data = APIHotels.request_api(url=url, headers=HEADERS, querystring=querystring)
         pattern = r'(?<=,)"hotelImages":.+?(?=,"roomImages)'
         find = re.search(pattern, data)
@@ -322,21 +328,21 @@ class FindHotels:
             for url_photo in data_json['hotelImages']:
                 url_photo = url_photo['baseUrl'][0:-11] + '.jpg'
                 urls_photos.append(url_photo)
-                if len(urls_photos) == int(count_photos):
+                if len(urls_photos) == count_photos:
                     return urls_photos
             return urls_photos
 
     @staticmethod
-    def _find_hotels(request_data: dict) -> list:
-        count_hotels = int(request_data['count_hotels'])
-        city_coordinate = request_data['city']['coordinate']
+    def _find_hotels(data: dict) -> list:
+        count_hotels = data['count_hotels']
+        city_coordinate = data['city']['coordinate']
 
         hotels = list()
-        if request_data['command'] == '/bestdeal':
-            min_dist, max_dist = request_data['distance_range']
+        if data['command'] == '/bestdeal':
+            min_dist, max_dist = data['distance_range']
             min_dist, max_dist = float(min_dist), float(max_dist)
             for page in range(1, 5):
-                page_hotels = FindHotels._parser_page(request_data=request_data, page=str(page))
+                page_hotels = FindHotels._parser_page(data, page)
                 for hotel in page_hotels:
                     dist = distance(city_coordinate, hotel['coordinate']).km
                     if min_dist < dist < max_dist:
@@ -346,7 +352,7 @@ class FindHotels:
                         return hotels
             return hotels
 
-        page_hotels = FindHotels._parser_page(request_data=request_data)
+        page_hotels = FindHotels._parser_page(data)
         hotels = page_hotels[0:count_hotels]
         return hotels
 
@@ -354,16 +360,17 @@ class FindHotels:
     def result(message: Message, sort_order='PRICE') -> None:
         bot.send_message(message.from_user.id, 'Ищу отели...\nПодожди немного')
         UserData.set(message, 'sort_order', sort_order)
-
+        my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Начал поиск отелей.')
         data = UserData.get_all_value(message)
         try:
-            hotels = FindHotels._find_hotels(request_data=data)
+            hotels = FindHotels._find_hotels(data)
         except (HTTPError, ConnectionError, ValueError) as exc:
             bot.send_message(message.from_user.id, str(exc))
             UserData.reset(message)
             bot.delete_state(message.from_user.id, message.chat.id)
             my_logger.error(f'{message.from_user.full_name} (id: {message.from_user.id}): Ошибка на сервере.')
         else:
+            my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Вывод результата.')
             for hotel in hotels:
                 msg_text = f'Название отеля: {hotel["name"]}\n' \
                            f'Стоимость одних суток: {hotel["rate"]}\n' \
@@ -388,8 +395,4 @@ class FindHotels:
             UserData.reset(message)
             bot.delete_state(message.from_user.id, message.chat.id)
             bot.send_message(message.from_user.id, 'Поиск закончен!', reply_markup=ReplyKeyboardRemove())
-
-
-
-
-
+            my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Вывод закончен.')

@@ -5,6 +5,27 @@ from utils.user_data_manager import UserData
 from utils.commands_builder import FindCity, CheckIn, CheckOut, CountHotels, NeedPhotos, CountPhotos, FindHotels
 from utils.logging.logger import my_logger
 
+'''
+Сценарий работы команды:
+1) Поиск города: сообщение с запросом -> обработка ответа, уточнение поиска -> сохраняем в состояние инфу о городе
+2) Ввод Check In, Check Out и сохраняем в состояние инфу
+3) Ввод количества отелей
+4) Ввод необходимости фото.
+5) Если нужны запрос количества фото, иначе результат поиска.
+
+Сохраняем в UserMemory
+{
+'command': <str>
+'city': {'name': <str>, 'destination_id': <int>, 'coordinate': (<latitude_float> , <longitude_float>)},
+'check_in': <str>,
+'check_out': <str>,
+'count_hotels': <int>,
+'need_photos': <str>,
+#  Если key=need_photos, value='Да'
+'count_photos': <int>, 
+}
+'''
+
 
 @bot.message_handler(commands=['lowprice'])
 def bot_lowprice(message: Message) -> None:
@@ -73,6 +94,7 @@ def need_photos(message: Message) -> None:
         else:
             FindHotels.result(message)
             bot.delete_state(message.from_user.id, message.chat.id)
+            my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Команда /lowprice закончена.')
 
 
 @bot.message_handler(state=UserLowpriceState.count_photos)
@@ -80,3 +102,4 @@ def count_photos(message: Message) -> None:
     if CountPhotos.catch(message):
         FindHotels.result(message)
         bot.delete_state(message.from_user.id, message.chat.id)
+        my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Команда /lowprice закончена.')

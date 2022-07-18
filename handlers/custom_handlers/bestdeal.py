@@ -6,6 +6,31 @@ from utils.commands_builder import FindCity, CheckIn, CheckOut, CountHotels, Nee
     PriceRange, DistanceRange
 from utils.logging.logger import my_logger
 
+'''
+Сценарий работы команды:
+1) Поиск города: сообщение с запросом -> обработка ответа, уточнение поиска -> сохраняем в состояние инфу о городе
+2) Ввод Check In, Check Out и сохраняем в состояние инфу
+3) Ввод диапазона цен
+4) Ввод диапазона расстояний
+5) Ввод количества отелей
+6) Ввод необходимости фото.
+7) Если нужны запрос количества фото, иначе результат поиска.
+
+Сохраняем в UserMemory
+{
+'command': <str>
+'city': {'name': <str>, 'destination_id': <int>, 'coordinate': (<latitude_float> , <longitude_float>)},
+'check_in': <str>,
+'check_out': <str>,
+'price_range': (<min_price_str>, <max_price_str>),
+'distance_range': (<min_dist_str>, <max_dist_str>),
+'count_hotels': <int>,
+'need_photos': <str>,
+#  Если key=need_photos, value='Да'
+'count_photos': <int>, 
+}
+'''
+
 
 @bot.message_handler(commands=['bestdeal'])
 def bot_bestdeal(message: Message) -> None:
@@ -90,6 +115,7 @@ def need_photos(message: Message) -> None:
         else:
             FindHotels.result(message)
             bot.delete_state(message.from_user.id, message.chat.id)
+            my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Команда /bestdeal закончена.')
 
 
 @bot.message_handler(state=UserBestdealState.count_photos)
@@ -97,3 +123,4 @@ def count_photos(message: Message) -> None:
     if CountPhotos.catch(message):
         FindHotels.result(message)
         bot.delete_state(message.from_user.id, message.chat.id)
+        my_logger.info(f'{message.from_user.full_name} (id: {message.from_user.id}): Команда /bestdeal закончена.')
