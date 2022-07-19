@@ -34,7 +34,7 @@ from utils.logging.logger import my_logger
 
 @bot.message_handler(commands=['bestdeal'])
 def bot_bestdeal(message: Message) -> None:
-    bot.send_message(message.from_user.id, 'Начнем поиск самых дешевых отелей.')
+    bot.send_message(message.from_user.id, 'Начнем поиск отелей подходящих по цене и расстоянию от центра.')
 
     bot.set_state(message.from_user.id, UserBestdealState.city, message.chat.id)
     UserData.set(message, 'command', message.text)
